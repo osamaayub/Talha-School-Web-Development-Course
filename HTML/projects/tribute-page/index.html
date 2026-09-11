@@ -1,27 +1,32 @@
 <!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tribute Page For Dr. Norman Borlaug</title>
-    <link rel="stylesheet" href="styles/main.css" />
-  </head>
+  <title>Tribute Page For Dr. Norman Borlaug</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
 
-  <body>
-    <main id="main">
+<body>
+  <div id="main">
+    <div>
       <h1 id="title">Dr. Norman Borlaug</h1>
       <p>The man who saved a billion lives</p>
-      <figure>
+
+      <div>
         <img src="https://cdn.freecodecamp.org/testable-projects-fcc/images/tribute-page-main-image.jpg"
           alt="Dr. Norman Borlaug seen standing in Mexican wheat field with a group of biologists" />
-        <figcaption id="img-caption">
+        <div id="img-caption">
           Dr. Norman Borlaug, third from the left, trains biologists in Mexico on
           how to increase wheat yields - part of his life-long war on hunger.
-        </figcaption>
-      </figure>
-      <section>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
         <h3>Here's a timeline of Dr. Borlaug's life:</h3>
         <ul>
           <li><strong>1914</strong> - Born in Cresco, Iowa</li>
@@ -94,22 +99,26 @@
           </li>
           <li><strong>2009</strong> - dies at the age of 95.</li>
         </ul>
-        <blockquote
-          cite="http://news.rediff.com/report/2009/sep/14/pm-pays-tribute-to-father-of-green-revolution-borlaug.htm">
-          <p>
-            "Borlaug's life and achievement are testimony to the far-reaching
-            contribution that one man's towering intellect, persistence and
-            scientific vision can make to human peace and progress."
-          </p>
-          <cite>-- Indian Prime Minister Manmohan Singh</cite>
-        </blockquote>
-        <h3>
-          If you have time, you should read more about this incredible human being
-          on his
-          <a href="https://en.wikipedia.org/wiki/Norman_Borlaug" target="_blank">Wikipedia entry</a>.
-        </h3>
-      </section>
-    </main>
-  </body>
+      </div>
+    </div>
 
-  </html>
+    <div>
+      <div class="blockquote" data-cite="http://news.rediff.com/report/2009/sep/14/pm-pays-tribute-to-father-of-green-revolution-borlaug.htm">
+        <p>
+          "Borlaug's life and achievement are testimony to the far-reaching
+          contribution that one man's towering intellect, persistence and
+          scientific vision can make to human peace and progress."
+        </p>
+        <div class="blockquote-cite">-- Indian Prime Minister Manmohan Singh</div>
+      </div>
+
+      <h3>
+        If you have time, you should read more about this incredible human being
+        on his
+        <a href="https://en.wikipedia.org/wiki/Norman_Borlaug" target="_blank">Wikipedia entry</a>.
+      </h3>
+    </div>
+  </div>
+</body>
+
+</html>
