@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Website project</title>
+    <link href="css/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">SneakerHub</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="signin.html">Sign In</a></li>
+            <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Step Into Style</h1>
+            <p>Discover the latest collection of premium sneakers</p>
+            <button class="cta-button">Shop Now</button>
+        </div>
+    </header>
+
+    <section class="featured-shoes">
+        <h2>Featured Shoes</h2>
+        <div class="shoe-grid">
+            <div class="shoe-card">
+                <div class="shoe-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop" alt="Air Max Pro">
+                </div>
+                <div class="shoe-details">
+                    <h3>Air Max Pro</h3>
+                    <p class="shoe-description">Premium comfort with modern style</p>
+                    <p class="shoe-price">$149.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="shoe-card">
+                <div class="shoe-image">
+                    <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=300&fit=crop" alt="Ultra Boost">
+                </div>
+                <div class="shoe-details">
+                    <h3>Ultra Boost</h3>
+                    <p class="shoe-description">Energy-returning cushioning technology</p>
+                    <p class="shoe-price">$179.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="shoe-card">
+                <div class="shoe-image">
+                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=300&fit=crop" alt="Classic Runner">
+                </div>
+                <div class="shoe-details">
+                    <h3>Classic Runner</h3>
+                    <p class="shoe-description">Timeless design for everyday wear</p>
+                    <p class="shoe-price">$99.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="shoe-card">
+                <div class="shoe-image">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=300&fit=crop" alt="Street Style">
+                </div>
+                <div class="shoe-details">
+                    <h3>Street Style</h3>
+                    <p class="shoe-description">Bold colors for urban fashion</p>
+                    <p class="shoe-price">$129.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 SneakerHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Handle image loading errors
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.shoe-image img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    this.classList.add('error');
+                    this.parentElement.classList.add('has-error');
+                };
+            });
+        });
+    </script>
+</body>
+
+</html>
