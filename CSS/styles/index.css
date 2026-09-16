@@ -11,12 +11,12 @@ body {
   padding: 20px;
   margin: 10px;
   width: auto;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-.introduction-section h1 {
+.introduction-section #intro-heading {
   font-size: 2em;
 }
 .introduction-section p {
