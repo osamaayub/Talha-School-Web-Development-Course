@@ -3,10 +3,21 @@
     margin:0;
     box-sizing:border-box;
 }
+body{
+    background-color:lightblue;
+}
  div{
-    background-color:blueviolet;
+    background-color:rgb(230, 89, 112);
     padding:20px;
     margin:10px;
     width:auto;
 
+}
+h1{
+    font-size: 2em;
+    color:#FFFFFF;
+}
+p{
+    font-size:1em;
+    color:#FFFFFF;
 }
