@@ -25,3 +25,7 @@ body {
 h1 p {
   color: #ffffff;
 }
+/* attribute Selector */
+input[type="text"]{
+    color:#ffffff;
+}
