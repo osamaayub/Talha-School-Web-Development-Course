@@ -3,11 +3,11 @@
   margin: 0;
   box-sizing: border-box;
 }
-body {
+html body {
   background-color: lightblue;
 }
-.introduction-section {
-  background-color: rgb(230, 89, 112);
+div.introduction-section {
+  background-color: rgb(139, 73, 128);
   padding: 20px;
   margin: 10px;
   width: auto;
@@ -16,14 +16,17 @@ body {
   align-items: center;
   flex-direction: column;
 }
-.introduction-section #intro-heading {
+div.introduction-section #intro-heading {
   font-size: 2em;
+  color:hsla(0, 0%, 100%, 0.918);
+  line-height: 1.5;
+  font-weight:800;
+  text-transform: capitalize;
+  border:4px solid red;
+
 }
-.introduction-section p {
+div.introduction-section p {
   font-size: 1em;
-}
-h1 p {
-  color: #ffffff;
 }
 /* attribute Selector */
 input[type="text"]{
