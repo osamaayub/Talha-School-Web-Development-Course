@@ -35,12 +35,19 @@ div.introduction-section #intro-heading {
   max-width:100%;
   height:auto;
   border:5px solid #2fbfce;
+  margin-top:1em;
+  position:relative;
+  top:2em;
+  left:0;
+  right:1.3em;
+  bottom:3em;
 }
 .car-image:hover{
   border:3px solid #fcbdce;
 }
 div.introduction-section p {
   font-size: 1em;
+  margin:1em;
 }
 /* attribute Selector */
 input[type="text"]{
