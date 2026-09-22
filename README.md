@@ -77,6 +77,7 @@ https://talh-webdevelopmentcourse.netlify.app/
   - Documentation: [StyleHub README](docs/StyleHub-README.md)
   - Technical Docs: [StyleHub Technical Documentation](docs/StyleHub-Technical-Docs.md)
   - User Guide: [StyleHub User Guide](docs/StyleHub-User-Guide.md)
+  - *Note: Landing page is deployed on gh-pages branch for GitHub Pages*
 - Styling fundamentals
 - Responsive design
 - Layout techniques
