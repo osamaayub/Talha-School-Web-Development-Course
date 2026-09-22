@@ -16,6 +16,7 @@
     align-items: center;
 
     background: var(--navbar-bg);
+
     backdrop-filter: blur(1rem);
     -webkit-backdrop-filter: blur(1rem);
 
@@ -26,6 +27,23 @@
 }
 
 /* =========================================================
+   NAVBAR INNER CONTAINER
+   ========================================================= */
+
+.navbar-inner {
+    width: 100%;
+    max-width: 90rem;
+
+    margin-inline: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+}
+
+/* =========================================================
    LOGO
    ========================================================= */
 
@@ -33,13 +51,23 @@
     flex-shrink: 0;
 
     font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+
     font-weight: 900;
+
     letter-spacing: -0.04em;
 
     background: var(--primary-gradient);
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
     background-clip: text;
+
+    transition: transform 0.25s ease;
+}
+
+.logo:hover {
+    transform: translateY(-1px);
 }
 
 /* =========================================================
@@ -56,7 +84,9 @@
     align-items: center;
     justify-content: flex-end;
 
-    gap: clamp(0.25rem, 0.6vw, 0.5rem);
+    gap: clamp(0.2rem, 0.5vw, 0.5rem);
+
+    flex-wrap: nowrap;
 }
 
 /* Regular navigation links */
@@ -87,6 +117,7 @@
 
 .nav-links > li > a:not(.btn-signup):hover {
     background: rgba(102, 126, 234, 0.1);
+
     color: #667eea;
 }
 
@@ -94,15 +125,19 @@
 
 .nav-links > li > a.active {
     background: rgba(102, 126, 234, 0.13);
+
     color: #667eea;
+
     font-weight: 600;
 }
 
 /* =========================================================
-   SEARCH
+   SEARCH BAR
    ========================================================= */
 
 .search-container {
+    position: relative;
+
     display: flex;
     align-items: center;
 
@@ -113,16 +148,19 @@
 
 .search-input {
     width: clamp(10rem, 15vw, 14rem);
+
     height: 2.75rem;
 
-    padding: 0 0.9rem;
+    padding: 0 2.75rem 0 0.9rem;
 
     border: 1px solid var(--border-color);
+
     border-radius: 0.75rem;
 
     outline: none;
 
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--card-bg);
+
     color: var(--text-dark);
 
     font-size: 0.875rem;
@@ -146,21 +184,32 @@
         0 0 0 0.2rem rgba(102, 126, 234, 0.12);
 }
 
-.search-button {
-    width: 2.5rem;
-    height: 2.5rem;
+/* Search icon inside input */
 
-    margin-left: -2.65rem;
+.search-button {
+    position: absolute;
+
+    right: 0.25rem;
+    top: 50%;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    transform: translateY(-50%);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     border: 0;
-    border-radius: 50%;
+
+    border-radius: 0.55rem;
 
     background: transparent;
-    color: var(--text-dark);
+
+    color: var(--text-light);
+
+    cursor: pointer;
 
     transition:
         background 0.25s ease,
@@ -169,7 +218,13 @@
 
 .search-button:hover {
     background: rgba(102, 126, 234, 0.12);
+
     color: #667eea;
+}
+
+.search-icon {
+    width: 1.1rem;
+    height: 1.1rem;
 }
 
 /* =========================================================
@@ -178,6 +233,7 @@
 
 .btn-signup {
     display: inline-flex !important;
+
     align-items: center;
     justify-content: center;
 
@@ -192,6 +248,7 @@
     color: #ffffff !important;
 
     font-size: 0.875rem;
+
     font-weight: 700 !important;
 
     box-shadow:
@@ -220,11 +277,11 @@
 .mobile-search-toggle,
 .mobile-menu-toggle {
     border: 0;
+
     background: transparent;
+
     color: var(--text-dark);
 }
-
-/* User / Theme / Cart */
 
 .user-icon,
 .theme-toggle,
@@ -248,6 +305,7 @@
 .theme-toggle:hover,
 .cart-icon:hover {
     background: rgba(102, 126, 234, 0.1);
+
     color: #667eea;
 }
 
@@ -278,6 +336,7 @@
     background: var(--dropdown-bg);
 
     border: 1px solid var(--border-color);
+
     border-radius: 0.85rem;
 
     box-shadow:
@@ -286,6 +345,8 @@
     display: none;
 
     animation: dropdownIn 0.2s ease;
+
+    z-index: 1100;
 }
 
 .user-dropdown.active {
@@ -310,17 +371,20 @@
 
 .dropdown-item:hover {
     background: rgba(102, 126, 234, 0.1);
+
     color: #667eea;
 }
 
 @keyframes dropdownIn {
     from {
         opacity: 0;
+
         transform: translateY(-0.4rem);
     }
 
     to {
         opacity: 1;
+
         transform: translateY(0);
     }
 }
@@ -355,31 +419,18 @@
     border-radius: 999rem;
 
     background: #f5576c;
+
     color: #ffffff;
 
     font-size: 0.6rem;
+
     font-weight: 700;
 
     border: 2px solid var(--navbar-bg);
 }
 
 /* =========================================================
-   DARK MODE NAVBAR
-   ========================================================= */
-
-[data-theme="dark"] .navbar {
-    border-bottom-color: rgba(255, 255, 255, 0.06);
-
-    box-shadow:
-        0 0.25rem 1.5rem rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="dark"] .search-input {
-    background: rgba(255, 255, 255, 0.04);
-}
-
-/* =========================================================
-   MOBILE BUTTONS
+   MOBILE MENU BUTTONS
    ========================================================= */
 
 .mobile-menu-toggle,
@@ -394,7 +445,8 @@
 
     border-radius: 0.7rem;
 
-    transition: background 0.25s ease;
+    transition:
+        background 0.25s ease;
 }
 
 .mobile-menu-toggle:hover,
@@ -404,6 +456,7 @@
 
 .mobile-menu-toggle {
     flex-direction: column;
+
     gap: 0.3rem;
 }
 
@@ -418,4 +471,21 @@
     transition:
         transform 0.25s ease,
         opacity 0.25s ease;
+}
+
+/* =========================================================
+   DARK MODE NAVBAR
+   ========================================================= */
+
+[data-theme="dark"] .navbar {
+    border-bottom-color:
+        rgba(255, 255, 255, 0.06);
+
+    box-shadow:
+        0 0.25rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .search-input {
+    background:
+        rgba(255, 255, 255, 0.04);
 }
