@@ -1,60 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/index.css">
-    <title>StyleHub - Premium Clothing Collection</title>
+    <title>StyleHub - Modern Fashion Collection</title>
 </head>
 <body>
 
-    <!-- =========================================================
-         NAVIGATION
-         ========================================================= -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-inner">
-            <!-- Logo -->
             <a href="#home" class="logo">StyleHub</a>
 
-            <!-- Navigation Links -->
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#products">Collection</a></li>
+                <li><a href="#lookbook">Lookbook</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
-            <!-- Actions (Search, User, Cart) -->
-            <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="nav-actions">
+                <!-- Search Box -->
                 <div class="search-box">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search products..." aria-label="Search products">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search..." aria-label="Search products">
                     <button class="search-button" id="searchButton" aria-label="Search" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                     </button>
                 </div>
 
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" type="button">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <!-- User Account -->
                 <div class="user-icon-container">
                     <button class="user-icon" id="userIcon" aria-label="User account" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
                     </button>
-                    <!-- User Dropdown -->
                     <div class="user-dropdown" id="userDropdown">
                         <a href="#" class="dropdown-item">My Account</a>
                         <a href="#" class="dropdown-item">Orders</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Logout</a>
+                        <a href="#" class="dropdown-item">Wishlist</a>
+                        <a href="#" class="dropdown-item logout">Logout</a>
                     </div>
                 </div>
 
+                <!-- Shopping Cart -->
                 <div class="cart-icon-container">
                     <button class="cart-icon" id="cartIcon" aria-label="Open cart" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="9" cy="21" r="1"></circle>
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -66,68 +83,33 @@
         </div>
     </nav>
 
-    <!-- =========================================================
-         HERO
-         ========================================================= -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
+        <div class="container hero-content">
             <h1>Elevate Your Wardrobe</h1>
-            <p>Discover our latest collection of premium apparel designed for unmatched comfort and modern aesthetics.</p>
-            <button class="cta-button" id="exploreCollectionBtn" type="button">Shop the Collection</button>
+            <p>Premium everyday wear designed for tailored silhouette, lasting durability, and sustainable modern style.</p>
+            <a href="#products" class="cta-button">Explore New Arrivals</a>
         </div>
     </section>
 
-    <!-- =========================================================
-         FEATURES
-         ========================================================= -->
-    <section class="features">
-        <div class="container">
-            <h2>The StyleHub Standard</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">✨</div>
-                    <h3>Premium Materials</h3>
-                    <p>Ethically sourced fabrics that ensure lasting comfort and durability.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Express Shipping</h3>
-                    <p>Free, carbon-neutral delivery on all orders over $50.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">↩️</div>
-                    <h3>Hassle-Free Returns</h3>
-                    <p>30-day window for exchanges or full refunds, no questions asked.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Secure Checkout</h3>
-                    <p>Encrypted payment processing for your peace of mind.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================================
-         PRODUCTS
-         ========================================================= -->
+    <!-- Collection Section -->
     <section class="products" id="products">
         <div class="container">
-            <h2>Featured Arrivals</h2>
+            <div class="section-header">
+                <h2>Featured Collection</h2>
+                <p class="section-subtitle">Meticulously tailored staples engineered for comfort.</p>
+            </div>
             <div class="product-grid">
-
-                <!-- PRODUCT 1 -->
                 <div class="product-card">
                     <div class="product-image">
                         <span class="product-badge">New</span>
-                        <button class="wishlist-button" type="button" aria-label="Add to wishlist">♡</button>
-                        <!-- Updated images to portrait crops for fashion layout -->
-                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=800&fit=crop" alt="Classic white T-Shirt" loading="lazy">
+                        <button class="wishlist-button" type="button" aria-label="Wishlist">♡</button>
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=800&fit=crop" alt="Classic T-Shirt" loading="lazy">
                     </div>
                     <div class="product-details">
                         <span class="product-category">Essentials</span>
-                        <h3>Premium Cotton T-Shirt</h3>
-                        <p class="product-description">Heavyweight cotton with a structured, modern fit.</p>
+                        <h3>Heavyweight Cotton Tee</h3>
+                        <p class="product-description">280 GSM combed organic cotton with a ribbed crew neck.</p>
                         <div class="product-price-wrapper">
                             <span class="product-price">$29.99</span>
                         </div>
@@ -135,17 +117,16 @@
                     </div>
                 </div>
 
-                <!-- PRODUCT 2 -->
                 <div class="product-card">
                     <div class="product-image">
                         <span class="product-badge sale">Sale</span>
-                        <button class="wishlist-button" type="button" aria-label="Add to wishlist">♡</button>
+                        <button class="wishlist-button" type="button" aria-label="Wishlist">♡</button>
                         <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=800&fit=crop" alt="Denim Jacket" loading="lazy">
                     </div>
                     <div class="product-details">
                         <span class="product-category">Outerwear</span>
-                        <h3>Vintage Wash Denim Jacket</h3>
-                        <p class="product-description">Timeless silhouette crafted from rigid, sustainable denim.</p>
+                        <h3>Raw Edge Denim Jacket</h3>
+                        <p class="product-description">Japanese selvage denim with antique brass hardware.</p>
                         <div class="product-price-wrapper">
                             <span class="product-price">$89.99</span>
                             <span class="old-price">$119.99</span>
@@ -154,56 +135,162 @@
                     </div>
                 </div>
 
-                <!-- PRODUCT 3 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <button class="wishlist-button" type="button" aria-label="Add to wishlist">♡</button>
+                        <button class="wishlist-button" type="button" aria-label="Wishlist">♡</button>
                         <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=800&fit=crop" alt="Graphic Hoodie" loading="lazy">
                     </div>
                     <div class="product-details">
                         <span class="product-category">Fleece</span>
-                        <h3>Oversized Graphic Hoodie</h3>
-                        <p class="product-description">Brushed interior fleece designed for maximum warmth.</p>
+                        <h3>Minimalist Boxy Hoodie</h3>
+                        <p class="product-description">French terry knit with custom double-layered hood.</p>
                         <div class="product-price-wrapper">
                             <span class="product-price">$59.99</span>
                         </div>
                         <button class="add-to-cart" type="button">Add to Cart</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- =========================================================
-         FOOTER
-         ========================================================= -->
+    <!-- Lookbook Section -->
+    <section class="lookbook" id="lookbook">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seasonal Lookbook</h2>
+                <p class="section-subtitle">Curated styles captured in the wild.</p>
+            </div>
+            <div class="lookbook-grid">
+                <div class="lookbook-item large">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&h=600&fit=crop" alt="Autumn Look" loading="lazy">
+                    <div class="lookbook-overlay">
+                        <h3>Autumn Monochromes</h3>
+                        <span>Explore the Mood</span>
+                    </div>
+                </div>
+                <div class="lookbook-item">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=600&fit=crop" alt="Urban Streetwear" loading="lazy">
+                    <div class="lookbook-overlay">
+                        <h3>Urban Streetwear</h3>
+                    </div>
+                </div>
+                <div class="lookbook-item">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=600&fit=crop" alt="Capsule Essentials" loading="lazy">
+                    <div class="lookbook-overlay">
+                        <h3>Capsule Staples</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Crafted Without Compromise</h2>
+                    <p>At StyleHub, we believe great clothing shouldn't demand excessive pricing or fragile care. We strip away middlemen and fast-fashion gimmicks to deliver garments that hold their shape and comfort year after year.</p>
+                    <p>Every piece is ethically made using responsibly-sourced natural cotton, recycled denims, and non-toxic dyes.</p>
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <strong>100%</strong>
+                            <span>Organic Cotton</span>
+                        </div>
+                        <div class="stat-box">
+                            <strong>30-Day</strong>
+                            <span>Try-On Guarantee</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop" alt="StyleHub Studio" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Customers Say</h2>
+                <p class="section-subtitle">Over 15,000 verified 5-star experiences worldwide.</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"The heavyweight cotton t-shirt is unlike any basic tee I've owned. It washes without shrinking or twisting at the seams."</p>
+                    <div class="reviewer">
+                        <strong>Marcus K.</strong>
+                        <span>Verified Buyer</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"The denim jacket fit is on point. Perfect boxy cut that leaves room for layering a hoodie underneath without feeling stiff."</p>
+                    <div class="reviewer">
+                        <strong>Elena R.</strong>
+                        <span>Verified Buyer</span>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Fast delivery and minimalist packaging with zero plastic. StyleHub has quickly become my go-to for wardrobe essentials."</p>
+                    <div class="reviewer">
+                        <strong>David S.</strong>
+                        <span>Verified Buyer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Newsletter Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-card">
+                    <h2>Join the Club</h2>
+                    <p>Subscribe to receive secret sales, limited restock alerts, and 15% off your first order.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Enter your email" required aria-label="Email Address">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>StyleHub</h3>
-                    <p>Redefining modern essentials. Quality garments built for everyday wear.</p>
+                    <span class="logo">StyleHub</span>
+                    <p>Designed for daily life. Premium textiles built with intentional craftsmanship.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Shop</h3>
+                    <h4>Navigation</h4>
                     <ul>
-                        <li><a href="#products">New Arrivals</a></li>
-                        <li><a href="#products">Best Sellers</a></li>
-                        <li><a href="#products">Sale</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Collection</a></li>
+                        <li><a href="#lookbook">Lookbook</a></li>
+                        <li><a href="#about">About</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Support</h3>
+                    <h4>Support</h4>
                     <ul>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#contact">Contact Support</a></li>
+                        <li><a href="#">Shipping & Tracking</a></li>
+                        <li><a href="#">Returns Portal</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 StyleHub. All rights reserved.</p>
+                <p>&copy; 2026 StyleHub Inc. All rights reserved.</p>
             </div>
         </div>
     </footer>
