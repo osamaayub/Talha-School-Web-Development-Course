@@ -9,7 +9,7 @@
     --text-muted: #64748b;
     --border: #e2e8f0;
     
-    --accent: #0f172a; /* Brand dark color */
+    --accent: #0f172a;
     --accent-hover: #334155;
     
     --navbar-bg: rgba(255, 255, 255, 0.92);
@@ -28,7 +28,7 @@
     --text-muted: #94a3b8;
     --border: #1e293b;
     
-    --accent: #f8fafc; /* Brand light color */
+    --accent: #f8fafc;
     --accent-hover: #cbd5e1;
     
     --navbar-bg: rgba(9, 13, 22, 0.92);
@@ -164,7 +164,6 @@ img {
     border-color: var(--text-muted);
 }
 
-/* Uniform Icon Buttons */
 .search-button,
 .theme-toggle,
 .user-icon,
@@ -198,13 +197,11 @@ img {
     height: 1.15rem;
 }
 
-/* Dark Mode Icon Logic */
 [data-theme="light"] .sun-icon { display: none; }
 [data-theme="light"] .moon-icon { display: block; }
 [data-theme="dark"] .sun-icon { display: block; }
 [data-theme="dark"] .moon-icon { display: none; }
 
-/* Cart Badge */
 .cart-icon-container {
     position: relative;
 }
@@ -546,9 +543,298 @@ section {
 }
 
 /* =========================================================
-   8. ABOUT
+   8. ABOUT US
    ========================================================= */
 .about-content {
-Please share the HTML, the existing stylesheet, or a description of the component you are trying to style, as there is no code attached to your request. 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
 
-Are we working on a specific layout for your 3D portfolio, a Next.js component for DevFlow, or a completely new project? Paste in the code or your design requirements, and I will generate the complete CSS or Tailwind classes for you.
+.about-text h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.about-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-box strong {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.stat-box span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.about-image {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================================================
+   9. REVIEWS
+   ========================================================= */
+.reviews {
+    background: var(--bg-surface);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.review-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.review-card .stars {
+    color: #f59e0b; /* Golden Yellow */
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.review-card p {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.reviewer {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewer strong {
+    font-weight: 700;
+}
+
+.reviewer span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* =========================================================
+   10. CONTACT / NEWSLETTER
+   ========================================================= */
+.contact-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+}
+
+.contact-card h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.contact-card p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex-grow: 1;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 3rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.newsletter-form input:focus {
+    border-color: var(--text-muted);
+}
+
+.newsletter-form button {
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.newsletter-form button:hover {
+    background: var(--accent-hover);
+}
+
+/* =========================================================
+   11. FOOTER
+   ========================================================= */
+.footer {
+    background: #0f172a; /* Always dark for premium feel */
+    color: #f8fafc;
+    padding: 5rem 0 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer .logo {
+    color: #ffffff;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section p {
+    color: #94a3b8;
+    max-width: 300px;
+    line-height: 1.8;
+}
+
+.footer-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.footer-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-section a {
+    color: #94a3b8;
+    transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* =========================================================
+   12. MEDIA QUERIES (Responsive Adjustments)
+   ========================================================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none; /* Hide standard nav on smaller screens */
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .search-input {
+        width: 0;
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .search-input:focus {
+        width: 12rem;
+        padding: 0 2.5rem 0 1rem;
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    .hero {
+        min-height: 60vh;
+        padding: 3rem 1rem;
+    }
+    
+    .lookbook-item.large {
+        grid-column: span 1;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
