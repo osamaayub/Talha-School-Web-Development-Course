@@ -1,321 +1,33 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles/index.css">
+```
+<link rel="stylesheet" href="styles/index.css">
 
-    <title>StyleHub - Premium Clothing Collection</title>
+<title>StyleHub - Premium Clothing Collection</title>
+```
 
-    <!-- Additional styling for improved search bar and product cards -->
-    <style>
-        /* =========================================================
-           IMPROVED SEARCH BAR
-           ========================================================= */
-
-        .search-box {
-            position: relative;
-            display: flex;
-            align-items: center;
-            width: clamp(10rem, 16vw, 14rem);
-        }
-
-        .search-box .search-input {
-            width: 100%;
-            padding-right: 2.75rem;
-        }
-
-        .search-box .search-button {
-            position: absolute;
-            right: 0.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-
-            width: 2.25rem;
-            height: 2.25rem;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 50%;
-            color: var(--text-medium);
-
-            transition: var(--transition);
-        }
-
-        .search-box .search-button:hover {
-            color: #667eea;
-            background: rgba(102, 126, 234, 0.1);
-        }
-
-        .search-input {
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.12);
-        }
-
-        /* =========================================================
-           IMPROVED PRODUCT CARDS
-           ========================================================= */
-
-        .product-card {
-            position: relative;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-        }
-
-        .product-image {
-            position: relative;
-            background: #f7fafc;
-        }
-
-        [data-theme="dark"] .product-image {
-            background: #1a202c;
-        }
-
-        .product-image img {
-            transition:
-                transform 0.45s ease,
-                filter 0.3s ease;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.06);
-            filter: brightness(0.96);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 0.75rem;
-            left: 0.75rem;
-            z-index: 2;
-
-            padding: 0.3rem 0.65rem;
-
-            border-radius: 999px;
-
-            background: var(--primary-gradient);
-            color: #ffffff;
-
-            font-size: 0.72rem;
-            font-weight: 700;
-
-            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
-        }
-
-        .product-badge.sale {
-            background: linear-gradient(
-                135deg,
-                #f093fb 0%,
-                #f5576c 100%
-            );
-        }
-
-        .wishlist-button {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            z-index: 2;
-
-            width: 2.35rem;
-            height: 2.35rem;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border: 0;
-            border-radius: 50%;
-
-            background: rgba(255, 255, 255, 0.92);
-            color: #4a5568;
-
-            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.12);
-
-            transition: var(--transition);
-        }
-
-        .wishlist-button:hover {
-            color: #f5576c;
-            transform: scale(1.08);
-        }
-
-        [data-theme="dark"] .wishlist-button {
-            background: rgba(45, 55, 72, 0.95);
-            color: #e2e8f0;
-        }
-
-        .product-details {
-            padding: clamp(1rem, 2vw, 1.25rem);
-        }
-
-        .product-category {
-            display: block;
-
-            margin-bottom: 0.35rem;
-
-            color: #667eea;
-
-            font-size: 0.75rem;
-            font-weight: 700;
-
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .product-details h3 {
-            margin-bottom: 0.35rem;
-        }
-
-        .product-description {
-            line-height: 1.5;
-            margin-bottom: 0.65rem;
-        }
-
-        .product-rating {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-
-            margin-bottom: 0.75rem;
-
-            font-size: 0.8rem;
-        }
-
-        .stars {
-            color: #f6ad55;
-            letter-spacing: 0.05rem;
-        }
-
-        .rating-count {
-            color: var(--text-light);
-        }
-
-        .product-price-wrapper {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-
-            margin-bottom: 1rem;
-        }
-
-        .product-price {
-            margin: 0;
-        }
-
-        .old-price {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            text-decoration: line-through;
-        }
-
-        .discount {
-            padding: 0.2rem 0.4rem;
-
-            border-radius: 0.35rem;
-
-            background: rgba(245, 87, 108, 0.1);
-            color: #f5576c;
-
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        .add-to-cart {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .add-to-cart::after {
-            content: "";
-
-            position: absolute;
-            inset: 0;
-
-            background: rgba(255, 255, 255, 0.12);
-
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .add-to-cart:hover::after {
-            transform: translateX(0);
-        }
-
-        /* =========================================================
-           MOBILE SEARCH
-           ========================================================= */
-
-        .mobile-search-container {
-            position: relative;
-        }
-
-        .mobile-search-input {
-            padding-right: 3rem;
-        }
-
-        .mobile-search-icon {
-            position: absolute;
-
-            right: 3.2rem;
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            color: var(--text-light);
-            pointer-events: none;
-        }
-
-        /* =========================================================
-           PRODUCT GRID SPACING
-           ========================================================= */
-
-        .product-grid {
-            align-items: stretch;
-        }
-
-        /* =========================================================
-           MOBILE PRODUCT CARD
-           ========================================================= */
-
-        @media (max-width: 30rem) {
-            .product-badge {
-                top: 0.5rem;
-                left: 0.5rem;
-            }
-
-            .wishlist-button {
-                top: 0.5rem;
-                right: 0.5rem;
-            }
-
-            .product-details {
-                padding: 0.9rem;
-            }
-
-            .product-rating {
-                font-size: 0.75rem;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
-    <!-- =========================================================
-         NAVIGATION
-         ========================================================= -->
+```
+<!-- =========================================================
+     NAVIGATION
+     ========================================================= -->
 
-    <nav class="navbar">
+<nav class="navbar">
+
+    <div class="navbar-inner">
 
         <!-- Logo -->
-        <div class="logo">StyleHub</div>
+        <div class="logo">
+            StyleHub
+        </div>
 
         <!-- Mobile Search Button -->
         <button
@@ -336,7 +48,12 @@
                 stroke-linejoin="round"
             >
                 <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line
+                    x1="21"
+                    y1="21"
+                    x2="16.65"
+                    y2="16.65"
+                ></line>
             </svg>
         </button>
 
@@ -356,19 +73,27 @@
         <ul class="nav-links" id="navLinks">
 
             <li>
-                <a href="#home" class="active">Home</a>
+                <a href="#home" class="active">
+                    Home
+                </a>
             </li>
 
             <li>
-                <a href="#products">Products</a>
+                <a href="#products">
+                    Products
+                </a>
             </li>
 
             <li>
-                <a href="#about">About</a>
+                <a href="#about">
+                    About
+                </a>
             </li>
 
             <li>
-                <a href="#contact">Contact</a>
+                <a href="#contact">
+                    Contact
+                </a>
             </li>
 
             <!-- Desktop Search -->
@@ -447,13 +172,22 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                     >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
+                        <path
+                            d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                        ></path>
+                        <circle
+                            cx="12"
+                            cy="7"
+                            r="4"
+                        ></circle>
                     </svg>
                 </button>
 
-                <div class="user-dropdown" id="userDropdown">
-
+                <!-- User Dropdown -->
+                <div
+                    class="user-dropdown"
+                    id="userDropdown"
+                >
                     <a href="#" class="dropdown-item">
                         My Account
                     </a>
@@ -473,7 +207,6 @@
                     <a href="#" class="dropdown-item">
                         Logout
                     </a>
-
                 </div>
 
             </li>
@@ -501,15 +234,67 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                     >
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="5"
+                        ></circle>
+
+                        <line
+                            x1="12"
+                            y1="1"
+                            x2="12"
+                            y2="3"
+                        ></line>
+
+                        <line
+                            x1="12"
+                            y1="21"
+                            x2="12"
+                            y2="23"
+                        ></line>
+
+                        <line
+                            x1="4.22"
+                            y1="4.22"
+                            x2="5.64"
+                            y2="5.64"
+                        ></line>
+
+                        <line
+                            x1="18.36"
+                            y1="18.36"
+                            x2="19.78"
+                            y2="19.78"
+                        ></line>
+
+                        <line
+                            x1="1"
+                            y1="12"
+                            x2="3"
+                            y2="12"
+                        ></line>
+
+                        <line
+                            x1="21"
+                            y1="12"
+                            x2="23"
+                            y2="12"
+                        ></line>
+
+                        <line
+                            x1="4.22"
+                            y1="19.78"
+                            x2="5.64"
+                            y2="18.36"
+                        ></line>
+
+                        <line
+                            x1="18.36"
+                            y1="5.64"
+                            x2="19.78"
+                            y2="4.22"
+                        ></line>
                     </svg>
 
                     <!-- Moon -->
@@ -525,7 +310,10 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                     >
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        <path
+                            d="M21 12.79A9 9 0 1 1 11.21 3
+                            7 7 0 0 0 21 12.79z"
+                        ></path>
                     </svg>
 
                 </button>
@@ -541,7 +329,6 @@
                     aria-label="Open cart"
                     type="button"
                 >
-
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -553,49 +340,97 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                     >
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        <circle
+                            cx="9"
+                            cy="21"
+                            r="1"
+                        ></circle>
+
+                        <circle
+                            cx="20"
+                            cy="21"
+                            r="1"
+                        ></circle>
+
+                        <path
+                            d="M1 1h4l2.68 13.39a2 2 0
+                            0 0 2 1.61h9.72a2 2 0 0
+                            0 2-1.61L23 6H6"
+                        ></path>
                     </svg>
 
-                    <span class="cart-count" id="cartCount">
+                    <span
+                        class="cart-count"
+                        id="cartCount"
+                    >
                         0
                     </span>
-
                 </button>
 
             </li>
 
         </ul>
 
-    </nav>
+    </div>
+
+</nav>
 
 
-    <!-- =========================================================
-         MOBILE SEARCH OVERLAY
-         ========================================================= -->
+<!-- =========================================================
+     MOBILE SEARCH OVERLAY
+     ========================================================= -->
 
-    <div
-        class="mobile-search-overlay"
-        id="mobileSearchOverlay"
-    >
+<div
+    class="mobile-search-overlay"
+    id="mobileSearchOverlay"
+>
 
-        <div class="mobile-search-container">
+    <div class="mobile-search-container">
 
-            <input
-                type="text"
-                class="mobile-search-input"
-                id="mobileSearchInput"
-                placeholder="Search products..."
-                aria-label="Search products"
-            >
+        <input
+            type="text"
+            class="mobile-search-input"
+            id="mobileSearchInput"
+            placeholder="Search products..."
+            aria-label="Search products"
+        >
 
-            <!-- Search icon -->
+        <svg
+            class="mobile-search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <circle
+                cx="11"
+                cy="11"
+                r="8"
+            ></circle>
+
+            <line
+                x1="21"
+                y1="21"
+                x2="16.65"
+                y2="16.65"
+            ></line>
+        </svg>
+
+        <button
+            class="mobile-search-close"
+            id="mobileSearchClose"
+            aria-label="Close search"
+            type="button"
+        >
             <svg
-                class="mobile-search-icon"
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -603,966 +438,646 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
             >
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line
+                    x1="18"
+                    y1="6"
+                    x2="6"
+                    y2="18"
+                ></line>
+
+                <line
+                    x1="6"
+                    y1="6"
+                    x2="18"
+                    y2="18"
+                ></line>
             </svg>
-
-            <button
-                class="mobile-search-close"
-                id="mobileSearchClose"
-                aria-label="Close search"
-                type="button"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-
-        </div>
+        </button>
 
     </div>
 
-
-    <!-- Mobile Backdrop -->
-    <div
-        class="mobile-backdrop"
-        id="mobileBackdrop"
-    ></div>
+</div>
 
 
-    <!-- =========================================================
-         HERO
-         ========================================================= -->
-
-    <section class="hero" id="home">
-
-        <div class="hero-content">
-
-            <h1>
-                Premium Clothing for Modern Style
-            </h1>
-
-            <p>
-                Discover our latest collection of quality apparel
-                designed for comfort and fashion.
-            </p>
-
-            <button
-                class="cta-button"
-                id="exploreCollectionBtn"
-                type="button"
-            >
-                Explore Collection
-            </button>
-
-        </div>
-
-    </section>
+<!-- Mobile Backdrop -->
+<div
+    class="mobile-backdrop"
+    id="mobileBackdrop"
+></div>
 
 
-    <!-- =========================================================
-         FEATURES
-         ========================================================= -->
+<!-- =========================================================
+     HERO
+     ========================================================= -->
 
-    <section class="features">
+<section
+    class="hero"
+    id="home"
+>
 
-        <div class="container">
+    <div class="hero-content">
 
-            <h2>
-                Why Choose StyleHub
-            </h2>
+        <h1>
+            Premium Clothing for Modern Style
+        </h1>
 
-            <div class="features-grid">
+        <p>
+            Discover our latest collection of quality apparel
+            designed for comfort and fashion.
+        </p>
 
-                <div class="feature-card">
+        <button
+            class="cta-button"
+            id="exploreCollectionBtn"
+            type="button"
+        >
+            Explore Collection
+        </button>
 
-                    <div class="feature-icon">
-                        🎨
-                    </div>
+    </div>
 
-                    <h3>
-                        Quality Materials
-                    </h3>
+</section>
 
-                    <p>
-                        Premium fabrics that ensure comfort and durability.
-                    </p>
 
+<!-- =========================================================
+     FEATURES
+     ========================================================= -->
+
+<section class="features">
+
+    <div class="container">
+
+        <h2>
+            Why Choose StyleHub
+        </h2>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎨
                 </div>
 
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        🚀
-                    </div>
-
-                    <h3>
-                        Fast Shipping
-                    </h3>
-
-                    <p>
-                        Free delivery on orders over $50 within 3-5 days.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        ↩️
-                    </div>
-
-                    <h3>
-                        Easy Returns
-                    </h3>
-
-                    <p>
-                        30-day hassle-free return policy on all items.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        🔒
-                    </div>
-
-                    <h3>
-                        Secure Payment
-                    </h3>
-
-                    <p>
-                        Safe and secure payment processing guaranteed.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         PRODUCTS
-         ========================================================= -->
-
-    <section class="products" id="products">
-
-        <div class="container">
-
-            <h2>
-                Featured Collection
-            </h2>
-
-            <div class="product-grid">
-
-
-                <!-- PRODUCT 1 -->
-
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-badge">
-                            New
-                        </span>
-
-                        <button
-                            class="wishlist-button"
-                            type="button"
-                            aria-label="Add Classic T-Shirt to wishlist"
-                        >
-                            ♡
-                        </button>
-
-                        <img
-                            src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=500&fit=crop"
-                            alt="Classic white T-Shirt"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-                    <div class="product-details">
-
-                        <span class="product-category">
-                            Men's Fashion
-                        </span>
-
-                        <h3>
-                            Classic T-Shirt
-                        </h3>
-
-                        <p class="product-description">
-                            Premium cotton with a soft and comfortable everyday fit.
-                        </p>
-
-                        <div class="product-rating">
-
-                            <span class="stars">
-                                ★★★★★
-                            </span>
-
-                            <span class="rating-count">
-                                4.9 (124)
-                            </span>
-
-                        </div>
-
-                        <div class="product-price-wrapper">
-
-                            <p class="product-price">
-                                $29.99
-                            </p>
-
-                            <span class="old-price">
-                                $39.99
-                            </span>
-
-                            <span class="discount">
-                                25% OFF
-                            </span>
-
-                        </div>
-
-                        <button
-                            class="add-to-cart"
-                            type="button"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PRODUCT 2 -->
-
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-badge sale">
-                            Sale
-                        </span>
-
-                        <button
-                            class="wishlist-button"
-                            type="button"
-                            aria-label="Add Denim Jacket to wishlist"
-                        >
-                            ♡
-                        </button>
-
-                        <img
-                            src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=500&fit=crop"
-                            alt="Denim Jacket"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-                    <div class="product-details">
-
-                        <span class="product-category">
-                            Jackets
-                        </span>
-
-                        <h3>
-                            Denim Jacket
-                        </h3>
-
-                        <p class="product-description">
-                            Timeless denim design with a modern comfortable fit.
-                        </p>
-
-                        <div class="product-rating">
-
-                            <span class="stars">
-                                ★★★★★
-                            </span>
-
-                            <span class="rating-count">
-                                4.8 (96)
-                            </span>
-
-                        </div>
-
-                        <div class="product-price-wrapper">
-
-                            <p class="product-price">
-                                $89.99
-                            </p>
-
-                            <span class="old-price">
-                                $119.99
-                            </span>
-
-                            <span class="discount">
-                                25% OFF
-                            </span>
-
-                        </div>
-
-                        <button
-                            class="add-to-cart"
-                            type="button"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PRODUCT 3 -->
-
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-badge">
-                            Popular
-                        </span>
-
-                        <button
-                            class="wishlist-button"
-                            type="button"
-                            aria-label="Add Graphic Hoodie to wishlist"
-                        >
-                            ♡
-                        </button>
-
-                        <img
-                            src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=500&fit=crop"
-                            alt="Graphic Hoodie"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-                    <div class="product-details">
-
-                        <span class="product-category">
-                            Hoodies
-                        </span>
-
-                        <h3>
-                            Graphic Hoodie
-                        </h3>
-
-                        <p class="product-description">
-                            Warm and stylish hoodie designed for comfortable layering.
-                        </p>
-
-                        <div class="product-rating">
-
-                            <span class="stars">
-                                ★★★★★
-                            </span>
-
-                            <span class="rating-count">
-                                4.9 (210)
-                            </span>
-
-                        </div>
-
-                        <div class="product-price-wrapper">
-
-                            <p class="product-price">
-                                $59.99
-                            </p>
-
-                            <span class="old-price">
-                                $74.99
-                            </span>
-
-                            <span class="discount">
-                                20% OFF
-                            </span>
-
-                        </div>
-
-                        <button
-                            class="add-to-cart"
-                            type="button"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PRODUCT 4 -->
-
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-badge">
-                            New
-                        </span>
-
-                        <button
-                            class="wishlist-button"
-                            type="button"
-                            aria-label="Add Slim Fit Jeans to wishlist"
-                        >
-                            ♡
-                        </button>
-
-                        <img
-                            src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&h=500&fit=crop"
-                            alt="Slim Fit Jeans"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-                    <div class="product-details">
-
-                        <span class="product-category">
-                            Jeans
-                        </span>
-
-                        <h3>
-                            Slim Fit Jeans
-                        </h3>
-
-                        <p class="product-description">
-                            Stretch denim with a sleek design and comfortable fit.
-                        </p>
-
-                        <div class="product-rating">
-
-                            <span class="stars">
-                                ★★★★☆
-                            </span>
-
-                            <span class="rating-count">
-                                4.7 (78)
-                            </span>
-
-                        </div>
-
-                        <div class="product-price-wrapper">
-
-                            <p class="product-price">
-                                $79.99
-                            </p>
-
-                            <span class="old-price">
-                                $99.99
-                            </span>
-
-                            <span class="discount">
-                                20% OFF
-                            </span>
-
-                        </div>
-
-                        <button
-                            class="add-to-cart"
-                            type="button"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PRODUCT 5 -->
-
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-badge sale">
-                            Sale
-                        </span>
-
-                        <button
-                            class="wishlist-button"
-                            type="button"
-                            aria-label="Add Summer Dress to wishlist"
-                        >
-                            ♡
-                        </button>
-
-                        <img
-                            src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&h=500&fit=crop"
-                            alt="Summer Dress"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-                    <div class="product-details">
-
-                        <span class="product-category">
-                            Women's Fashion
-                        </span>
-
-                        <h3>
-                            Summer Dress
-                        </h3>
-
-                        <p class="product-description">
-                            Lightweight and breathable fabric perfect for warm days.
-                        </p>
-
-                        <div class="product-rating">
-
-                            <span class="stars">
-                                ★★★★★
-                            </span>
-
-                            <span class="rating-count">
-                                4.8 (143)
-                            </span>
-
-                        </div>
-
-                        <div class="product-price-wrapper">
-
-                            <p class="product-price">
-                                $69.99
-                            </p>
-
-                            <span class="old-price">
-                                $89.99
-                            </span>
-
-                            <span class="discount">
-                                22% OFF
-                            </span>
-
-                        </div>
-
-                        <button
-                            class="add-to-cart"
-                            type="button"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PRODUCT 6 -->
-
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-badge">
-                            Popular
-                        </span>
-
-                        <button
-                            class="wishlist-button"
-                            type="button"
-                            aria-label="Add Casual Sneakers to wishlist"
-                        >
-                            ♡
-                        </button>
-
-                        <img
-                            src="https://images.unsplash.com/photo-1605763240004-7d93b172d7da?w=600&h=500&fit=crop"
-                            alt="Casual Sneakers"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-                    <div class="product-details">
-
-                        <span class="product-category">
-                            Footwear
-                        </span>
-
-                        <h3>
-                            Casual Sneakers
-                        </h3>
-
-                        <p class="product-description">
-                            Lightweight everyday sneakers built for comfort and style.
-                        </p>
-
-                        <div class="product-rating">
-
-                            <span class="stars">
-                                ★★★★★
-                            </span>
-
-                            <span class="rating-count">
-                                4.9 (187)
-                            </span>
-
-                        </div>
-
-                        <div class="product-price-wrapper">
-
-                            <p class="product-price">
-                                $99.99
-                            </p>
-
-                            <span class="old-price">
-                                $129.99
-                            </span>
-
-                            <span class="discount">
-                                23% OFF
-                            </span>
-
-                        </div>
-
-                        <button
-                            class="add-to-cart"
-                            type="button"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         ABOUT
-         ========================================================= -->
-
-    <section class="about" id="about">
-
-        <div class="container">
-
-            <div class="about-content">
-
-                <div class="about-text">
-
-                    <h2>
-                        About StyleHub
-                    </h2>
-
-                    <p>
-                        Founded in 2020, StyleHub has been dedicated
-                        to providing premium clothing that combines
-                        quality, comfort, and modern style.
-                    </p>
-
-                    <p>
-                        We believe that everyone deserves to look
-                        and feel their best without compromising
-                        on quality or breaking the bank.
-                    </p>
-
-                    <p>
-                        Our collection is carefully curated to ensure
-                        that every piece meets our high standards
-                        for craftsmanship and design.
-                    </p>
-
-                    <button
-                        class="cta-button secondary"
-                        id="learnMoreBtn"
-                        type="button"
-                    >
-                        Learn More
-                    </button>
-
-                </div>
-
-                <div class="about-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop"
-                        alt="StyleHub clothing store"
-                        loading="lazy"
-                    >
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         CONTACT
-         ========================================================= -->
-
-    <section class="contact" id="contact">
-
-        <div class="container">
-
-            <h2>
-                Get In Touch
-            </h2>
-
-            <div class="contact-content">
-
-                <div class="contact-info">
-
-                    <h3>
-                        Contact Information
-                    </h3>
-
-                    <p>
-                        <strong>Email:</strong>
-                        info@stylehub.com
-                    </p>
-
-                    <p>
-                        <strong>Phone:</strong>
-                        +1 (555) 123-4567
-                    </p>
-
-                    <p>
-                        <strong>Address:</strong>
-                        123 Fashion Street,
-                        Style City, SC 12345
-                    </p>
-
-                </div>
-
-
-                <div class="newsletter">
-
-                    <h3>
-                        Subscribe to Our Newsletter
-                    </h3>
-
-                    <p>
-                        Get exclusive offers and updates
-                        on new arrivals.
-                    </p>
-
-                    <form class="newsletter-form">
-
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            aria-label="Email address"
-                            required
-                        >
-
-                        <button type="submit">
-                            Subscribe
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         FOOTER
-         ========================================================= -->
-
-    <footer class="footer">
-
-        <div class="container">
-
-            <div class="footer-content">
-
-                <div class="footer-section">
-
-                    <h3>
-                        StyleHub
-                    </h3>
-
-                    <p>
-                        Premium clothing for modern style.
-                    </p>
-
-                </div>
-
-
-                <div class="footer-section">
-
-                    <h3>
-                        Quick Links
-                    </h3>
-
-                    <ul>
-
-                        <li>
-                            <a href="#home">
-                                Home
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#products">
-                                Products
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#about">
-                                About
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#contact">
-                                Contact
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="footer-section">
-
-                    <h3>
-                        Follow Us
-                    </h3>
-
-                    <div class="social-links">
-
-                        <a
-                            href="#"
-                            aria-label="Facebook"
-                        >
-                            Facebook
-                        </a>
-
-                        <a
-                            href="#"
-                            aria-label="Instagram"
-                        >
-                            Instagram
-                        </a>
-
-                        <a
-                            href="#"
-                            aria-label="Twitter"
-                        >
-                            Twitter
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="footer-bottom">
+                <h3>
+                    Quality Materials
+                </h3>
 
                 <p>
-                    &copy; 2026 StyleHub.
-                    All rights reserved.
+                    Premium fabrics that ensure comfort and durability.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    Fast Shipping
+                </h3>
+
+                <p>
+                    Free delivery on orders over $50 within 3-5 days.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ↩️
+                </div>
+
+                <h3>
+                    Easy Returns
+                </h3>
+
+                <p>
+                    30-day hassle-free return policy on all items.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🔒
+                </div>
+
+                <h3>
+                    Secure Payment
+                </h3>
+
+                <p>
+                    Safe and secure payment processing guaranteed.
                 </p>
 
             </div>
 
         </div>
 
-    </footer>
+    </div>
+
+</section>
 
 
-    <!-- =========================================================
-         CART MODAL
-         ========================================================= -->
+<!-- =========================================================
+     PRODUCTS
+     ========================================================= -->
 
-    <div
-        class="cart-modal"
-        id="cartModal"
-    >
+<section
+    class="products"
+    id="products"
+>
 
-        <div class="cart-modal-content">
+    <div class="container">
 
-            <div class="cart-modal-header">
+        <h2>
+            Featured Collection
+        </h2>
 
-                <h2>
-                    Your Cart
-                </h2>
+        <div class="product-grid">
 
-                <button
-                    class="cart-close"
-                    id="cartClose"
-                    aria-label="Close cart"
-                    type="button"
-                >
-                    &times;
-                </button>
+            <!-- PRODUCT 1 -->
+            <div class="product-card">
 
-            </div>
+                <div class="product-image">
 
-
-            <div
-                class="cart-items"
-                id="cartItems"
-            >
-                <!-- Cart items will be dynamically added here -->
-            </div>
-
-
-            <div class="cart-modal-footer">
-
-                <div class="cart-total">
-
-                    <span>
-                        Total:
+                    <span class="product-badge">
+                        New
                     </span>
 
-                    <span id="cartTotal">
-                        $0.00
-                    </span>
+                    <button
+                        class="wishlist-button"
+                        type="button"
+                        aria-label="Add Classic T-Shirt to wishlist"
+                    >
+                        ♡
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=600&fit=crop"
+                        alt="Classic white T-Shirt"
+                        loading="lazy"
+                    >
 
                 </div>
 
-                <button
-                    class="checkout-button"
-                    id="checkoutBtn"
-                    type="button"
-                >
-                    Proceed to Checkout
-                </button>
+                <div class="product-details">
+
+                    <span class="product-category">
+                        Men's Fashion
+                    </span>
+
+                    <h3>
+                        Classic T-Shirt
+                    </h3>
+
+                    <p class="product-description">
+                        Premium cotton with a soft and comfortable
+                        everyday fit.
+                    </p>
+
+                    <div class="product-rating">
+
+                        <span class="stars">
+                            ★★★★★
+                        </span>
+
+                        <span class="rating-count">
+                            4.9 (124)
+                        </span>
+
+                    </div>
+
+                    <div class="product-price-wrapper">
+
+                        <p class="product-price">
+                            $29.99
+                        </p>
+
+                        <span class="old-price">
+                            $39.99
+                        </span>
+
+                        <span class="discount">
+                            25% OFF
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="add-to-cart"
+                        type="button"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="product-badge sale">
+                        Sale
+                    </span>
+
+                    <button
+                        class="wishlist-button"
+                        type="button"
+                        aria-label="Add Denim Jacket to wishlist"
+                    >
+                        ♡
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&h=600&fit=crop"
+                        alt="Denim Jacket"
+                        loading="lazy"
+                    >
+
+                </div>
+
+                <div class="product-details">
+
+                    <span class="product-category">
+                        Jackets
+                    </span>
+
+                    <h3>
+                        Denim Jacket
+                    </h3>
+
+                    <p class="product-description">
+                        Timeless denim design with a modern
+                        comfortable fit.
+                    </p>
+
+                    <div class="product-rating">
+
+                        <span class="stars">
+                            ★★★★★
+                        </span>
+
+                        <span class="rating-count">
+                            4.8 (96)
+                        </span>
+
+                    </div>
+
+                    <div class="product-price-wrapper">
+
+                        <p class="product-price">
+                            $89.99
+                        </p>
+
+                        <span class="old-price">
+                            $119.99
+                        </span>
+
+                        <span class="discount">
+                            25% OFF
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="add-to-cart"
+                        type="button"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="product-badge">
+                        Popular
+                    </span>
+
+                    <button
+                        class="wishlist-button"
+                        type="button"
+                        aria-label="Add Graphic Hoodie to wishlist"
+                    >
+                        ♡
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&h=600&fit=crop"
+                        alt="Graphic Hoodie"
+                        loading="lazy"
+                    >
+
+                </div>
+
+                <div class="product-details">
+
+                    <span class="product-category">
+                        Hoodies
+                    </span>
+
+                    <h3>
+                        Graphic Hoodie
+                    </h3>
+
+                    <p class="product-description">
+                        Warm and stylish hoodie designed for
+                        comfortable layering.
+                    </p>
+
+                    <div class="product-rating">
+
+                        <span class="stars">
+                            ★★★★★
+                        </span>
+
+                        <span class="rating-count">
+                            4.9 (210)
+                        </span>
+
+                    </div>
+
+                    <div class="product-price-wrapper">
+
+                        <p class="product-price">
+                            $59.99
+                        </p>
+
+                        <span class="old-price">
+                            $74.99
+                        </span>
+
+                        <span class="discount">
+                            20% OFF
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="add-to-cart"
+                        type="button"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="product-badge">
+                        New
+                    </span>
+
+                    <button
+                        class="wishlist-button"
+                        type="button"
+                        aria-label="Add Slim Fit Jeans to wishlist"
+                    >
+                        ♡
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&h=600&fit=crop"
+                        alt="Slim Fit Jeans"
+                        loading="lazy"
+                    >
+
+                </div>
+
+                <div class="product-details">
+
+                    <span class="product-category">
+                        Jeans
+                    </span>
+
+                    <h3>
+                        Slim Fit Jeans
+                    </h3>
+
+                    <p class="product-description">
+                        Stretch denim with a sleek design and
+                        comfortable fit.
+                    </p>
+
+                    <div class="product-rating">
+
+                        <span class="stars">
+                            ★★★★☆
+                        </span>
+
+                        <span class="rating-count">
+                            4.7 (78)
+                        </span>
+
+                    </div>
+
+                    <div class="product-price-wrapper">
+
+                        <p class="product-price">
+                            $79.99
+                        </p>
+
+                        <span class="old-price">
+                            $99.99
+                        </span>
+
+                        <span class="discount">
+                            20% OFF
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="add-to-cart"
+                        type="button"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 5 -->
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="product-badge sale">
+                        Sale
+                    </span>
+
+                    <button
+                        class="wishlist-button"
+                        type="button"
+                        aria-label="Add Summer Dress to wishlist"
+                    >
+                        ♡
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=800&h=600&fit=crop"
+                        alt="Summer Dress"
+                        loading="lazy"
+                    >
+
+                </div>
+
+                <div class="product-details">
+
+                    <span class="product-category">
+                        Women's Fashion
+                    </span>
+
+                    <h3>
+                        Summer Dress
+                    </h3>
+
+                    <p class="product-description">
+                        Lightweight and breathable fabric perfect
+                        for warm days.
+                    </p>
+
+                    <div class="product-rating">
+
+                        <span class="stars">
+                            ★★★★★
+                        </span>
+
+                        <span class="rating-count">
+                            4.8 (143)
+                        </span>
+
+                    </div>
+
+                    <div class="product-price-wrapper">
+
+                        <p class="product-price">
+                            $69.99
+                        </p>
+
+                        <span class="old-price">
+                            $89.99
+                        </span>
+
+                        <span class="discount">
+                            22% OFF
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="add-to-cart"
+                        type="button"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 6 -->
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="product-badge">
+                        Popular
+                    </span>
+
+                    <button
+                        class="wishlist-button"
+                        type="button"
+                        aria-label="Add Casual Sneakers to wishlist"
+                    >
+                        ♡
+                    </button>
+
+                    <!-- Fixed sneaker image -->
+                    <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=600&fit=crop"
+                        alt="Casual Sneakers"
+                        loading="lazy"
+                    >
+
+                </div>
+
+                <div class="product-details">
+
+                    <span class="product-category">
+                        Footwear
+                    </span>
+
+                    <h3>
+                        Casual Sneakers
+                    </h3>
+
+                    <p class="product-description">
+                        Lightweight everyday sneakers built for
+                        comfort and style.
+                    </p>
+
+                    <div class="product-rating">
+
+                        <span class="stars">
+                            ★★★★★
+                        </span>
+
+                        <span class="rating-count">
+                            4.9 (187)
+                        </span>
+
+                    </div>
+
+                    <div class="product-price-wrapper">
+
+                        <p class="product-price">
+                            $99.99
+                        </p>
+
+                        <span class="old-price">
+                            $129.99
+                        </span>
+
+                        <span class="discount">
+                            23% OFF
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="add-to-cart"
+                        type="button"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
 
             </div>
 
@@ -1570,19 +1085,333 @@
 
     </div>
 
-
-    <!-- =========================================================
-         TOAST NOTIFICATION
-         ========================================================= -->
-
-    <div
-        class="toast-container"
-        id="toastContainer"
-    ></div>
+</section>
 
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
+<!-- =========================================================
+     ABOUT
+     ========================================================= -->
+
+<section
+    class="about"
+    id="about"
+>
+
+    <div class="container">
+
+        <div class="about-content">
+
+            <div class="about-text">
+
+                <h2>
+                    About StyleHub
+                </h2>
+
+                <p>
+                    Founded in 2020, StyleHub has been dedicated
+                    to providing premium clothing that combines
+                    quality, comfort, and modern style.
+                </p>
+
+                <p>
+                    We believe that everyone deserves to look
+                    and feel their best without compromising
+                    on quality or breaking the bank.
+                </p>
+
+                <p>
+                    Our collection is carefully curated to ensure
+                    that every piece meets our high standards
+                    for craftsmanship and design.
+                </p>
+
+                <button
+                    class="cta-button secondary"
+                    id="learnMoreBtn"
+                    type="button"
+                >
+                    Learn More
+                </button>
+
+            </div>
+
+            <div class="about-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop"
+                    alt="StyleHub clothing store"
+                    loading="lazy"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+     ========================================================= -->
+
+<section
+    class="contact"
+    id="contact"
+>
+
+    <div class="container">
+
+        <h2>
+            Get In Touch
+        </h2>
+
+        <div class="contact-content">
+
+            <div class="contact-info">
+
+                <h3>
+                    Contact Information
+                </h3>
+
+                <p>
+                    <strong>Email:</strong>
+                    info@stylehub.com
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    +1 (555) 123-4567
+                </p>
+
+                <p>
+                    <strong>Address:</strong>
+                    123 Fashion Street,
+                    Style City, SC 12345
+                </p>
+
+            </div>
+
+            <div class="newsletter">
+
+                <h3>
+                    Subscribe to Our Newsletter
+                </h3>
+
+                <p>
+                    Get exclusive offers and updates
+                    on new arrivals.
+                </p>
+
+                <form class="newsletter-form">
+
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        aria-label="Email address"
+                        required
+                    >
+
+                    <button type="submit">
+                        Subscribe
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div class="footer-section">
+
+                <h3>
+                    StyleHub
+                </h3>
+
+                <p>
+                    Premium clothing for modern style.
+                </p>
+
+            </div>
+
+            <div class="footer-section">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <ul>
+
+                    <li>
+                        <a href="#home">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products">
+                            Products
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-section">
+
+                <h3>
+                    Follow Us
+                </h3>
+
+                <div class="social-links">
+
+                    <a
+                        href="#"
+                        aria-label="Facebook"
+                    >
+                        Facebook
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="Instagram"
+                    >
+                        Instagram
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="Twitter"
+                    >
+                        Twitter
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 StyleHub.
+                All rights reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     CART MODAL
+     ========================================================= -->
+
+<div
+    class="cart-modal"
+    id="cartModal"
+>
+
+    <div class="cart-modal-content">
+
+        <div class="cart-modal-header">
+
+            <h2>
+                Your Cart
+            </h2>
+
+            <button
+                class="cart-close"
+                id="cartClose"
+                aria-label="Close cart"
+                type="button"
+            >
+                &times;
+            </button>
+
+        </div>
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+            <!-- Cart items are dynamically added here -->
+        </div>
+
+        <div class="cart-modal-footer">
+
+            <div class="cart-total">
+
+                <span>
+                    Total:
+                </span>
+
+                <span id="cartTotal">
+                    $0.00
+                </span>
+
+            </div>
+
+            <button
+                class="checkout-button"
+                id="checkoutBtn"
+                type="button"
+            >
+                Proceed to Checkout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+
+<!-- JavaScript -->
+<script src="js/main.js"></script>
+```
 
 </body>
 </html>
