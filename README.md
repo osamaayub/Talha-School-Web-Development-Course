@@ -20,13 +20,20 @@ WebDevelopmentCourse/
 │   │   ├── personal-portfolio/      # Personal portfolio website
 │   │   └── introduction/             # Introduction to HTML
 │   └── examples/                     # Learning examples and exercises
-├── CSS/                               # CSS module projects (coming soon)
+├── CSS/                               # CSS module projects
+│   ├── LandingPage/                  # StyleHub landing page project
+│   │   ├── index.html               # Main HTML file
+│   │   ├── styles/                  # CSS styling
+│   │   └── js/                      # JavaScript functionality
 ├── JavaScript/                        # JavaScript module projects (coming soon)
 └── docs/                              # Course documentation
     ├── README.md                     # Documentation overview and guide
     ├── course-notes.md               # Course notes and learning materials
     ├── resources.md                  # External learning resources
     ├── tribute-page-guide.md         # Detailed tribute page project guide
+    ├── StyleHub-README.md            # StyleHub project overview
+    ├── StyleHub-Technical-Docs.md    # StyleHub technical documentation
+    ├── StyleHub-User-Guide.md        # StyleHub user guide
     ├── ebooks/                       # Ebooks and learning materials
     ├── slides/                       # Presentation slides
     └── templates/                    # Templates and reference materials
@@ -64,7 +71,12 @@ https://talh-webdevelopmentcourse.netlify.app/
 - **Personal Portfolio**: A personal portfolio website with contact form
 - **Introduction**: Basic HTML structure and concepts
 
-### CSS Module (Coming Soon)
+### CSS Module
+- **StyleHub Landing Page**: Modern e-commerce landing page with advanced features
+  - Live Site: https://osamaayub.github.io/Talha-School-Web-Development-Course/
+  - Documentation: [StyleHub README](docs/StyleHub-README.md)
+  - Technical Docs: [StyleHub Technical Documentation](docs/StyleHub-Technical-Docs.md)
+  - User Guide: [StyleHub User Guide](docs/StyleHub-User-Guide.md)
 - Styling fundamentals
 - Responsive design
 - Layout techniques
