@@ -1,0 +1,22 @@
+.container{
+    display:flex;
+    justify-content:space-between;
+    padding:4em;
+    background-color:rgb(107, 96, 133);
+}
+.first-item{
+    flex:1 0 1;
+    background-color:rgb(71, 209, 209);
+    padding:4em;
+}
+.second-item{
+         flex:1 0 1;
+        background-color:rgb(179, 61, 61);
+        padding:4em;
+}
+.third-item{
+    flex:1 0 1;
+    background-color: rgb(163, 47, 111);
+    color:#FFFFFF;
+    padding:4em;
+}
