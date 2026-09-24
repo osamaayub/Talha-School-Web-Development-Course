@@ -1,22 +1,101 @@
-.container{
-    display:flex;
-    justify-content:space-between;
-    padding:4em;
-    background-color:rgb(107, 96, 133);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.first-item{
-    flex:1 0 1;
-    background-color:rgb(71, 209, 209);
-    padding:4em;
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f8f9fa;
+    padding: 2em;
 }
-.second-item{
-         flex:1 0 1;
-        background-color:rgb(179, 61, 61);
-        padding:4em;
+
+h1 {
+    color: #1a1a1a;
+    margin-bottom: 1em;
+    font-size: 1.8em;
 }
-.third-item{
-    flex:1 0 1;
-    background-color: rgb(163, 47, 111);
-    color:#FFFFFF;
-    padding:4em;
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 4em;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    gap: 2em;
+}
+
+.first-item {
+    flex: 1 0 1;
+    background-color: #00556b;
+    color: #ffffff;
+    padding: 4em;
+    border-radius: 6px;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.first-item h2 {
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+}
+
+.second-item {
+    flex: 1 0 1;
+    background-color: #6b1a1a;
+    color: #ffffff;
+    padding: 4em;
+    border-radius: 6px;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.second-item h2 {
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+}
+
+.third-item {
+    flex: 1 0 1;
+    background-color: #4a1a3a;
+    color: #ffffff;
+    padding: 4em;
+    border-radius: 6px;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.third-item h2 {
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+}
+
+.info-box {
+    background-color: #e8f4f8;
+    border-left: 4px solid #00556b;
+    padding: 1.5em;
+    margin-top: 2em;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: #1a1a1a;
+}
+
+.contrast-badge {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 1em;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 2em;
+        gap: 1.5em;
+    }
 }
