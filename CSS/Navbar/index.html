@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit — Navigation that stays with you</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="#home" class="logo">Orbit<span>.</span></a>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+            <label for="nav-toggle" class="nav-backdrop" aria-label="Close menu"></label>
+            <label for="nav-toggle" class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="nav-cta-mobile">
+                    <a href="#get-started" class="btn">Get Started</a>
+                </li>
+            </ul>
+
+            <a href="#get-started" class="btn btn-desktop">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-visual" aria-hidden="true">
+                <span class="orbit-ring orbit-ring-1"></span>
+                <span class="orbit-ring orbit-ring-2"></span>
+                <span class="orbit-core"></span>
+            </div>
+            <div class="hero-content">
+                <p class="brand-mark">Orbit<span>.</span></p>
+                <h1>Navigation that moves with every screen</h1>
+                <p class="hero-lead">A clean, responsive menu system for product sites — solid on desktop, effortless on mobile.</p>
+                <div class="hero-actions">
+                    <a href="#get-started" class="btn">Get Started</a>
+                    <a href="#features" class="btn btn-ghost">See features</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="section-intro">
+                <h2>Built for real layouts</h2>
+                <p>Everything you need for a sticky header that feels polished without a framework.</p>
+            </div>
+            <ul class="feature-list">
+                <li>
+                    <h3>Flexbox structure</h3>
+                    <p>Logo, links, and CTA align cleanly across breakpoints with a single flex row.</p>
+                </li>
+                <li>
+                    <h3>CSS-only mobile menu</h3>
+                    <p>A checkbox toggle opens the drawer — no JavaScript required to ship the interaction.</p>
+                </li>
+                <li>
+                    <h3>Smooth motion</h3>
+                    <p>Hamburger morph, slide-in panel, and hover states keep the UI feeling intentional.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="pricing" class="section section-pricing">
+            <div class="section-intro">
+                <h2>Simple pricing</h2>
+                <p>Start free, then scale when your site needs more polish.</p>
+            </div>
+            <div class="pricing-grid">
+                <article class="plan">
+                    <h3>Starter</h3>
+                    <p class="plan-price">Free</p>
+                    <p>Core navbar patterns for personal projects and learning builds.</p>
+                    <a href="#get-started" class="btn btn-ghost">Start free</a>
+                </article>
+                <article class="plan plan-featured">
+                    <h3>Pro</h3>
+                    <p class="plan-price">$19<span>/mo</span></p>
+                    <p>Production-ready styles, motion presets, and layout variants.</p>
+                    <a href="#get-started" class="btn">Choose Pro</a>
+                </article>
+                <article class="plan">
+                    <h3>Team</h3>
+                    <p class="plan-price">$49<span>/mo</span></p>
+                    <p>Shared components and guidance for multi-page product sites.</p>
+                    <a href="#get-started" class="btn btn-ghost">Talk to us</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" class="section section-about">
+            <div class="section-intro">
+                <h2>About Orbit</h2>
+                <p>Orbit is a teaching project turned into a practical navbar pattern — HTML and CSS only, focused on clarity, accessibility, and responsive behavior you can reuse.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="section section-contact">
+            <div class="contact-layout">
+                <div class="contact-copy">
+                    <div class="section-intro">
+                        <h2>Contact</h2>
+                        <p>Questions about the pattern or want help adapting it? Send a note — we usually reply within a day.</p>
+                    </div>
+                    <ul class="contact-details">
+                        <li>
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:hello@orbit.dev">hello@orbit.dev</a>
+                        </li>
+                        <li>
+                            <span class="contact-label">Support</span>
+                            <a href="mailto:support@orbit.dev">support@orbit.dev</a>
+                        </li>
+                        <li>
+                            <span class="contact-label">Hours</span>
+                            <span>Mon–Fri, 9am–6pm PT</span>
+                        </li>
+                    </ul>
+                </div>
+                <form class="contact-form" action="#" method="get">
+                    <label>
+                        Name
+                        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                    </label>
+                    <label class="full">
+                        Subject
+                        <input type="text" name="subject" placeholder="What's this about?" required>
+                    </label>
+                    <label class="full">
+                        Message
+                        <textarea name="message" rows="5" placeholder="How can we help?" required></textarea>
+                    </label>
+                    <button type="submit" class="btn">Send message</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="get-started" class="section section-cta">
+            <div class="cta-panel">
+                <h2>Ready to ship your nav?</h2>
+                <p>Open the project files, resize the viewport, and use Orbit as your starting point.</p>
+                <a href="#home" class="btn">Back to top</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Orbit<span>.</span> — HTML &amp; CSS navbar demo</p>
+    </footer>
+
+    <script>
+        (function () {
+            var toggle = document.getElementById("nav-toggle");
+            if (!toggle) return;
+
+            function closeMenu() {
+                toggle.checked = false;
+            }
+
+            document.querySelectorAll(".nav-links a, .logo").forEach(function (link) {
+                link.addEventListener("click", closeMenu);
+            });
+        })();
+    </script>
+</body>
+</html>
