@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/CSS/ShopCards/index.html" },
+    { "source": "/style.css", "destination": "/CSS/ShopCards/style.css" },
+    { "source": "/script.js", "destination": "/CSS/ShopCards/script.js" },
+    { "source": "/(.*)", "destination": "/CSS/ShopCards/$1" }
+  ]
+}
