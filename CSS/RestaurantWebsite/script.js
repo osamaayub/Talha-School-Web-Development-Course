@@ -623,7 +623,8 @@
     lastY = y;
     const probe = y + window.innerHeight * 0.35;
     let cur = null;
-    sections.forEach((s) => { if (s && s.offsetTop <= probe) cur = s.id; });
+    // document-relative top: offsetTop would be measured from the positioned .band wrapper for #reserve
+    sections.forEach((s) => { if (s && s.getBoundingClientRect().top + window.scrollY <= probe) cur = s.id; });
     links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
     ticking = false;
   };
