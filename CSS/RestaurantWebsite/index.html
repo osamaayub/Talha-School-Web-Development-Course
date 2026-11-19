@@ -15,6 +15,22 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
+  <!-- Shared gradients and soft shadow used by every dish illustration -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="plateGrad" cx="38%" cy="32%" r="80%">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".65" stop-color="#fbf6ec"/><stop offset="1" stop-color="#ecdfc8"/>
+      </radialGradient>
+      <radialGradient id="plateWell" cx="42%" cy="38%" r="75%">
+        <stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#f1e6d1"/>
+      </radialGradient>
+      <filter id="foodShadow" x="-20%" y="-20%" width="140%" height="150%">
+        <feDropShadow dx="0" dy="2.4" stdDeviation="2.4" flood-color="#3a1c08" flood-opacity=".34"/>
+      </filter>
+    </defs>
+  </svg>
+  <div class="grain" aria-hidden="true"></div>
+
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
     <div class="nav-inner">
@@ -57,12 +73,22 @@
       </div>
 
       <div class="hero-visual reveal" aria-hidden="true">
-        <div class="halo"></div>
+        <div class="arch"></div>
         <div class="hero-plate" id="heroPlate"></div>
         <span class="bit bit-1" id="bit1"></span>
         <span class="bit bit-2" id="bit2"></span>
         <span class="bit bit-3" id="bit3"></span>
         <span class="bit bit-4" id="bit4"></span>
+        <div class="seal">
+          <svg viewBox="0 0 120 120">
+            <defs><path id="sealPath" d="M60,60 m-43,0 a43,43 0 1,1 86,0 a43,43 0 1,1 -86,0"/></defs>
+            <circle cx="60" cy="60" r="58" fill="#241812"/>
+            <circle cx="60" cy="60" r="52" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2 4" opacity=".7"/>
+            <g class="seal-ring"><text font-size="10" font-weight="700" fill="#f6ebd9" font-family="DM Sans, sans-serif"><textPath href="#sealPath" textLength="262" lengthAdjust="spacing">WOOD-FIRED ✦ SEASONAL ✦ LOCAL ✦ HANDMADE ✦ </textPath></text></g>
+            <path d="M60 38c1.500 7 11 11 11 22a11 11 0 0 1-22 0c0-5.500 3-8 5.500-11 0 4 1.500 5.500 3 5.500 0-5.500-1.500-10 2.500-16.500z" fill="#f59e0b"/>
+            <path d="M60 58c.7 3.500 5.500 5 5.500 9.500a5.500 5.500 0 0 1-11 0c0-3 2-4 3.500-5.500 0 1.500.7 2 1.500 2 0-2.500-.7-4 .5-6z" fill="#fff4d6"/>
+          </svg>
+        </div>
       </div>
     </section>
 
@@ -96,6 +122,29 @@
       <noscript><p class="muted">The menu needs JavaScript to load.</p></noscript>
     </section>
 
+    <!-- ============ TASTING MENU (dark band) ============ -->
+    <div class="band band-dark">
+      <section class="section tasting" id="tasting" aria-labelledby="tastingTitle">
+        <div class="tasting-copy">
+          <p class="kicker reveal">Chef's table</p>
+          <h2 class="reveal" id="tastingTitle">The five-course <em>seasonal</em> tasting</h2>
+          <p class="muted reveal">Our kitchen's favorite dishes of the season, served one after another. Every Friday and Saturday at 7 PM, with a seat at the pass if you like.</p>
+          <ol class="courses reveal">
+            <li><span>I</span>Heirloom Tomato Burrata<small>Starter</small></li>
+            <li><span>II</span>Forest Mushroom Tagliatelle<small>Pasta</small></li>
+            <li><span>III</span>Lemon-Butter Herb Salmon<small>Fish</small></li>
+            <li><span>IV</span>Oak-Fired Ribeye<small>Meat</small></li>
+            <li><span>V</span>Dark Chocolate Molten Cake<small>Dessert</small></li>
+          </ol>
+          <div class="tasting-foot reveal">
+            <div class="tasting-price"><b>$65</b><small>per person · Fri &amp; Sat, 7 PM</small></div>
+            <a href="#reserve" class="btn btn-light">Reserve the tasting <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <div class="tasting-art reveal" id="tastingArt" aria-hidden="true"></div>
+      </section>
+    </div>
+
     <!-- ============ STORY ============ -->
     <section class="section" id="story">
       <div class="story">
@@ -124,6 +173,7 @@
     </section>
 
     <!-- ============ RESERVE ============ -->
+    <div class="band band-dark">
     <section class="section" id="reserve">
       <div class="reserve">
         <div class="reserve-intro reveal">
@@ -185,6 +235,8 @@
       </div>
     </section>
 
+    </div>
+
     <!-- ============ VISIT ============ -->
     <section class="section" id="visit">
       <header class="section-head reveal">
@@ -199,6 +251,18 @@
         </div>
         <div class="contact-card reveal">
           <h3>Find us</h3>
+          <svg class="map" viewBox="0 0 400 190" role="img" aria-label="Illustrated map showing Ember and Oak on Olive Street, next to a park">
+            <rect width="400" height="190" fill="#efe5d0"/>
+            <g fill="#e3d6bb"><rect x="14" y="14" width="96" height="52" rx="6"/><rect x="128" y="14" width="80" height="52" rx="6"/><rect x="226" y="14" width="72" height="52" rx="6"/><rect x="316" y="14" width="70" height="110" rx="6"/><rect x="14" y="84" width="96" height="40" rx="6"/><rect x="14" y="142" width="130" height="34" rx="6"/><rect x="162" y="142" width="124" height="34" rx="6"/><rect x="304" y="142" width="82" height="34" rx="6"/></g>
+            <rect x="128" y="84" width="170" height="40" rx="10" fill="#cfe0b4"/>
+            <g fill="#8fb36a"><circle cx="150" cy="104" r="7"/><circle cx="178" cy="98" r="6"/><circle cx="206" cy="108" r="8"/><circle cx="240" cy="100" r="6"/><circle cx="268" cy="108" r="7"/></g>
+            <g stroke="#fffaf0" stroke-width="12" stroke-linecap="round" fill="none"><path d="M0 75H400"/><path d="M0 133H400"/><path d="M118 0V190"/><path d="M307 0V190"/><path d="M217 0V75"/></g>
+            <path d="M0 184Q100 164 200 186T400 176" stroke="#bcd9e8" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <text x="228" y="79" font-size="8.500" font-weight="700" letter-spacing="1.500" fill="#a08f78" font-family="DM Sans, sans-serif">OLIVE STREET</text>
+            <circle class="pin-pulse" cx="170" cy="75" r="14" fill="rgba(194,65,12,.3)"/>
+            <path d="M170 76C163 67 158 62 158 55a12 12 0 0 1 24 0c0 7-5 12-12 21z" fill="#c2410c"/>
+            <circle cx="170" cy="55" r="4" fill="#fff"/>
+          </svg>
           <address>
             <p><b>Ember &amp; Oak</b><br>21 Olive Street<br>Old Town</p>
             <p><span class="lbl">Phone</span> <a href="tel:+15550100199">+1 (555) 010-0199</a><br><span class="lbl">Email</span> <a href="mailto:hello@emberandoak.example">hello@emberandoak.example</a></p>
@@ -212,9 +276,27 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <p class="footer-logo">Ember <i>&amp;</i> Oak</p>
-      <p class="muted small">A practice project from the Web Development Course. The restaurant, dishes, prices, address and contact details are fictional demo data. Dish artwork is inline SVG.</p>
-      <p class="muted small">© <span id="year"></span> · <a href="../">Back to CSS projects</a> · <a href="#home">Back to top ↑</a></p>
+      <div class="f-brand">
+        <p class="footer-logo">Ember <i>&amp;</i> Oak</p>
+        <p class="muted">Wood-fired food, seasonal soul. Cooked over oak and olive wood, served with care.</p>
+      </div>
+      <nav class="f-col" aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="#menu">Menu</a>
+        <a href="#tasting">Tasting menu</a>
+        <a href="#story">Our story</a>
+        <a href="#reserve">Reserve a table</a>
+      </nav>
+      <div class="f-col">
+        <h3>Visit</h3>
+        <span>21 Olive Street, Old Town</span>
+        <a href="tel:+15550100199">+1 (555) 010-0199</a>
+        <a href="mailto:hello@emberandoak.example">hello@emberandoak.example</a>
+      </div>
+      <div class="f-bottom">
+        <p class="muted small">A practice project from the Web Development Course. The restaurant, dishes, prices, address and contact details are fictional demo data. Dish artwork is inline SVG.</p>
+        <p class="muted small">© <span id="year"></span> · <a href="../">Back to CSS projects</a> · <a href="#home">Back to top ↑</a></p>
+      </div>
     </div>
   </footer>
 

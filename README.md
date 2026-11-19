@@ -121,6 +121,7 @@ A fictional wood-fired restaurant with a warm, editorial design (Playfair Displa
 - **Menu**: course tabs plus Vegetarian / Vegan / Gluten-free toggles that combine, with a live result count and an empty state
 - **Order cart**: add dishes, change quantities in a slide-in drawer (focus trap, Escape to close), see subtotal, 8% tax and total; the cart persists in `localStorage`; "Place order" shows a demo confirmation
 - **Today's special**: picked by weekday and one tap from the hero to the cart
+- **Design**: arched hero with a rotating seal, shaded SVG dishes on course-tinted discs, "Signature" tags, a dark five-course tasting band, a dark reservation band, an illustrated SVG map and a paper-grain texture
 - **Reservations**: time slots are generated from the chosen day's hours, past times are hidden for today, parties of 9+ get a note, and fields validate inline
 - **Quality**: keyboard accessible, responsive down to phone width, respects `prefers-reduced-motion`
 - *The restaurant, menu, prices, address and contact details are fictional demo data (the email uses the reserved `.example` domain), and nothing is sent or stored.*

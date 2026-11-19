@@ -21,20 +21,20 @@
 
   // diet: v = vegetarian, vg = vegan, gf = gluten-free; spicy is shown as a tag only
   const DISHES = [
-    { id: 'burrata',  name: 'Burrata & Heirloom Tomato', cat: 'starters', price: 1250, diet: ['v', 'gf'],        art: 'burrata',  desc: 'Creamy burrata, sun-ripened tomatoes, basil oil and flaky sea salt.' },
-    { id: 'calamari', name: 'Crispy Calamari',           cat: 'starters', price: 1150, diet: [],                 art: 'calamari', desc: 'Lightly dusted, flash-fried, with charred lemon and garlic aioli.' },
-    { id: 'soup',     name: 'Roasted Tomato Soup',       cat: 'starters', price: 850,  diet: ['v'],              art: 'soup',     desc: 'Slow-roasted tomato soup with basil cream and sourdough croutons.' },
-    { id: 'corn',     name: 'Smoked Corn Ribs',          cat: 'starters', price: 950,  diet: ['vg', 'gf'], spicy: true, art: 'corn', desc: 'Oak-smoked corn ribs with a chili-lime glaze and fresh cilantro.' },
-    { id: 'steak',    name: 'Oak-grilled Ribeye',        cat: 'mains',    price: 3400, diet: ['gf'],             art: 'steak',    desc: 'Thick-cut ribeye with rosemary potatoes and charred green beans.' },
-    { id: 'pasta',    name: 'Wild Mushroom Tagliatelle', cat: 'mains',    price: 1900, diet: ['v'],              art: 'pasta',    desc: 'Handmade tagliatelle, wild mushrooms, thyme butter and parmesan.' },
-    { id: 'salmon',   name: 'Herb-crusted Salmon',       cat: 'mains',    price: 2700, diet: ['gf'],             art: 'salmon',   desc: 'Roasted salmon, grilled asparagus and a bright lemon butter sauce.' },
-    { id: 'salad',    name: 'Garden Harvest Salad',      cat: 'mains',    price: 1400, diet: ['vg', 'gf'],       art: 'salad',    desc: 'Crisp greens, cherry tomatoes, cucumber, olives and citrus vinaigrette.' },
-    { id: 'margherita', name: 'Margherita',              cat: 'pizza',    price: 1500, diet: ['v'],              art: 'margherita', desc: 'San Marzano tomato, fior di latte, fresh basil and olive oil.' },
-    { id: 'salami',   name: 'Spicy Salami',              cat: 'pizza',    price: 1750, diet: [], spicy: true,    art: 'salami',   desc: 'Spicy salami, chili honey, mozzarella and a sprinkle of oregano.' },
-    { id: 'cake',     name: 'Molten Chocolate Cake',     cat: 'desserts', price: 1000, diet: ['v'],              art: 'cake',     desc: 'Warm chocolate cake with a liquid center, raspberries and vanilla cream.' },
-    { id: 'panna',    name: 'Lemon Panna Cotta',         cat: 'desserts', price: 900,  diet: ['v', 'gf'],        art: 'panna',    desc: 'Silky panna cotta with lemon glaze, fresh berries and mint.' },
-    { id: 'lemonade', name: 'Mint Lemonade',             cat: 'drinks',   price: 500,  diet: ['vg', 'gf'],       art: 'lemonade', desc: 'Fresh-squeezed lemonade over ice with muddled mint.' },
-    { id: 'coldbrew', name: 'Cold Brew',                 cat: 'drinks',   price: 550,  diet: ['vg', 'gf'],       art: 'coldbrew', desc: 'Slow-steeped for 18 hours, served over ice.' },
+    { id: 'burrata',  name: 'Heirloom Tomato Burrata', cat: 'starters', price: 1250, diet: ['v', 'gf'],        art: 'burrata',  desc: 'Creamy burrata, sun-ripened tomatoes, basil oil and flaky sea salt.' },
+    { id: 'calamari', name: 'Golden Calamari Fritti',           cat: 'starters', price: 1150, diet: [],                 art: 'calamari', desc: 'Lightly dusted, flash-fried, with charred lemon and garlic aioli.' },
+    { id: 'soup',     name: 'Fire-Roasted Tomato Soup',       cat: 'starters', price: 850,  diet: ['v'],              art: 'soup',     desc: 'Tomatoes roasted over the fire and simmered with garlic, finished with basil cream and sourdough croutons.' },
+    { id: 'corn',     name: 'Smoky Chili-Lime Corn Ribs',          cat: 'starters', price: 950,  diet: ['vg', 'gf'], spicy: true, art: 'corn', desc: 'Oak-smoked corn ribs with a chili-lime glaze and fresh cilantro.' },
+    { id: 'steak',    name: 'Oak-Fired Ribeye',        cat: 'mains',    price: 3400, diet: ['gf'],             art: 'steak',    desc: 'Thick-cut ribeye grilled over oak, with rosemary potatoes and charred green beans.' },
+    { id: 'pasta',    name: 'Forest Mushroom Tagliatelle', cat: 'mains',    price: 1900, diet: ['v'],              art: 'pasta',    desc: 'Handmade tagliatelle, wild mushrooms, thyme butter and parmesan.' },
+    { id: 'salmon',   name: 'Lemon-Butter Herb Salmon',       cat: 'mains',    price: 2700, diet: ['gf'],             art: 'salmon',   desc: 'Herb-crusted roasted salmon with grilled asparagus and a bright lemon butter sauce.' },
+    { id: 'salad',    name: 'Market Garden Salad',      cat: 'mains',    price: 1400, diet: ['vg', 'gf'],       art: 'salad',    desc: 'Crisp greens, cherry tomatoes, cucumber, olives and citrus vinaigrette.' },
+    { id: 'margherita', name: 'Classic Margherita',              cat: 'pizza',    price: 1500, diet: ['v'],              art: 'margherita', desc: 'San Marzano tomato, fior di latte, fresh basil and olive oil.' },
+    { id: 'salami',   name: 'Spicy Salami & Hot Honey',              cat: 'pizza',    price: 1750, diet: [], spicy: true,    art: 'salami',   desc: 'Spicy salami, a drizzle of hot honey, mozzarella and a sprinkle of oregano.' },
+    { id: 'cake',     name: 'Dark Chocolate Molten Cake',     cat: 'desserts', price: 1000, diet: ['v'],              art: 'cake',     desc: 'Warm chocolate cake with a liquid center, raspberries and vanilla cream.' },
+    { id: 'panna',    name: 'Silky Lemon Panna Cotta',         cat: 'desserts', price: 900,  diet: ['v', 'gf'],        art: 'panna',    desc: 'Silky panna cotta with lemon glaze, fresh berries and mint.' },
+    { id: 'lemonade', name: 'Fresh Mint Lemonade',             cat: 'drinks',   price: 500,  diet: ['vg', 'gf'],       art: 'lemonade', desc: 'Fresh-squeezed lemonade over ice with muddled mint.' },
+    { id: 'coldbrew', name: 'Slow-Steeped Cold Brew',                 cat: 'drinks',   price: 550,  diet: ['vg', 'gf'],       art: 'coldbrew', desc: 'Slow-steeped for 18 hours, served over ice.' },
   ];
   const dishById = (id) => DISHES.find((d) => d.id === id);
 
@@ -75,12 +75,13 @@
     `<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="${stroke}" stroke-width="${w}" stroke-linecap="round" ${extra}/>`;
 
   const plate = (inner, label) => `
-    <svg viewBox="0 0 200 200" role="img" aria-label="${label}">
-      <circle cx="103" cy="107" r="92" fill="rgba(70,35,10,.16)"/>
-      <circle cx="100" cy="100" r="92" fill="#fffdf8" stroke="#e8dcc6" stroke-width="2"/>
-      <circle cx="100" cy="100" r="78" fill="none" stroke="#efe4cf" stroke-width="2"/>
-      <circle cx="100" cy="100" r="68" fill="#fbf6ec"/>
-      ${inner}
+    <svg class="plate-svg" viewBox="0 0 200 200" role="img" aria-label="${label}">
+      <circle cx="103" cy="108" r="92" fill="rgba(70,35,10,.18)"/>
+      <circle cx="100" cy="100" r="92" fill="url(#plateGrad)" stroke="#e3d6bd" stroke-width="2"/>
+      <path d="M30 68A76 76 0 0 1 100 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+      <circle cx="100" cy="100" r="78" fill="none" stroke="#eadfca" stroke-width="2"/>
+      <circle cx="100" cy="100" r="68" fill="url(#plateWell)" stroke="#efe4cf" stroke-width="1.5"/>
+      <g filter="url(#foodShadow)">${inner}</g>
     </svg>`;
 
   const pizzaBase = () =>
@@ -227,6 +228,8 @@
      ========================================================== */
   $('#heroPlate').innerHTML = dishSVG('margherita');
   $('#storyPlate').innerHTML = dishSVG('pasta');
+  $('#tastingArt').innerHTML = [['salmon', 'tp-1'], ['steak', 'tp-2'], ['cake', 'tp-3']]
+    .map(([key, cls]) => `<div class="tp ${cls}">${dishSVG(key, '')}</div>`).join('');
   $('#bit1').innerHTML = BITS.leaf;
   $('#bit2').innerHTML = BITS.tomato;
   $('#bit3').innerHTML = BITS.olive;
@@ -391,7 +394,9 @@
   const catsEl = $('#cats');
   catsEl.innerHTML = CATS.map((c) => `<button type="button" class="cat${c.id === 'all' ? ' is-active' : ''}" data-cat="${c.id}" aria-pressed="${c.id === 'all'}">${c.label}</button>`).join('');
 
+  const SIGNATURE = new Set(['steak', 'margherita', 'cake']);
   const tagHTML = (d) => [
+    SIGNATURE.has(d.id) ? '<span class="tag sig">★ Signature</span>' : '',
     d.diet.includes('vg') ? '<span class="tag vg">Vegan</span>' : d.diet.includes('v') ? '<span class="tag v">Vegetarian</span>' : '',
     d.diet.includes('gf') ? '<span class="tag">Gluten-free</span>' : '',
     d.spicy ? '<span class="tag spicy">🌶 Spicy</span>' : '',
@@ -399,7 +404,7 @@
 
   const dishesEl = $('#dishes');
   dishesEl.innerHTML = DISHES.map((d) => `
-    <article class="dish reveal" data-id="${d.id}">
+    <article class="dish reveal" data-id="${d.id}" data-cat="${d.cat}">
       <div class="dish-art"><div class="tags">${tagHTML(d)}</div>${dishSVG(d.art, d.name)}</div>
       <div class="dish-body">
         <div class="dish-top"><h3>${d.name}</h3><b>${money(d.price)}</b></div>
