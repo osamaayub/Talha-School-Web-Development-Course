@@ -240,6 +240,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .book-points li { position: relative; padding-left: 30px; color: var(--muted); }
 .book-points li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 90, 31, 0.16); color: var(--accent-2); font-size: 0.75rem; font-weight: 700; }
 .form { display: grid; gap: 18px; }
+.form[hidden] { display: none; }
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .err { max-height: 0; overflow: hidden; color: #ff6b81; font-size: 0.82rem; transition: max-height 0.3s var(--ease); }
 .field.invalid .err { max-height: 40px; }

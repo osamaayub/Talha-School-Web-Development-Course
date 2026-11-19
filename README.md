@@ -12,6 +12,7 @@ Every push to `main` is published automatically (see [Deployment](#-deployment))
 | Project | Path | What it shows |
 | --- | --- | --- |
 | 🚗 **Car Showroom** | [`/CSS/CarWebsite/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/CarWebsite/) | Inline-SVG cars with live recoloring, filters, finance calculator, test-drive booking |
+| 🍽️ **Restaurant (Ember & Oak)** | [`/CSS/RestaurantWebsite/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/RestaurantWebsite/) | Filterable menu, order cart with drawer, reservations with live time slots, open-now status |
 | 👨‍💻 **Animated Portfolio** | [`/CSS/Portfolio/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/Portfolio/) | MERN developer portfolio, light/dark themes, scroll reveals, project filter |
 | ✨ **CSS Animations** | [`/CSS/animations/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/animations/) | 12 documented animation examples (keyframes, transitions, 3D, scroll-driven) |
 | 🛍️ **Shopping Cards** | [`/CSS/ShopCards/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/ShopCards/) | Product card grid design (the site root redirects here) |
@@ -45,7 +46,8 @@ WebDevelopmentCourse/
 │   ├── ShopCards/                     # Shopping cards design (HTML/CSS/JS)
 │   ├── animations/                    # 12 CSS animation examples
 │   ├── Portfolio/                     # Animated MERN developer portfolio
-│   └── CarWebsite/                    # Velocity Motors car showroom
+│   ├── CarWebsite/                    # Velocity Motors car showroom
+│   └── RestaurantWebsite/             # Ember & Oak restaurant (menu, cart, reservations)
 └── docs/                              # Course documentation
     ├── README.md                      # Documentation overview and guide
     ├── course-notes.md                # Course notes and learning materials
@@ -100,6 +102,7 @@ No build step or dependencies are required: every project is plain HTML, CSS and
 - **CSS Animations**: `@keyframes`, transitions, 3D transforms, staggered delays, skeleton loaders and scroll-driven animation, each with its code shown
 - **Animated Portfolio**: dark and light themes, word-by-word hero reveal, sliding nav indicator, filterable project cards with 3D tilt, validated contact form
 - **Car Showroom (Velocity Motors)**: see below
+- **Restaurant (Ember & Oak)**: see below
 
 ### Featured project: Car Showroom (`CSS/CarWebsite`)
 A fictional dealership site built to practice layout, animation and JavaScript state together.
@@ -110,6 +113,17 @@ A fictional dealership site built to practice layout, animation and JavaScript s
 - **Test-drive booking**: inline field validation (including a no-past-dates check) and an animated confirmation
 - **Quality**: keyboard accessible, responsive down to phone width, respects `prefers-reduced-motion`
 - *Brand, models, prices and specs are fictional demo data, and the booking form does not send anything.*
+
+### Featured project: Restaurant (`CSS/RestaurantWebsite`)
+A fictional wood-fired restaurant with a warm, editorial design (Playfair Display + DM Sans) and every dish drawn as inline SVG.
+
+- **Open-now status**: computed from the visitor's clock against per-weekday opening hours, refreshed every minute; today's row is highlighted in the hours table
+- **Menu**: course tabs plus Vegetarian / Vegan / Gluten-free toggles that combine, with a live result count and an empty state
+- **Order cart**: add dishes, change quantities in a slide-in drawer (focus trap, Escape to close), see subtotal, 8% tax and total; the cart persists in `localStorage`; "Place order" shows a demo confirmation
+- **Today's special**: picked by weekday and one tap from the hero to the cart
+- **Reservations**: time slots are generated from the chosen day's hours, past times are hidden for today, parties of 9+ get a note, and fields validate inline
+- **Quality**: keyboard accessible, responsive down to phone width, respects `prefers-reduced-motion`
+- *The restaurant, menu, prices, address and contact details are fictional demo data (the email uses the reserved `.example` domain), and nothing is sent or stored.*
 
 ### JavaScript
 JavaScript is used throughout the CSS projects (DOM manipulation, events, `IntersectionObserver`, form validation, `localStorage`-backed theme). A dedicated JavaScript module with standalone exercises is planned.

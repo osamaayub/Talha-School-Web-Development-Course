@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ember &amp; Oak — a demo restaurant website: browse the menu, build an order and reserve a table.">
+  <meta name="theme-color" content="#faf5ec">
+  <title>Ember &amp; Oak — Wood-fired Kitchen</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#home" class="logo" aria-label="Ember and Oak, back to top">
+        <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path d="M16 2c1 5 8 8 8 16a8 8 0 0 1-16 0c0-4 2-6 4-8 0 3 1 4 2 4 0-4-1-7 2-12z" fill="currentColor"/><path d="M16 17c.5 2.500 4 3.500 4 7a4 4 0 0 1-8 0c0-2 1.500-3 2.500-4 0 1 .5 1.500 1 1.500 0-2-.5-3 .5-4.500z" fill="#fff" opacity=".85"/></svg>
+        <span>Ember <i>&amp;</i> Oak</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#menu">Menu</a>
+        <a href="#story">Our story</a>
+        <a href="#reserve">Reserve</a>
+        <a href="#visit">Visit</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" id="cartBtn" aria-label="Open order, 0 items" aria-controls="cart" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.200 11.200a2 2 0 0 1-2 1.800H8.200a2 2 0 0 1-2-1.800L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <a href="#reserve" class="btn btn-sm btn-primary nav-cta">Reserve a table</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="status reveal" id="openStatus"><span class="dot"></span><span id="openText">Checking hours…</span></p>
+        <h1 class="reveal">Wood-fired food,<br><em>seasonal</em> soul.</h1>
+        <p class="lead reveal">Handmade pasta, slow-smoked meats and pizzas blistered in an oak-fired oven, built around whatever the farms bring us this week.</p>
+        <div class="hero-actions reveal">
+          <a href="#menu" class="btn btn-primary">Explore the menu <span class="arrow">→</span></a>
+          <a href="#reserve" class="btn btn-ghost">Reserve a table</a>
+        </div>
+
+        <article class="special reveal" id="special" aria-label="Today's special"></article>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="halo"></div>
+        <div class="hero-plate" id="heroPlate"></div>
+        <span class="bit bit-1" id="bit1"></span>
+        <span class="bit bit-2" id="bit2"></span>
+        <span class="bit bit-3" id="bit3"></span>
+        <span class="bit bit-4" id="bit4"></span>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Wood-fired</span><span>Seasonal</span><span>Local farms</span><span>Handmade pasta</span><span>Slow-smoked</span><span>Baked daily</span>
+        <span>Wood-fired</span><span>Seasonal</span><span>Local farms</span><span>Handmade pasta</span><span>Slow-smoked</span><span>Baked daily</span>
+      </div>
+    </div>
+
+    <!-- ============ MENU ============ -->
+    <section class="section" id="menu">
+      <header class="section-head reveal">
+        <p class="kicker">The menu</p>
+        <h2>Cooked over <em>fire</em>, served with care</h2>
+        <p class="muted">Filter by course or dietary need, then add dishes to your order.</p>
+      </header>
+
+      <div class="controls reveal">
+        <div class="cats" id="cats" role="group" aria-label="Menu category"></div>
+        <div class="diets" id="diets" role="group" aria-label="Dietary filters">
+          <button type="button" class="diet" data-diet="v" aria-pressed="false">Vegetarian</button>
+          <button type="button" class="diet" data-diet="vg" aria-pressed="false">Vegan</button>
+          <button type="button" class="diet" data-diet="gf" aria-pressed="false">Gluten-free</button>
+        </div>
+      </div>
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+
+      <div class="dishes" id="dishes"></div>
+      <p class="empty" id="emptyMsg" hidden>No dishes match those filters. Try removing one.</p>
+      <noscript><p class="muted">The menu needs JavaScript to load.</p></noscript>
+    </section>
+
+    <!-- ============ STORY ============ -->
+    <section class="section" id="story">
+      <div class="story">
+        <div class="story-visual reveal" aria-hidden="true">
+          <div class="story-card">
+            <div class="story-plate" id="storyPlate"></div>
+            <p class="story-quote">“Good food is just good ingredients, a hot fire and patience.”</p>
+          </div>
+        </div>
+        <div class="story-copy">
+          <p class="kicker reveal">Our story</p>
+          <h2 class="reveal">A small kitchen with a <em>big</em> oven</h2>
+          <p class="muted reveal">Ember &amp; Oak started with a single oak-fired oven and a simple rule: cook what's in season, buy from people we know, and never rush the fire. Our menu changes with the weeks, and so does our specials board.</p>
+          <ul class="values">
+            <li class="reveal"><b>01</b><div><h3>Local first</h3><p>Produce, dairy and meat from nearby farms wherever we can.</p></div></li>
+            <li class="reveal"><b>02</b><div><h3>Made in-house</h3><p>Pasta, bread, sauces and desserts are made fresh every day.</p></div></li>
+            <li class="reveal"><b>03</b><div><h3>Open fire</h3><p>Oak and olive wood, never gas, for flavor you can't fake.</p></div></li>
+          </ul>
+          <div class="facts reveal">
+            <div><strong data-count="12">0</strong><span>Years cooking</span></div>
+            <div><strong data-count="30" data-suffix="+">0</strong><span>Local suppliers</span></div>
+            <div><strong data-count="100" data-suffix="%">0</strong><span>Made in-house</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESERVE ============ -->
+    <section class="section" id="reserve">
+      <div class="reserve">
+        <div class="reserve-intro reveal">
+          <p class="kicker">Reservations</p>
+          <h2>Save your <em>table</em></h2>
+          <p class="muted">Pick a date, time and party size. Times update to match our opening hours, and past times are hidden for today.</p>
+          <ul class="reserve-points">
+            <li>Tables held for 15 minutes</li>
+            <li>Parties of 9 or more: we'll confirm by email</li>
+            <li>Walk-ins always welcome at the bar</li>
+          </ul>
+        </div>
+
+        <div class="reserve-card reveal">
+          <form class="form" id="resForm" novalidate>
+            <div class="row">
+              <div class="field">
+                <label for="r-name">Name</label>
+                <input id="r-name" name="name" type="text" autocomplete="name" placeholder="Your name" aria-describedby="e-name">
+                <small class="err" id="e-name"></small>
+              </div>
+              <div class="field">
+                <label for="r-email">Email</label>
+                <input id="r-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="e-email">
+                <small class="err" id="e-email"></small>
+              </div>
+            </div>
+            <div class="row row-3">
+              <div class="field">
+                <label for="r-date">Date</label>
+                <input id="r-date" name="date" type="date" aria-describedby="e-date">
+                <small class="err" id="e-date"></small>
+              </div>
+              <div class="field">
+                <label for="r-time">Time</label>
+                <select id="r-time" name="time" aria-describedby="e-time"><option value="">Pick a date</option></select>
+                <small class="err" id="e-time"></small>
+              </div>
+              <div class="field">
+                <label for="r-guests">Guests</label>
+                <select id="r-guests" name="guests"></select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="r-note">Special requests <span class="opt">(optional)</span></label>
+              <input id="r-note" name="note" type="text" placeholder="Allergies, occasion, high chair…">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Request reservation <span class="arrow">→</span></button>
+            <p class="form-note">Demo site: nothing is sent or stored.</p>
+          </form>
+
+          <div class="success" id="resSuccess" hidden>
+            <div class="check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M14 27l8 8 16-17"/></svg></div>
+            <h3>Table requested!</h3>
+            <p id="resText"></p>
+            <button type="button" class="btn btn-ghost" id="resAgain">Make another</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VISIT ============ -->
+    <section class="section" id="visit">
+      <header class="section-head reveal">
+        <p class="kicker">Visit us</p>
+        <h2>Come <em>hungry</em></h2>
+      </header>
+      <div class="visit">
+        <div class="hours-card reveal">
+          <h3>Opening hours</h3>
+          <table class="hours" id="hours"><caption class="sr-only">Opening hours by day</caption></table>
+          <p class="small muted">Highlighted row is today. Times shown in your local time.</p>
+        </div>
+        <div class="contact-card reveal">
+          <h3>Find us</h3>
+          <address>
+            <p><b>Ember &amp; Oak</b><br>21 Olive Street<br>Old Town</p>
+            <p><span class="lbl">Phone</span> <a href="tel:+15550100199">+1 (555) 010-0199</a><br><span class="lbl">Email</span> <a href="mailto:hello@emberandoak.example">hello@emberandoak.example</a></p>
+          </address>
+          <a href="#reserve" class="btn btn-primary btn-block">Reserve a table <span class="arrow">→</span></a>
+          <button type="button" class="btn btn-ghost btn-block" id="openCartBtn">View my order</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-logo">Ember <i>&amp;</i> Oak</p>
+      <p class="muted small">A practice project from the Web Development Course. The restaurant, dishes, prices, address and contact details are fictional demo data. Dish artwork is inline SVG.</p>
+      <p class="muted small">© <span id="year"></span> · <a href="../">Back to CSS projects</a> · <a href="#home">Back to top ↑</a></p>
+    </div>
+  </footer>
+
+  <!-- ============ ORDER DRAWER ============ -->
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="cart" id="cart" aria-label="Your order" aria-hidden="true">
+    <header class="cart-head">
+      <h2>Your order</h2>
+      <button type="button" class="icon-btn" id="cartClose" aria-label="Close order">✕</button>
+    </header>
+    <div class="cart-body" id="cartBody"></div>
+    <footer class="cart-foot" id="cartFoot">
+      <dl>
+        <div><dt>Subtotal</dt><dd id="subtotal">$0.00</dd></div>
+        <div><dt>Tax (8%)</dt><dd id="tax">$0.00</dd></div>
+        <div class="total"><dt>Total</dt><dd id="total">$0.00</dd></div>
+      </dl>
+      <button type="button" class="btn btn-primary btn-block" id="placeOrder">Place order (demo)</button>
+      <button type="button" class="link-btn" id="clearCart">Clear order</button>
+    </footer>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
