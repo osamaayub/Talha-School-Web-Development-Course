@@ -21,6 +21,7 @@ WebDevelopmentCourse/
 │   │   └── introduction/             # Introduction to HTML
 │   └── examples/                     # Learning examples and exercises
 ├── CSS/                               # CSS module projects
+│   ├── Portfolio/                    # Animated personal portfolio (HTML/CSS/JS)
 │   ├── LandingPage/                  # StyleHub landing page project
 │   │   ├── index.html               # Main HTML file
 │   │   ├── styles/                  # CSS styling

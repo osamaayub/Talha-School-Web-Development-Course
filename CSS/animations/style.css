@@ -1,0 +1,189 @@
+/* ==========================================================
+   CSS Animations — examples
+   ========================================================== */
+
+:root {
+  --bg: #0b1020;
+  --card: #121a30;
+  --line: #243050;
+  --text: #e6e9f5;
+  --muted: #94a0c0;
+  --brand: #6366f1;
+  --cyan: #22d3ee;
+  --pink: #f472b6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+code, pre { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
+code { background: #1b2542; padding: 1px 6px; border-radius: 5px; font-size: 0.9em; }
+
+/* ---------- Page header ---------- */
+.hero { text-align: center; padding: 72px 20px 40px; max-width: 760px; margin: 0 auto; }
+.eyebrow { color: var(--cyan); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.1; margin-bottom: 16px; }
+.lead { color: var(--muted); }
+
+.grad-text {
+  background: linear-gradient(90deg, var(--brand), var(--cyan), var(--pink), var(--brand));
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shift 5s linear infinite;
+}
+
+/* ---------- Grid of demo cards ---------- */
+.grid {
+  max-width: 1180px; margin: 0 auto; padding: 20px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
+}
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.card:hover { transform: translateY(-4px); border-color: var(--brand); }
+.card h2 { font-size: 1.05rem; }
+.card h2 small { display: block; color: var(--muted); font-weight: 400; font-size: 0.8rem; margin-top: 2px; }
+
+.stage {
+  height: 150px; border-radius: 12px; background: #0d1428; border: 1px dashed var(--line);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.stage-col { flex-direction: column; gap: 10px; }
+
+pre {
+  background: #0a0f20; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  font-size: 0.74rem; line-height: 1.55; color: #b8c4e6; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+
+/* ---------- 1. Bounce ---------- */
+.ball { width: 44px; height: 44px; border-radius: 50%; background: var(--brand); animation: bounce 1s ease-in-out infinite; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(30px) scale(1.1, 0.9); }
+  50%      { transform: translateY(-30px) scale(1, 1); }
+}
+
+/* ---------- 2. Pulse ---------- */
+.pulse { width: 40px; height: 40px; border-radius: 50%; background: var(--brand); animation: pulse 1.6s infinite; }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+  100% { box-shadow: 0 0 0 28px rgba(99, 102, 241, 0); }
+}
+
+/* ---------- 3. Spinner ---------- */
+.spinner { width: 54px; height: 54px; border-radius: 50%; border: 5px solid #334155; border-top-color: var(--brand); animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- 4. Shake ---------- */
+.shake-btn { padding: 12px 26px; border: 0; border-radius: 10px; background: var(--pink); color: #1b0b14; font-weight: 700; cursor: pointer; }
+.shake-btn:hover { animation: shake 0.4s; }
+@keyframes shake {
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* ---------- 5. Staggered fade-up ---------- */
+.line {
+  opacity: 0; padding: 6px 18px; border-radius: 8px; background: #1b2542; font-weight: 600;
+  animation: fadeUp 0.6s ease forwards; animation-delay: calc(var(--i) * 150ms);
+}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+/* replay the stagger whenever the card is hovered */
+.card:hover .line { animation-name: fadeUpAgain; }
+@keyframes fadeUpAgain { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+/* ---------- 6. Sliding hover fill ---------- */
+.fill-btn {
+  position: relative; overflow: hidden; padding: 12px 28px; border: 2px solid var(--cyan); border-radius: 10px;
+  background: transparent; color: var(--cyan); font-weight: 700; cursor: pointer; transition: color 0.35s ease;
+}
+.fill-btn span { position: relative; z-index: 1; }
+.fill-btn::before { content: ""; position: absolute; inset: 0; background: var(--cyan); transform: translateX(-101%); transition: transform 0.4s ease; }
+.fill-btn:hover { color: #04222a; }
+.fill-btn:hover::before { transform: none; }
+
+/* ---------- 7. 3D flip ---------- */
+.flip { width: 130px; height: 100px; perspective: 600px; outline: none; }
+.flip-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1); }
+.flip:hover .flip-inner, .flip:focus-visible .flip-inner { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; display: grid; place-items: center; border-radius: 12px; font-weight: 700; backface-visibility: hidden; }
+.front { background: var(--brand); }
+.back { background: var(--pink); color: #1b0b14; transform: rotateY(180deg); }
+
+/* ---------- 8. Typing ---------- */
+.typing {
+  width: 22ch; overflow: hidden; white-space: nowrap; border-right: 3px solid var(--cyan);
+  font: 600 1rem ui-monospace, Consolas, monospace;
+  animation: typing 3s steps(22) infinite alternate, blink 0.7s step-end infinite;
+}
+@keyframes typing { from { width: 0; } to { width: 22ch; } }
+@keyframes blink { 50% { border-color: transparent; } }
+
+/* ---------- 9. Gradient text ---------- */
+.shift {
+  font-size: 1.9rem; font-weight: 800;
+  background: linear-gradient(90deg, var(--brand), var(--cyan), var(--pink), var(--brand)); background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: shift 4s linear infinite;
+}
+@keyframes shift { to { background-position: -300% 0; } }
+
+/* ---------- 10. Skeleton shimmer ---------- */
+.sk {
+  display: block; width: 70%; height: 14px; border-radius: 6px;
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite;
+}
+.sk-title { height: 20px; width: 50%; }
+.sk-short { width: 40%; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* ---------- 11. Morphing blob ---------- */
+.blob {
+  width: 96px; height: 96px; background: linear-gradient(135deg, var(--brand), var(--pink));
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; animation: morph 6s ease-in-out infinite;
+}
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(0); }
+  50%      { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: rotate(90deg); }
+}
+
+/* ---------- 12. Wave dots ---------- */
+.dots { display: flex; gap: 8px; }
+.dots i { width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); animation: wave 1s ease-in-out infinite; }
+.dots i:nth-child(2) { animation-delay: 0.12s; }
+.dots i:nth-child(3) { animation-delay: 0.24s; }
+.dots i:nth-child(4) { animation-delay: 0.36s; }
+@keyframes wave { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-16px); } }
+
+/* ---------- Bonus: scroll-driven progress bar (Chrome / Edge) ---------- */
+.page-progress {
+  position: fixed; top: 0; left: 0; z-index: 10; width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--brand), var(--cyan));
+  transform: scaleX(0); transform-origin: left;
+}
+@supports (animation-timeline: scroll()) {
+  .page-progress { animation: grow linear both; animation-timeline: scroll(root); }
+}
+@keyframes grow { to { transform: scaleX(1); } }
+
+/* ---------- Notes + footer ---------- */
+.note { max-width: 760px; margin: 30px auto 0; padding: 0 20px; display: grid; gap: 12px; }
+.note h2 { font-size: 1.3rem; }
+.note p { color: var(--muted); }
+.note .small { font-size: 0.9rem; }
+.foot { text-align: center; color: var(--muted); padding: 50px 20px 40px; font-size: 0.9rem; }
+.foot a { color: var(--cyan); }
+
+/* ---------- Accessibility: respect reduced-motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .line { opacity: 1; }
+  .typing { width: 22ch; }
+  .page-progress { display: none; }
+}
