@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Velocity Motors — a demo car showroom website: browse models, recolor cars, estimate finance and book a test drive.">
+  <meta name="theme-color" content="#0a0c10">
+  <title>Velocity Motors — Car Showroom</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Shared gradient used to shade every car illustration -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="carShade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".42"/>
+        <stop offset=".45" stop-color="#fff" stop-opacity="0"/>
+        <stop offset="1" stop-color="#000" stop-opacity=".38"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#home" class="logo" aria-label="Velocity Motors home">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M3 22 13 6h6L9 22zm10 0 10-16h6L19 22z" fill="currentColor"/></svg>
+        <span>Velocity</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#showroom">Showroom</a>
+        <a href="#why">Why Velocity</a>
+        <a href="#finance">Finance</a>
+        <a href="#book">Test drive</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#book" class="btn btn-sm btn-primary nav-cta">Book a drive</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-sky" aria-hidden="true"><span class="sun"></span></div>
+
+      <div class="hero-copy">
+        <p class="eyebrow reveal">Velocity Motors · Showroom</p>
+        <h1 class="reveal">Drive the <em>future</em>,<br>today.</h1>
+        <p class="lead reveal">Performance, electric and family cars, all in one place. Pick a model, make it your color and book a test drive in under a minute.</p>
+        <div class="hero-actions reveal">
+          <a href="#showroom" class="btn btn-primary">Explore models <span class="arrow">→</span></a>
+          <a href="#book" class="btn btn-ghost">Book a test drive</a>
+        </div>
+      </div>
+
+      <div class="hero-stage">
+        <div class="speed-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="hero-car" id="heroCar" aria-hidden="true"></div>
+        <div class="road" aria-hidden="true"></div>
+        <div class="hero-swatches" id="heroSwatches" role="group" aria-label="Change hero car color"></div>
+      </div>
+
+      <ul class="hero-stats">
+        <li><strong data-count="6">0</strong><span>Models</span></li>
+        <li><strong data-count="3.9" data-decimals="1" data-suffix="s">0</strong><span>Fastest 0–100 km/h</span></li>
+        <li><strong data-count="520" data-suffix=" km">0</strong><span>Max electric range</span></li>
+        <li><strong data-count="285" data-suffix=" km/h">0</strong><span>Top speed</span></li>
+      </ul>
+    </section>
+
+    <!-- ============ SHOWROOM ============ -->
+    <section class="section" id="showroom">
+      <header class="section-head reveal">
+        <p class="kicker">Showroom</p>
+        <h2>Find your <em>perfect</em> ride</h2>
+        <p class="muted">Filter by type, then tap a color swatch to see it on the car.</p>
+      </header>
+
+      <div class="filters reveal" role="group" aria-label="Filter cars by type">
+        <button class="filter is-active" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter" data-filter="suv" aria-pressed="false">SUV</button>
+        <button class="filter" data-filter="sedan" aria-pressed="false">Sedan</button>
+        <button class="filter" data-filter="sport" aria-pressed="false">Sport</button>
+        <button class="filter" data-filter="electric" aria-pressed="false">Electric</button>
+      </div>
+
+      <div class="cars" id="cars"></div>
+      <noscript><p class="muted">The showroom needs JavaScript to list the cars.</p></noscript>
+    </section>
+
+    <!-- ============ WHY ============ -->
+    <section class="section" id="why">
+      <header class="section-head reveal">
+        <p class="kicker">Why Velocity</p>
+        <h2>Built around <em>you</em></h2>
+      </header>
+      <div class="features">
+        <article class="feature reveal"><span class="f-ico">🛡️</span><h3>5-year warranty</h3><p>Every new car ships with extended cover so you can drive without worry.</p></article>
+        <article class="feature reveal"><span class="f-ico">⚡</span><h3>Fast charging</h3><p>Electric models fill from 10–80% in about 25 minutes on a rapid charger.</p></article>
+        <article class="feature reveal"><span class="f-ico">🔧</span><h3>Free first service</h3><p>Your first scheduled service is on us, at any Velocity service center.</p></article>
+        <article class="feature reveal"><span class="f-ico">🏁</span><h3>Test drive anywhere</h3><p>Book a slot and we bring the car to your door, or meet you at the showroom.</p></article>
+      </div>
+    </section>
+
+    <!-- ============ FINANCE ============ -->
+    <section class="section" id="finance">
+      <header class="section-head reveal">
+        <p class="kicker">Finance</p>
+        <h2>Estimate your <em>monthly</em> payment</h2>
+        <p class="muted">Pick a car or enter any price. Figures are estimates only.</p>
+      </header>
+
+      <div class="calc reveal">
+        <form class="calc-form" id="calcForm" onsubmit="return false">
+          <div class="field">
+            <label for="calcCar">Car</label>
+            <select id="calcCar"></select>
+          </div>
+          <div class="field">
+            <label for="calcPrice">Price (USD)</label>
+            <input id="calcPrice" type="number" min="1000" step="500" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="calcDown">Down payment: <b id="downOut">20%</b></label>
+            <input id="calcDown" type="range" min="0" max="60" step="5" value="20">
+          </div>
+          <div class="field">
+            <label for="calcApr">Interest rate (APR): <b id="aprOut">5.9%</b></label>
+            <input id="calcApr" type="range" min="0" max="15" step="0.1" value="5.9">
+          </div>
+          <div class="field">
+            <label for="calcTerm">Term</label>
+            <select id="calcTerm">
+              <option value="24">24 months</option>
+              <option value="36">36 months</option>
+              <option value="48">48 months</option>
+              <option value="60" selected>60 months</option>
+              <option value="72">72 months</option>
+            </select>
+          </div>
+        </form>
+
+        <div class="calc-result" aria-live="polite">
+          <p class="muted">Estimated monthly payment</p>
+          <p class="monthly"><span id="monthly">$0</span><small>/mo</small></p>
+          <dl>
+            <div><dt>Down payment</dt><dd id="outDown">$0</dd></div>
+            <div><dt>Amount financed</dt><dd id="outLoan">$0</dd></div>
+            <div><dt>Total interest</dt><dd id="outInterest">$0</dd></div>
+            <div><dt>Total cost</dt><dd id="outTotal">$0</dd></div>
+          </dl>
+          <a href="#book" class="btn btn-primary btn-block">Book a test drive <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOOK ============ -->
+    <section class="section" id="book">
+      <div class="book">
+        <div class="book-intro reveal">
+          <p class="kicker">Test drive</p>
+          <h2>Take it for a <em>spin</em></h2>
+          <p class="muted">Choose a model and a date and we'll confirm your slot. It takes less than a minute.</p>
+          <ul class="book-points">
+            <li>No obligation, no pressure</li>
+            <li>Around 30 minutes behind the wheel</li>
+            <li>A product specialist rides along to answer questions</li>
+          </ul>
+        </div>
+
+        <div class="book-card reveal">
+          <form class="form" id="bookForm" novalidate>
+            <div class="field">
+              <label for="b-name">Full name</label>
+              <input id="b-name" name="name" type="text" autocomplete="name" placeholder="Your name" aria-describedby="e-name">
+              <small class="err" id="e-name"></small>
+            </div>
+            <div class="field">
+              <label for="b-email">Email</label>
+              <input id="b-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="e-email">
+              <small class="err" id="e-email"></small>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="b-car">Model</label>
+                <select id="b-car" name="car"></select>
+              </div>
+              <div class="field">
+                <label for="b-date">Preferred date</label>
+                <input id="b-date" name="date" type="date" aria-describedby="e-date">
+                <small class="err" id="e-date"></small>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Request test drive <span class="arrow">→</span></button>
+            <p class="form-note">Demo site: nothing is sent or stored.</p>
+          </form>
+
+          <div class="success" id="bookSuccess" hidden>
+            <div class="check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M14 27l8 8 16-17"/></svg></div>
+            <h3>You're on the list!</h3>
+            <p id="successText"></p>
+            <button type="button" class="btn btn-ghost" id="bookAgain">Book another</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p><strong>Velocity Motors</strong> — a practice project from the Web Development Course.</p>
+      <p class="muted small">Brand, models, prices and specs are fictional demo data. Car artwork is inline SVG.</p>
+      <p class="muted small">© <span id="year"></span> · <a href="../">Back to CSS projects</a> · <a href="#home">Back to top ↑</a></p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
