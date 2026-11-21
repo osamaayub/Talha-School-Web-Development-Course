@@ -1,0 +1,35 @@
+# JavaScript Basics
+
+Open `index.html` in a browser to run the interactive JavaScript basics module.
+
+Topics covered:
+
+- Variables with `let` and `const`
+- Primitive and complex data types
+- Arithmetic and comparison operators
+- `if`, `else if`, and `else`
+- `for` loops
+- Functions
+- Arrays
+- Objects
+- String literals, quotes, and template literals
+- DOM selection and events
+- Type coercion in arithmetic operations
+
+## Coding exercise
+
+### [Basic Calculator](exercises/basic-calculator/)
+
+Uses variables, number values, arithmetic operators, comparison, and form events.
+Enter two numbers to calculate:
+
+- Sum
+- Difference
+- Product
+- Quotient
+- Remainder
+
+### [String Literals](exercises/string-literals/)
+
+Practice single- and double-quoted strings, escaping quote characters,
+concatenation, and template literals with embedded values and multiple lines.

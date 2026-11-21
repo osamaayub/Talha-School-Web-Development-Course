@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Literals Coding Exercises</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercises</p>
+        <h1>String Literals</h1>
+        <p>
+          Practice writing strings with quotes, escaping characters, joining
+          strings, and using template literals.
+        </p>
+      </header>
+
+      <section aria-labelledby="quotesTitle">
+        <h2 id="quotesTitle">1. Single and double quotes</h2>
+        <p>Both quote styles create strings. Compare their values:</p>
+        <pre><code>const singleQuoted = 'Hello, JavaScript!';
+const doubleQuoted = "Hello, JavaScript!";</code></pre>
+        <button type="button" data-action="quotes">Show the result</button>
+        <pre class="output" id="quotesOutput" aria-live="polite">Click to run this example.</pre>
+      </section>
+
+      <section aria-labelledby="escapeTitle">
+        <h2 id="escapeTitle">2. Escape a quote</h2>
+        <p>
+          Put an apostrophe in the sentence below. The example uses a backslash
+          to escape the apostrophe inside a single-quoted string.
+        </p>
+        <form id="escapeForm">
+          <label>
+            A short sentence
+            <input id="sentenceInput" type="text" value="It's a sunny day." required />
+          </label>
+          <button type="submit">Show escaped string</button>
+        </form>
+        <pre class="output" id="escapeOutput" aria-live="polite">Your string will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="templateTitle">
+        <h2 id="templateTitle">3. Concatenation and template literals</h2>
+        <p>
+          Enter your name and a topic. See how the same message can be created
+          with concatenation or a template literal.
+        </p>
+        <form id="templateForm">
+          <label>
+            Your name
+            <input id="nameInput" type="text" value="Talha" required />
+          </label>
+          <label>
+            Topic
+            <input id="topicInput" type="text" value="string literals" required />
+          </label>
+          <button type="submit">Build both messages</button>
+        </form>
+        <pre class="output" id="templateOutput" aria-live="polite">Your messages will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="challengeTitle">
+        <h2 id="challengeTitle">4. Quick challenge</h2>
+        <p>What value does this expression produce?</p>
+        <pre><code>const message = "Java" + "Script";</code></pre>
+        <div class="answers">
+          <button type="button" data-answer="incorrect">Java Script</button>
+          <button type="button" data-answer="correct">JavaScript</button>
+          <button type="button" data-answer="incorrect">An error</button>
+        </div>
+        <p id="challengeResult" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

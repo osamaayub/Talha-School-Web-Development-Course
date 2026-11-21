@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #172033;
+  background: #eef4ff;
+  line-height: 1.6;
+}
+
+.exercise {
+  width: min(760px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #1d4ed8;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+header {
+  padding: 32px;
+  border-radius: 16px;
+  color: white;
+  background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+}
+
+header h1,
+header p {
+  margin: 0;
+}
+
+.eyebrow {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+form,
+section {
+  margin-top: 16px;
+  padding: 22px;
+  border: 1px solid #dbe4f0;
+  border-radius: 14px;
+  background: white;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+}
+
+input {
+  width: 150px;
+  border: 1px solid #dbe4f0;
+  border-radius: 8px;
+  padding: 10px;
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: white;
+  background: #2563eb;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+section h2 {
+  margin-top: 0;
+}
+
+#exerciseOutput {
+  min-height: 120px;
+  margin: 0;
+  padding: 18px;
+  overflow: auto;
+  border-radius: 10px;
+  color: #e2e8f0;
+  background: #0f172a;
+  white-space: pre-wrap;
+}

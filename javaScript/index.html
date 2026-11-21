@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Basics</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">JavaScript Basics Module</p>
+        <h1>Learn JavaScript step by step</h1>
+        <p>Read each example, run it, and change the code to experiment.</p>
+      </header>
+
+      <section class="lesson-grid" aria-label="JavaScript lessons">
+        <article class="lesson">
+          <h2>1. Variables</h2>
+          <p><code>let</code> creates a value that can change. <code>const</code> creates a value that cannot be reassigned.</p>
+          <button data-example="variables">Run example</button>
+        </article>
+
+        <article class="lesson">
+          <h2>2. Data types</h2>
+          <p>JavaScript values can be strings, numbers, booleans, arrays, objects, <code>null</code>, or <code>undefined</code>.</p>
+          <button data-example="types">Run example</button>
+        </article>
+
+        <article class="lesson">
+          <h2>3. Operators</h2>
+          <p>Arithmetic operators calculate values. Comparisons return <code>true</code> or <code>false</code>.</p>
+          <button data-example="operators">Run example</button>
+        </article>
+
+        <article class="lesson">
+          <h2>4. Conditions</h2>
+          <p><code>if</code>, <code>else if</code>, and <code>else</code> choose which code should run.</p>
+          <button data-example="conditions">Run example</button>
+        </article>
+
+        <article class="lesson">
+          <h2>5. Loops</h2>
+          <p>Loops repeat code. A <code>for</code> loop runs a known number of times.</p>
+          <button data-example="loops">Run example</button>
+        </article>
+
+        <article class="lesson">
+          <h2>6. Functions</h2>
+          <p>Functions group reusable code and can accept parameters and return results.</p>
+          <button data-example="functions">Run example</button>
+        </article>
+
+        <article class="lesson">
+          <h2>7. Arrays</h2>
+          <p>Arrays store ordered lists of values.</p>
+          <button data-example="arrays">Run example</button>
+        </article>
+
+        <article class="lesson">
+          <h2>8. Objects</h2>
+          <p>Objects store related data as named properties.</p>
+          <button data-example="objects">Run example</button>
+        </article>
+
+        <article class="lesson">
+          <h2>9. DOM and events</h2>
+          <p>JavaScript can change page elements and respond when a user interacts.</p>
+          <button id="colorButton">Change the card color</button>
+        </article>
+      </section>
+
+      <section class="playground" aria-labelledby="outputTitle">
+        <div class="playground-header">
+          <h2 id="outputTitle">Output</h2>
+          <button id="clearOutput" type="button">Clear</button>
+        </div>
+        <pre id="output" aria-live="polite">Click a lesson button to see the result.</pre>
+      </section>
+
+      <section class="quiz" aria-labelledby="quizTitle">
+        <h2 id="quizTitle">Quick check</h2>
+        <p>What is the result of <code>"5" - 2</code> in JavaScript?</p>
+        <div class="quiz-options">
+          <button data-answer="incorrect">"52"</button>
+          <button data-answer="correct">3</button>
+          <button data-answer="incorrect">NaN</button>
+        </div>
+        <p id="quizResult" aria-live="polite"></p>
+      </section>
+
+      <section class="exercise-link" aria-labelledby="exerciseTitle">
+        <h2 id="exerciseTitle">Coding exercises</h2>
+        <p>Practice JavaScript operators with a separate Basic Calculator exercise.</p>
+        <a class="exercise-button" href="exercises/basic-calculator/">Open Basic Calculator</a>
+        <p>Practice quotes, escaping, concatenation, and template literals.</p>
+        <a class="exercise-button" href="exercises/string-literals/">Open String Literals</a>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

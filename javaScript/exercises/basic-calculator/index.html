@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Calculator Coding Exercise</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercise</p>
+        <h1>Basic Calculator</h1>
+        <p>
+          Enter two numbers and use JavaScript arithmetic operators to calculate
+          the results.
+        </p>
+      </header>
+
+      <form id="calculatorExercise">
+        <label>
+          First number
+          <input id="firstNumber" type="number" value="12" required />
+        </label>
+
+        <label>
+          Second number
+          <input id="secondNumber" type="number" value="5" required />
+        </label>
+
+        <button type="submit">Calculate</button>
+      </form>
+
+      <section aria-labelledby="outputTitle">
+        <h2 id="outputTitle">Output</h2>
+        <pre id="exerciseOutput" aria-live="polite">Waiting for calculation...</pre>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
