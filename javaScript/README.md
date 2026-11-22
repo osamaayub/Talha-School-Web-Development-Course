@@ -46,6 +46,13 @@ Practice `for`, `while`, and `for...of` loops with a multiplication table,
 a countdown, and a vowel counter, then solve the FizzBuzz challenge with
 test cases, hints, a hidden solution, and bonus challenges.
 
+### [Functions](exercises/functions/)
+
+Practice function declarations, parameters, arguments, and return values with
+a greeting generator, a triangle area calculator, and nested function calls,
+then solve the `discountPrice` challenge with test cases, a hidden solution,
+a quiz question, and bonus challenges.
+
 ### [Errors](exercises/errors/)
 
 Meet ReferenceError, TypeError, RangeError and SyntaxError, catch errors with

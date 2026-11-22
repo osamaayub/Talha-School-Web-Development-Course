@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions Coding Exercises</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercises</p>
+        <h1>Functions</h1>
+        <p>
+          Practice writing and calling functions with <code>function</code>
+          declarations, parameters, arguments, and return values.
+        </p>
+      </header>
+
+      <section aria-labelledby="greetTitle">
+        <h2 id="greetTitle">1. Your first function</h2>
+        <p>
+          A function groups code so you can run it again and again by calling its
+          name. Write a function once, call it many times.
+        </p>
+        <pre><code>function greet(name) {
+  return `Hello, ${name}! Welcome back.`;
+}
+
+console.log(greet("Ada"));
+// Hello, Ada! Welcome back.</code></pre>
+        <form id="greetForm">
+          <label>
+            Your name
+            <input id="greetInput" type="text" value="Ada" required />
+          </label>
+          <button type="submit">Greet me</button>
+        </form>
+        <pre class="output" id="greetOutput" aria-live="polite">The greeting will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="areaTitle">
+        <h2 id="areaTitle">2. Functions with multiple parameters</h2>
+        <p>
+          Functions can take as many parameters as you need. Pass the arguments
+          in the same order when you call it.
+        </p>
+        <pre><code>function triangleArea(base, height) {
+  return (base * height) / 2;
+}</code></pre>
+        <form id="areaForm">
+          <label>
+            Base
+            <input id="baseInput" type="number" value="10" required />
+          </label>
+          <label>
+            Height
+            <input id="heightInput" type="number" value="6" required />
+          </label>
+          <button type="submit">Calculate area</button>
+        </form>
+        <pre class="output" id="areaOutput" aria-live="polite">The area will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="returnTitle">
+        <h2 id="returnTitle">3. Return values vs console.log</h2>
+        <p>
+          <code>return</code> hands a value back to whoever called the function,
+          so you can use it in calculations or pass it to another function.
+          <code>console.log</code> only displays the value.
+        </p>
+        <pre><code>function double(number) {
+  return number * 2;
+}
+
+function square(number) {
+  return number * number;
+}
+
+console.log(square(double(3))); // 36</code></pre>
+        <form id="calcForm">
+          <label>
+            Number
+            <input id="calcInput" type="number" value="3" required />
+          </label>
+          <button type="submit">Double then square</button>
+        </form>
+        <pre class="output" id="calcOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="challengeTitle">
+        <h2 id="challengeTitle">4. Challenge: discountPrice</h2>
+        <p>
+          Write a function <code>discountPrice(price, percentOff)</code> that
+          returns the price after a percentage discount, rounded to 2 decimal
+          places.
+        </p>
+        <p>Starter code:</p>
+        <pre><code>function discountPrice(price, percentOff) {
+  // your code here
+  // remember to return the result!
+}</code></pre>
+        <form id="discountForm">
+          <label>
+            Price
+            <input id="priceInput" type="number" value="80" min="0" required />
+          </label>
+          <label>
+            Discount %
+            <input id="discountInput" type="number" value="25" min="0" max="100" required />
+          </label>
+          <button type="submit">Apply discount</button>
+        </form>
+        <pre class="output" id="discountOutput" aria-live="polite">The result will appear here.</pre>
+        <button type="button" data-action="tests">Run tests</button>
+        <pre class="output" id="testsOutput" aria-live="polite">Click to run the tests.</pre>
+        <ul>
+          <li><code>Math.round(number * 100) / 100</code> rounds to 2 decimal places.</li>
+          <li>A function without a <code>return</code> gives back <code>undefined</code>.</li>
+        </ul>
+        <details>
+          <summary>Show the solution</summary>
+          <pre><code>function discountPrice(price, percentOff) {
+  const discount = price * (percentOff / 100);
+  return Math.round((price - discount) * 100) / 100;
+}</code></pre>
+        </details>
+      </section>
+
+      <section aria-labelledby="quizTitle">
+        <h2 id="quizTitle">5. Quick question</h2>
+        <p>What does this code log to the console?</p>
+        <pre><code>function add(a, b) {
+  const total = a + b;
+}
+
+console.log(add(2, 3));</code></pre>
+        <div class="answers">
+          <button type="button" data-answer="incorrect">5</button>
+          <button type="button" data-answer="correct">undefined</button>
+          <button type="button" data-answer="incorrect">Nothing is logged</button>
+        </div>
+        <p id="quizResult" aria-live="polite"></p>
+      </section>
+
+      <section aria-labelledby="bonusTitle">
+        <h2 id="bonusTitle">6. Bonus challenges</h2>
+        <ul>
+          <li>Write <code>isEven(n)</code> that returns <code>true</code> or <code>false</code>.</li>
+          <li>Write <code>celsiusToFahrenheit(c)</code> using the formula <code>(c * 9) / 5 + 32</code>.</li>
+          <li>Write a function with a <em>default parameter</em>, like <code>greet(name = "friend")</code>.</li>
+          <li>Convert one of your functions to an arrow function: <code>const greet = (name) =&gt; ...</code>.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
