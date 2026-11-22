@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>If/Else Challenge Coding Exercise</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercise</p>
+        <h1>If/Else Challenge: Movie Ticket Price</h1>
+        <p>
+          Use <code>if</code>, <code>else if</code>, and <code>else</code> to
+          work out the right ticket price for each customer.
+        </p>
+      </header>
+
+      <section aria-labelledby="rulesTitle">
+        <h2 id="rulesTitle">1. The rules</h2>
+        <p>
+          Write a function <code>getTicketPrice(age, isStudent, day)</code>
+          that returns the ticket price:
+        </p>
+        <ol>
+          <li>Kids under 5 get in <strong>free</strong> ($0).</li>
+          <li>Kids aged 5 to 12 pay <strong>$8</strong>.</li>
+          <li>Seniors aged 65 and up pay <strong>$7</strong>.</li>
+          <li>Everyone else pays <strong>$12</strong>.</li>
+          <li>Students (13 to 64) get <strong>$3 off</strong> the regular price.</li>
+          <li>
+            On <strong>Tuesday</strong>, every paid ticket gets
+            <strong>$2 off</strong>. The price can never go below $0.
+          </li>
+        </ol>
+        <p>Starter code:</p>
+        <pre><code>function getTicketPrice(age, isStudent, day) {
+  // your code here
+}
+
+console.log(getTicketPrice(3, false, "Monday"));   // 0
+console.log(getTicketPrice(10, false, "Friday"));  // 8
+console.log(getTicketPrice(70, false, "Tuesday")); // 5
+console.log(getTicketPrice(20, true, "Sunday"));   // 9
+console.log(getTicketPrice(20, true, "Tuesday"));  // 7
+console.log(getTicketPrice(35, false, "Tuesday")); // 10</code></pre>
+      </section>
+
+      <section aria-labelledby="tryTitle">
+        <h2 id="tryTitle">2. Try it out</h2>
+        <p>
+          Enter a customer and see which branch of the <code>if</code>
+          statement runs.
+        </p>
+        <form id="ticketForm">
+          <label>
+            Age
+            <input id="ageInput" type="number" min="0" value="20" required />
+          </label>
+          <label>
+            Day
+            <select id="dayInput">
+              <option>Monday</option>
+              <option selected>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+              <option>Sunday</option>
+            </select>
+          </label>
+          <label class="checkbox">
+            <input id="studentInput" type="checkbox" checked />
+            Student
+          </label>
+          <button type="submit">Get ticket price</button>
+        </form>
+        <pre class="output" id="ticketOutput" aria-live="polite">The price will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="testsTitle">
+        <h2 id="testsTitle">3. Run the test cases</h2>
+        <p>Check the solution against every expected result from the starter code.</p>
+        <button type="button" data-action="tests">Run tests</button>
+        <pre class="output" id="testsOutput" aria-live="polite">Click to run the tests.</pre>
+      </section>
+
+      <section aria-labelledby="hintsTitle">
+        <h2 id="hintsTitle">4. Hints and solution</h2>
+        <ul>
+          <li>Check the age ranges from youngest to oldest so the conditions don't overlap.</li>
+          <li>Handle the student discount only inside the "everyone else" branch.</li>
+          <li>Apply the Tuesday discount last, after the base price is set.</li>
+        </ul>
+        <details>
+          <summary>Show the solution</summary>
+          <pre><code>function getTicketPrice(age, isStudent, day) {
+  let price;
+
+  if (age &lt; 5) {
+    price = 0;
+  } else if (age &lt;= 12) {
+    price = 8;
+  } else if (age &gt;= 65) {
+    price = 7;
+  } else {
+    price = isStudent ? 9 : 12;
+  }
+
+  if (day === "Tuesday" &amp;&amp; price &gt; 0) {
+    price = Math.max(price - 2, 0);
+  }
+
+  return price;
+}</code></pre>
+        </details>
+      </section>
+
+      <section aria-labelledby="challengeTitle">
+        <h2 id="challengeTitle">5. Quick challenge</h2>
+        <p>What does this code log?</p>
+        <pre><code>const age = 12;
+
+if (age &lt; 5) {
+  console.log("Free");
+} else if (age &lt;= 12) {
+  console.log("Child");
+} else {
+  console.log("Adult");
+}</code></pre>
+        <div class="answers">
+          <button type="button" data-answer="incorrect">Free</button>
+          <button type="button" data-answer="correct">Child</button>
+          <button type="button" data-answer="incorrect">Adult</button>
+        </div>
+        <p id="challengeResult" aria-live="polite"></p>
+      </section>
+
+      <section aria-labelledby="bonusTitle">
+        <h2 id="bonusTitle">6. Bonus challenges</h2>
+        <ul>
+          <li>Make the <code>day</code> check case-insensitive so "tuesday" also works.</li>
+          <li>Return an error message if <code>age</code> is negative or not a number.</li>
+          <li>Rewrite the age logic using <code>switch (true)</code> and compare readability.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

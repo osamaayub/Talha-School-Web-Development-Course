@@ -33,3 +33,9 @@ Enter two numbers to calculate:
 
 Practice single- and double-quoted strings, escaping quote characters,
 concatenation, and template literals with embedded values and multiple lines.
+
+### [If/Else Challenge](exercises/if-else-challenge/)
+
+Work out movie ticket prices with `if`, `else if`, and `else`. Covers age
+ranges, a student discount, and a Tuesday discount, with test cases, hints,
+a hidden solution, and bonus challenges.
