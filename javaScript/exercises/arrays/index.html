@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays Coding Exercises</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercises</p>
+        <h1>Arrays</h1>
+        <p>
+          Practice storing lists of values, changing them with methods like
+          <code>push</code> and <code>pop</code>, and transforming them with
+          <code>map</code>, <code>filter</code>, and <code>reduce</code>.
+        </p>
+      </header>
+
+      <section aria-labelledby="accessTitle">
+        <h2 id="accessTitle">1. Access items by index</h2>
+        <p>
+          An array stores items in order, starting at index <code>0</code>.
+          Use <code>array[index]</code> to read an item and
+          <code>array.length</code> to see how many items it holds.
+        </p>
+        <pre><code>const colors = ["red", "green", "blue"];
+
+console.log(colors[0]);     // "red"  (first item)
+console.log(colors[colors.length - 1]); // "blue"  (last item)
+console.log(colors.length); // 3</code></pre>
+        <form id="accessForm">
+          <label>
+            Pick an index
+            <input id="accessInput" type="number" min="0" max="4" value="1" required />
+          </label>
+          <button type="submit">Read the array</button>
+        </form>
+        <pre class="output" id="accessOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="mutateTitle">
+        <h2 id="mutateTitle">2. Change an array with push and pop</h2>
+        <p>
+          <code>push()</code> adds items to the end of an array and
+          <code>pop()</code> removes the last item. <code>unshift()</code>
+          adds to the front and <code>shift()</code> removes the first item.
+        </p>
+        <pre><code>const queue = ["Ada", "Grace", "Alan"];
+
+queue.push("Katherine");  // ["Ada", "Grace", "Alan", "Katherine"]
+queue.pop();               // removes "Katherine"
+queue.unshift("Margaret"); // ["Margaret", "Ada", "Grace", "Alan"]
+queue.shift();             // removes "Margaret"</code></pre>
+        <form id="mutateForm">
+          <label>
+            Add a name
+            <input id="mutateInput" type="text" value="Edsger" required />
+          </label>
+          <button type="submit">Push to the list</button>
+        </form>
+        <pre class="output" id="mutateOutput" aria-live="polite">The list will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="transformTitle">
+        <h2 id="transformTitle">3. Transform with map and filter</h2>
+        <p>
+          <code>map()</code> creates a new array by applying a function to
+          every item. <code>filter()</code> keeps only the items where the
+          function returns <code>true</code>.
+        </p>
+        <pre><code>const prices = [10, 25, 40, 55];
+
+const withTax = prices.map((price) =&gt; price * 1.2);
+// [12, 30, 48, 66]
+
+const bigOrders = prices.filter((price) =&gt; price &gt;= 40);
+// [40, 55]</code></pre>
+        <form id="transformForm">
+          <label>
+            Comma-separated numbers
+            <input id="transformInput" type="text" value="10, 25, 40, 55" required />
+          </label>
+          <button type="submit">Map and filter</button>
+        </form>
+        <pre class="output" id="transformOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="challengeTitle">
+        <h2 id="challengeTitle">4. Challenge: totalPrice</h2>
+        <p>
+          Write a function <code>totalPrice(items)</code> that takes an array
+          of item objects like <code>{ name: "Book", price: 15 }</code> and
+          returns the sum of all the prices.
+        </p>
+        <pre><code>function totalPrice(items) {
+  // use reduce(), or a loop with a running total
+  return items.reduce((sum, item) =&gt; sum + item.price, 0);
+}
+
+const cart = [
+  { name: "Book", price: 15 },
+  { name: "Mug", price: 8 },
+  { name: "Pen", price: 2 },
+];
+
+console.log(totalPrice(cart));
+// 25</code></pre>
+        <form id="challengeForm">
+          <label>
+            Prices (comma-separated)
+            <input id="challengeInput" type="text" value="15, 8, 2" required />
+          </label>
+          <button type="submit">Total the cart</button>
+        </form>
+        <pre class="output" id="challengeOutput" aria-live="polite">The result will appear here.</pre>
+        <button type="button" data-action="tests">Run tests</button>
+        <pre class="output" id="testsOutput" aria-live="polite">Click to run the tests.</pre>
+        <ul>
+          <li><code>reduce()</code> visits each item and keeps a running total.</li>
+          <li>Don't forget the starting value <code>0</code> as the second argument to <code>reduce()</code>.</li>
+        </ul>
+        <details>
+          <summary>Show the solution</summary>
+          <pre><code>function totalPrice(items) {
+  return items.reduce((sum, item) =&gt; sum + item.price, 0);
+}
+
+// The same thing works with a loop:
+function totalPriceWithLoop(items) {
+  let total = 0;
+
+  for (const item of items) {
+    total += item.price;
+  }
+
+  return total;
+}</code></pre>
+        </details>
+      </section>
+
+      <section aria-labelledby="quizTitle">
+        <h2 id="quizTitle">5. Quick challenge</h2>
+        <p>What does this code log?</p>
+        <pre><code>const nums = [1, 2, 3];
+nums.push(4);
+console.log(nums.length);</code></pre>
+        <div class="answers">
+          <button type="button" data-answer="incorrect">3</button>
+          <button type="button" data-answer="correct">4</button>
+          <button type="button" data-answer="incorrect">5</button>
+        </div>
+        <p id="quizResult" aria-live="polite"></p>
+      </section>
+
+      <section aria-labelledby="bonusTitle">
+        <h2 id="bonusTitle">6. Bonus challenges</h2>
+        <ul>
+          <li>Write <code>findMax(nums)</code> that returns the largest number in an array.</li>
+          <li>Use <code>filter()</code> to keep only even numbers, then <code>map()</code> to double them.</li>
+          <li>Use <code>indexOf()</code> to find where a value sits in an array, and <code>includes()</code> to check if it exists.</li>
+          <li>Remove duplicates from an array using <code>Set</code> and the spread operator <code>[...new Set(nums)]</code>.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

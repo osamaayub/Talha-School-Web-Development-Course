@@ -53,6 +53,13 @@ a greeting generator, a triangle area calculator, and nested function calls,
 then solve the `discountPrice` challenge with test cases, a hidden solution,
 a quiz question, and bonus challenges.
 
+### [Arrays](exercises/arrays/)
+
+Practice indexing and `length`, changing arrays with `push`, `pop`, `unshift`,
+and `shift`, transforming them with `map` and `filter`, then solve the
+`totalPrice` challenge with `reduce`, with test cases, a hidden solution, a
+quiz question, and bonus challenges.
+
 ### [Errors](exercises/errors/)
 
 Meet ReferenceError, TypeError, RangeError and SyntaxError, catch errors with
