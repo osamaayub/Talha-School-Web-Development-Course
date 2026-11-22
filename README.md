@@ -52,7 +52,16 @@ WebDevelopmentCourse/
 │   ├── index.html                     # Interactive JavaScript lessons
 │   ├── script.js                      # Lesson and quiz examples
 │   ├── styles.css                    # Module presentation
-│   └── README.md                      # JavaScript module notes
+│   ├── README.md                      # JavaScript module notes
+│   └── exercises/                     # Interactive coding exercises
+│       ├── basic-calculator/          # Arithmetic operators practice
+│       ├── string-literals/           # Quotes, escaping, template literals
+│       ├── if-else-challenge/         # Movie ticket pricing challenge
+│       ├── loops/                     # for/while/for...of + FizzBuzz
+│       ├── functions/                 # Parameters, return values, discountPrice
+│       ├── arrays/                    # Indexing, push/pop, map/filter/reduce
+│       ├── objects/                   # Properties, nesting, methods, describeUser
+│       └── errors/                    # try...catch, throwing errors
 └── docs/                              # Course documentation
     ├── README.md                      # Documentation overview and guide
     ├── course-notes.md                # Course notes and learning materials
@@ -132,7 +141,16 @@ A fictional wood-fired restaurant with a warm, editorial design (Playfair Displa
 - *The restaurant, menu, prices, address and contact details are fictional demo data (the email uses the reserved `.example` domain), and nothing is sent or stored.*
 
 ### JavaScript
-The dedicated JavaScript basics module contains interactive examples for variables, data types, string literals, operators, conditions, loops, functions, arrays, objects, DOM manipulation and events. Separate coding exercises include a [Basic Calculator](javaScript/exercises/basic-calculator/), [String Literals practice](javaScript/exercises/string-literals/), an [If/Else Challenge](javaScript/exercises/if-else-challenge/), a [Loops exercise](javaScript/exercises/loops/) and an [Errors exercise](javaScript/exercises/errors/).
+The dedicated JavaScript basics module contains interactive examples for variables, data types, string literals, operators, conditions, loops, functions, arrays, objects, DOM manipulation and events. Separate coding exercises, each with runnable examples, test cases, hints and bonus challenges:
+
+- [Basic Calculator](javaScript/exercises/basic-calculator/) — arithmetic operators
+- [String Literals](javaScript/exercises/string-literals/) — quotes, escaping and template literals
+- [If/Else Challenge](javaScript/exercises/if-else-challenge/) — movie ticket pricing
+- [Loops](javaScript/exercises/loops/) — `for`, `while`, `for...of` and FizzBuzz
+- [Functions](javaScript/exercises/functions/) — parameters, return values and `discountPrice`
+- [Arrays](javaScript/exercises/arrays/) — indexing, `push`/`pop`, `map`/`filter`/`reduce` and `totalPrice`
+- [Objects](javaScript/exercises/objects/) — properties, nesting, methods and `describeUser`
+- [Errors](javaScript/exercises/errors/) — `try...catch`, throwing errors and a `withdraw` challenge
 
 ## 🛠️ Technologies Used
 
