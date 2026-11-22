@@ -45,3 +45,9 @@ a hidden solution, and bonus challenges.
 Practice `for`, `while`, and `for...of` loops with a multiplication table,
 a countdown, and a vowel counter, then solve the FizzBuzz challenge with
 test cases, hints, a hidden solution, and bonus challenges.
+
+### [Errors](exercises/errors/)
+
+Meet ReferenceError, TypeError, RangeError and SyntaxError, catch errors with
+`try...catch...finally`, and throw your own errors in a `withdraw` challenge
+with test cases, a bug-fix question, a hidden solution, and bonus challenges.

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Errors Coding Exercises</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercises</p>
+        <h1>Errors and Error Handling</h1>
+        <p>
+          Learn to read common JavaScript errors, catch them with
+          <code>try...catch</code>, and throw your own errors with
+          <code>throw</code>.
+        </p>
+      </header>
+
+      <section aria-labelledby="typesTitle">
+        <h2 id="typesTitle">1. Meet the common errors</h2>
+        <p>
+          Click a button to run broken code safely. Read the error
+          <strong>name</strong> and <strong>message</strong>: they tell you
+          what went wrong.
+        </p>
+        <pre><code>// ReferenceError: using a variable that doesn't exist
+console.log(userName);
+
+// TypeError: using a value the wrong way
+const age = 25;
+age.toUpperCase();
+
+// TypeError: reading a property of undefined
+const user = undefined;
+user.name;
+
+// RangeError: a value outside the allowed range
+const list = new Array(-1);</code></pre>
+        <div class="answers">
+          <button type="button" data-error="reference">ReferenceError</button>
+          <button type="button" data-error="type">TypeError</button>
+          <button type="button" data-error="undefined">Property of undefined</button>
+          <button type="button" data-error="range">RangeError</button>
+        </div>
+        <pre class="output" id="typesOutput" aria-live="polite">Click a button to see the error.</pre>
+        <p>
+          A <strong>SyntaxError</strong> (like a missing bracket) is different:
+          the browser can't even read the code, so nothing runs and
+          <code>try...catch</code> can't catch it.
+        </p>
+      </section>
+
+      <section aria-labelledby="tryCatchTitle">
+        <h2 id="tryCatchTitle">2. Catch errors with try...catch</h2>
+        <p>
+          <code>JSON.parse</code> throws an error when the text isn't valid
+          JSON. Without <code>try...catch</code>, the whole script stops.
+          With it, we can show a friendly message instead.
+        </p>
+        <pre><code>try {
+  const data = JSON.parse(text);
+  console.log("Parsed:", data);
+} catch (error) {
+  console.log("Something went wrong:", error.message);
+} finally {
+  console.log("This always runs.");
+}</code></pre>
+        <form id="jsonForm">
+          <label>
+            JSON text
+            <input id="jsonInput" type="text" value='{"name": "Talha", "age": 20}' required />
+          </label>
+          <button type="submit">Parse JSON</button>
+        </form>
+        <p>Try breaking it: remove a quote or a bracket and parse again.</p>
+        <pre class="output" id="jsonOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="throwTitle">
+        <h2 id="throwTitle">3. Challenge: throw your own errors</h2>
+        <p>
+          Write a function <code>withdraw(balance, amount)</code> that returns
+          the new balance, but <code>throw</code>s an error when:
+        </p>
+        <ol>
+          <li><code>amount</code> is not a number: throw a <strong>TypeError</strong> with "Amount must be a number".</li>
+          <li><code>amount</code> is 0 or less: throw a <strong>RangeError</strong> with "Amount must be greater than 0".</li>
+          <li><code>amount</code> is more than <code>balance</code>: throw an <strong>Error</strong> with "Insufficient funds".</li>
+        </ol>
+        <p>Starter code:</p>
+        <pre><code>function withdraw(balance, amount) {
+  // your checks here
+  return balance - amount;
+}
+
+try {
+  console.log(withdraw(100, 30));   // 70
+  console.log(withdraw(100, 500));  // throws "Insufficient funds"
+} catch (error) {
+  console.log(`${error.name}: ${error.message}`);
+}</code></pre>
+        <form id="withdrawForm">
+          <label>
+            Balance
+            <input id="balanceInput" type="number" value="100" required />
+          </label>
+          <label>
+            Amount
+            <input id="amountInput" type="text" value="500" required />
+          </label>
+          <button type="submit">Withdraw</button>
+        </form>
+        <p>Try <code>30</code>, <code>-5</code>, <code>0</code>, <code>500</code> and <code>abc</code>.</p>
+        <pre class="output" id="withdrawOutput" aria-live="polite">The result will appear here.</pre>
+        <button type="button" data-action="tests">Run tests</button>
+        <pre class="output" id="testsOutput" aria-live="polite">Click to run the tests.</pre>
+        <ul>
+          <li>Use <code>typeof amount !== "number"</code> or <code>Number.isNaN(amount)</code> for the first check.</li>
+          <li>Put each check in its own <code>if</code> and <code>throw</code> inside it.</li>
+          <li>Code after <code>throw</code> never runs, so the <code>return</code> only happens when all checks pass.</li>
+        </ul>
+        <details>
+          <summary>Show the solution</summary>
+          <pre><code>function withdraw(balance, amount) {
+  if (typeof amount !== "number" || Number.isNaN(amount)) {
+    throw new TypeError("Amount must be a number");
+  }
+
+  if (amount &lt;= 0) {
+    throw new RangeError("Amount must be greater than 0");
+  }
+
+  if (amount &gt; balance) {
+    throw new Error("Insufficient funds");
+  }
+
+  return balance - amount;
+}</code></pre>
+        </details>
+      </section>
+
+      <section aria-labelledby="debugTitle">
+        <h2 id="debugTitle">4. Fix the bug</h2>
+        <p>This code crashes. Read the error, then pick the fix.</p>
+        <pre><code>const students = ["Ali", "Sara", "Talha"];
+
+for (let i = 0; i &lt;= students.length; i++) {
+  console.log(students[i].toUpperCase());
+}
+
+// TypeError: Cannot read properties of undefined (reading 'toUpperCase')</code></pre>
+        <div class="answers">
+          <button type="button" data-fix="incorrect">Change let to const</button>
+          <button type="button" data-fix="correct">Change &lt;= to &lt;</button>
+          <button type="button" data-fix="incorrect">Remove .toUpperCase()</button>
+        </div>
+        <p id="fixResult" class="result" aria-live="polite"></p>
+      </section>
+
+      <section aria-labelledby="challengeTitle">
+        <h2 id="challengeTitle">5. Quick challenge</h2>
+        <p>What does this code log?</p>
+        <pre><code>try {
+  console.log("A");
+  throw new Error("Oops");
+  console.log("B");
+} catch (error) {
+  console.log("C");
+} finally {
+  console.log("D");
+}</code></pre>
+        <div class="answers">
+          <button type="button" data-answer="incorrect">A, B, C, D</button>
+          <button type="button" data-answer="correct">A, C, D</button>
+          <button type="button" data-answer="incorrect">A, C</button>
+        </div>
+        <p id="challengeResult" class="result" aria-live="polite"></p>
+      </section>
+
+      <section aria-labelledby="bonusTitle">
+        <h2 id="bonusTitle">6. Bonus challenges</h2>
+        <ul>
+          <li>Write <code>safeDivide(a, b)</code> that throws a RangeError when <code>b</code> is 0.</li>
+          <li>Use <code>error instanceof TypeError</code> inside <code>catch</code> to show a different message per error type.</li>
+          <li>Create your own <code>class ValidationError extends Error</code> and throw it from <code>withdraw</code>.</li>
+          <li>Open the browser console (F12), cause a ReferenceError on purpose, and find the file name and line number in the message.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
