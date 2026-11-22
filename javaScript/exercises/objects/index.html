@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects Coding Exercises</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercises</p>
+        <h1>Objects</h1>
+        <p>
+          Practice storing data in key-value pairs, reading and changing
+          properties, and working with nested objects and methods.
+        </p>
+      </header>
+
+      <section aria-labelledby="accessTitle">
+        <h2 id="accessTitle">1. Read properties with dot and bracket notation</h2>
+        <p>
+          Objects store values under named keys. Use <code>object.key</code> or
+          <code>object["key"]</code> to read a value, and the same syntax to
+          change it.
+        </p>
+        <pre><code>const user = {
+  name: "Ada",
+  age: 36,
+  city: "London",
+};
+
+console.log(user.name);        // "Ada"
+console.log(user["age"]);      // 36
+user.city = "Paris";           // update a property
+console.log(user.city);        // "Paris"</code></pre>
+        <form id="accessForm">
+          <label>
+            Property to read
+            <select id="propertySelect">
+              <option value="name">name</option>
+              <option value="age">age</option>
+              <option value="city">city</option>
+              <option value="job">job (missing)</option>
+            </select>
+          </label>
+          <button type="submit">Read the property</button>
+        </form>
+        <pre class="output" id="accessOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="nestedTitle">
+        <h2 id="nestedTitle">2. Add properties and nest objects</h2>
+        <p>
+          You can add new keys at any time, and a value can itself be an
+          object. Access nested values by chaining the keys.
+        </p>
+        <pre><code>const profile = {
+  name: "Grace",
+  address: {
+    city: "New York",
+    zip: "10001",
+  },
+};
+
+profile.job = "Admiral";          // add a new key
+console.log(profile.address.city); // "New York"
+console.log(profile.address.zip);  // "10001"</code></pre>
+        <form id="nestedForm">
+          <label>
+            Add a nickname for
+            <input id="nestedInput" type="text" value="Grace" required />
+          </label>
+          <button type="submit">Build a profile</button>
+        </form>
+        <pre class="output" id="nestedOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="methodsTitle">
+        <h2 id="methodsTitle">3. Methods and Object.keys / values</h2>
+        <p>
+          An object can hold functions as values. Call them with
+          <code>object.method()</code> and use <code>this</code> to reach the
+          object's own properties.
+        </p>
+        <pre><code>const counter = {
+  count: 0,
+  increment() {
+    this.count++;
+  },
+};
+
+counter.increment();
+counter.increment();
+console.log(counter.count); // 2
+
+console.log(Object.keys(counter));   // ["count", "increment"]
+console.log(Object.values({ a: 1, b: 2 })); // [1, 2]</code></pre>
+        <form id="methodsForm">
+          <label>
+            Click to increment
+            <input id="methodsInput" type="number" min="1" max="10" value="3" required />
+          </label>
+          <button type="submit">Run increments</button>
+        </form>
+        <pre class="output" id="methodsOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="challengeTitle">
+        <h2 id="challengeTitle">4. Challenge: describeUser</h2>
+        <p>
+          Write a function <code>describeUser(user)</code> that takes an object
+          like <code>{ name: "Ada", age: 36, city: "London" }</code> and returns
+          a sentence: <code>"Ada is 36 years old and lives in London."</code>
+        </p>
+        <pre><code>function describeUser(user) {
+  return `${user.name} is ${user.age} years old and lives in ${user.city}.`;
+}
+
+console.log(describeUser({ name: "Ada", age: 36, city: "London" }));
+// "Ada is 36 years old and lives in London."</code></pre>
+        <form id="challengeForm">
+          <label>
+            Name
+            <input id="nameInput" type="text" value="Alan" required />
+          </label>
+          <label>
+            Age
+            <input id="ageInput" type="number" min="1" max="120" value="41" required />
+          </label>
+          <label>
+            City
+            <input id="cityInput" type="text" value="Manchester" required />
+          </label>
+          <button type="submit">Describe the user</button>
+        </form>
+        <pre class="output" id="challengeOutput" aria-live="polite">The result will appear here.</pre>
+        <button type="button" data-action="tests">Run tests</button>
+        <pre class="output" id="testsOutput" aria-live="polite">Click to run the tests.</pre>
+        <ul>
+          <li>Template literals with <code>${}</code> make building the sentence easy.</li>
+          <li>Don't forget the spaces and the period at the end.</li>
+        </ul>
+        <details>
+          <summary>Show the solution</summary>
+          <pre><code>function describeUser(user) {
+  return `${user.name} is ${user.age} years old and lives in ${user.city}.`;
+}
+
+// A loop-based version works too:
+function describeUserLong(user) {
+  return (
+    user.name +
+    " is " +
+    user.age +
+    " years old and lives in " +
+    user.city +
+    "."
+  );
+}</code></pre>
+        </details>
+      </section>
+
+      <section aria-labelledby="quizTitle">
+        <h2 id="quizTitle">5. Quick challenge</h2>
+        <p>What does this code log?</p>
+        <pre><code>const dog = { name: "Rex", age: 4 };
+dog.age = 5;
+console.log(dog.age);</code></pre>
+        <div class="answers">
+          <button type="button" data-answer="incorrect">4</button>
+          <button type="button" data-answer="correct">5</button>
+          <button type="button" data-answer="incorrect">undefined</button>
+        </div>
+        <p id="quizResult" aria-live="polite"></p>
+      </section>
+
+      <section aria-labelledby="bonusTitle">
+        <h2 id="bonusTitle">6. Bonus challenges</h2>
+        <ul>
+          <li>Write <code>hasProperty(obj, key)</code> using <code>key in obj</code> or <code>obj.hasOwnProperty(key)</code>.</li>
+          <li>Use <code>Object.entries()</code> to print every key and value of an object.</li>
+          <li>Write <code>mergeObjects(a, b)</code> with the spread operator: <code>{ ...a, ...b }</code>.</li>
+          <li>Add a <code>greet()</code> method to a <code>person</code> object that returns <code>"Hello, my name is ..."</code>.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -60,6 +60,13 @@ and `shift`, transforming them with `map` and `filter`, then solve the
 `totalPrice` challenge with `reduce`, with test cases, a hidden solution, a
 quiz question, and bonus challenges.
 
+### [Objects](exercises/objects/)
+
+Practice reading properties with dot and bracket notation, adding keys,
+nesting objects, methods with `this`, and `Object.keys`/`values`, then solve
+the `describeUser` challenge with template literals, with test cases, a
+hidden solution, a quiz question, and bonus challenges.
+
 ### [Errors](exercises/errors/)
 
 Meet ReferenceError, TypeError, RangeError and SyntaxError, catch errors with
