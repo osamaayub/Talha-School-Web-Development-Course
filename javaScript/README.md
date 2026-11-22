@@ -39,3 +39,9 @@ concatenation, and template literals with embedded values and multiple lines.
 Work out movie ticket prices with `if`, `else if`, and `else`. Covers age
 ranges, a student discount, and a Tuesday discount, with test cases, hints,
 a hidden solution, and bonus challenges.
+
+### [Loops](exercises/loops/)
+
+Practice `for`, `while`, and `for...of` loops with a multiplication table,
+a countdown, and a vowel counter, then solve the FizzBuzz challenge with
+test cases, hints, a hidden solution, and bonus challenges.

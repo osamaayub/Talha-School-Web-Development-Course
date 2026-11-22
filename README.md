@@ -132,7 +132,7 @@ A fictional wood-fired restaurant with a warm, editorial design (Playfair Displa
 - *The restaurant, menu, prices, address and contact details are fictional demo data (the email uses the reserved `.example` domain), and nothing is sent or stored.*
 
 ### JavaScript
-The dedicated JavaScript basics module contains interactive examples for variables, data types, string literals, operators, conditions, loops, functions, arrays, objects, DOM manipulation and events. Separate coding exercises include a [Basic Calculator](javaScript/exercises/basic-calculator/), [String Literals practice](javaScript/exercises/string-literals/) and an [If/Else Challenge](javaScript/exercises/if-else-challenge/).
+The dedicated JavaScript basics module contains interactive examples for variables, data types, string literals, operators, conditions, loops, functions, arrays, objects, DOM manipulation and events. Separate coding exercises include a [Basic Calculator](javaScript/exercises/basic-calculator/), [String Literals practice](javaScript/exercises/string-literals/), an [If/Else Challenge](javaScript/exercises/if-else-challenge/) and a [Loops exercise](javaScript/exercises/loops/).
 
 ## 🛠️ Technologies Used
 

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loops Coding Exercises</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercises</p>
+        <h1>Loops</h1>
+        <p>
+          Practice repeating code with <code>for</code>, <code>while</code>,
+          and <code>for...of</code> loops, then solve the FizzBuzz challenge.
+        </p>
+      </header>
+
+      <section aria-labelledby="tableTitle">
+        <h2 id="tableTitle">1. Multiplication table with a for loop</h2>
+        <p>A <code>for</code> loop is best when you know how many times to repeat.</p>
+        <pre><code>for (let i = 1; i &lt;= 10; i++) {
+  console.log(`${number} x ${i} = ${number * i}`);
+}</code></pre>
+        <form id="tableForm">
+          <label>
+            Number
+            <input id="tableInput" type="number" value="7" required />
+          </label>
+          <button type="submit">Build the table</button>
+        </form>
+        <pre class="output" id="tableOutput" aria-live="polite">Your table will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="countdownTitle">
+        <h2 id="countdownTitle">2. Countdown with a while loop</h2>
+        <p>
+          A <code>while</code> loop keeps running as long as its condition is
+          true. Don't forget to change the counter, or the loop never stops!
+        </p>
+        <pre><code>let count = start;
+
+while (count &gt; 0) {
+  console.log(count);
+  count--;
+}
+
+console.log("Liftoff!");</code></pre>
+        <form id="countdownForm">
+          <label>
+            Start from (1 to 20)
+            <input id="countdownInput" type="number" min="1" max="20" value="5" required />
+          </label>
+          <button type="submit">Start countdown</button>
+        </form>
+        <pre class="output" id="countdownOutput" aria-live="polite">The countdown will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="vowelsTitle">
+        <h2 id="vowelsTitle">3. Count vowels with for...of</h2>
+        <p>
+          <code>for...of</code> loops through each item in a string or array,
+          one at a time.
+        </p>
+        <pre><code>let vowels = 0;
+
+for (const letter of word.toLowerCase()) {
+  if ("aeiou".includes(letter)) {
+    vowels++;
+  }
+}</code></pre>
+        <form id="vowelsForm">
+          <label>
+            A word or sentence
+            <input id="vowelsInput" type="text" value="JavaScript is awesome" required />
+          </label>
+          <button type="submit">Count vowels</button>
+        </form>
+        <pre class="output" id="vowelsOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="fizzTitle">
+        <h2 id="fizzTitle">4. Challenge: FizzBuzz</h2>
+        <p>
+          Write a function <code>fizzBuzz(n)</code> that loops from 1 to
+          <code>n</code> and returns an array where:
+        </p>
+        <ol>
+          <li>Numbers divisible by 3 become <strong>"Fizz"</strong>.</li>
+          <li>Numbers divisible by 5 become <strong>"Buzz"</strong>.</li>
+          <li>Numbers divisible by both 3 and 5 become <strong>"FizzBuzz"</strong>.</li>
+          <li>Every other number stays as it is.</li>
+        </ol>
+        <p>Starter code:</p>
+        <pre><code>function fizzBuzz(n) {
+  const result = [];
+  // your loop here
+  return result;
+}
+
+console.log(fizzBuzz(5));
+// [1, 2, "Fizz", 4, "Buzz"]
+
+console.log(fizzBuzz(15).at(-1));
+// "FizzBuzz"</code></pre>
+        <form id="fizzForm">
+          <label>
+            Loop up to
+            <input id="fizzInput" type="number" min="1" max="100" value="15" required />
+          </label>
+          <button type="submit">Run FizzBuzz</button>
+        </form>
+        <pre class="output" id="fizzOutput" aria-live="polite">The result will appear here.</pre>
+        <button type="button" data-action="tests">Run tests</button>
+        <pre class="output" id="testsOutput" aria-live="polite">Click to run the tests.</pre>
+        <ul>
+          <li>Use the <code>%</code> (remainder) operator to check if a number divides evenly.</li>
+          <li>Check "divisible by both" <strong>first</strong>, otherwise "Fizz" will win.</li>
+        </ul>
+        <details>
+          <summary>Show the solution</summary>
+          <pre><code>function fizzBuzz(n) {
+  const result = [];
+
+  for (let i = 1; i &lt;= n; i++) {
+    if (i % 3 === 0 &amp;&amp; i % 5 === 0) {
+      result.push("FizzBuzz");
+    } else if (i % 3 === 0) {
+      result.push("Fizz");
+    } else if (i % 5 === 0) {
+      result.push("Buzz");
+    } else {
+      result.push(i);
+    }
+  }
+
+  return result;
+}</code></pre>
+        </details>
+      </section>
+
+      <section aria-labelledby="challengeTitle">
+        <h2 id="challengeTitle">5. Quick challenge</h2>
+        <p>How many times does this loop log a message?</p>
+        <pre><code>for (let i = 0; i &lt; 3; i++) {
+  console.log("Hello");
+}</code></pre>
+        <div class="answers">
+          <button type="button" data-answer="incorrect">2 times</button>
+          <button type="button" data-answer="correct">3 times</button>
+          <button type="button" data-answer="incorrect">4 times</button>
+        </div>
+        <p id="challengeResult" aria-live="polite"></p>
+      </section>
+
+      <section aria-labelledby="bonusTitle">
+        <h2 id="bonusTitle">6. Bonus challenges</h2>
+        <ul>
+          <li>Write <code>sumEvens(n)</code> that adds up all even numbers from 1 to <code>n</code>.</li>
+          <li>Reverse a string using a loop, without <code>.reverse()</code>.</li>
+          <li>Use <code>break</code> to find the first number above 100 that is divisible by 7.</li>
+          <li>Print a triangle of stars with a loop inside a loop (nested loops).</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
