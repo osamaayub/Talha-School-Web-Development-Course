@@ -72,3 +72,11 @@ hidden solution, a quiz question, and bonus challenges.
 Meet ReferenceError, TypeError, RangeError and SyntaxError, catch errors with
 `try...catch...finally`, and throw your own errors in a `withdraw` challenge
 with test cases, a bug-fix question, a hidden solution, and bonus challenges.
+
+### [DOM Manipulation](exercises/dom-manipulation/)
+
+Practice `querySelector`, `textContent`, `createElement` and `append`,
+`classList.toggle`, and `addEventListener` with interactive examples: reading
+and changing text, styling a banner and card, building a to-do list with
+delete buttons, a click counter, a mini list app challenge, a quiz question,
+and bonus challenges.

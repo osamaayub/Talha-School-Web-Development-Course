@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation Coding Exercises</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="exercise">
+      <a class="back-link" href="../../">&larr; Back to JavaScript Basics</a>
+
+      <header>
+        <p class="eyebrow">Coding Exercises</p>
+        <h1>DOM Manipulation</h1>
+        <p>
+          Practice selecting elements with <code>querySelector</code>, changing
+          their text with <code>textContent</code>, building new elements with
+          <code>createElement</code>, and reacting to clicks.
+        </p>
+      </header>
+
+      <section aria-labelledby="selectTitle">
+        <h2 id="selectTitle">1. Select an element and read its text</h2>
+        <p>
+          <code>document.querySelector()</code> finds the first element that
+          matches a CSS selector. <code>.textContent</code> reads or changes
+          the text inside an element.
+        </p>
+        <pre><code>const heading = document.querySelector("#greeting");
+console.log(heading.textContent); // "Hello, learner!"</code></pre>
+        <form id="selectForm">
+          <label>
+            Select by id
+            <input id="selectInput" type="text" value="greeting" required />
+          </label>
+          <button type="submit">Find and read</button>
+        </form>
+        <pre class="output" id="selectOutput" aria-live="polite">The result will appear here.</pre>
+      </section>
+
+      <section aria-labelledby="changeTitle">
+        <h2 id="changeTitle">2. Change text and styles</h2>
+        <p>
+          Set <code>.textContent</code> to replace an element's text, or use
+          <code>.style</code> and <code>.classList</code> to change how it
+          looks.
+        </p>
+        <pre><code>const banner = document.querySelector("#banner");
+banner.textContent = "New message";
+banner.style.color = "#b91c1c";
+banner.classList.add("highlight");</code></pre>
+        <form id="changeForm">
+          <label>
+            Banner text
+            <input id="changeInput" type="text" value="Welcome back!" required />
+          </label>
+          <button type="submit">Update banner</button>
+          <button type="button" id="resetBanner">Reset</button>
+        </form>
+        <div id="banner" class="demo-banner">Original banner text</div>
+      </section>
+
+      <section aria-labelledby="createTitle">
+        <h2 id="createTitle">3. Create and append elements</h2>
+        <p>
+          <code>document.createElement()</code> makes a new element. Use
+          <code>append()</code> or <code>appendChild()</code> to add it to the
+          page, and <code>remove()</code> to delete it.
+        </p>
+        <pre><code>const item = document.createElement("li");
+item.textContent = "Buy milk";
+list.append(item);
+
+item.remove(); // removes it from the page</code></pre>
+        <form id="listForm">
+          <label>
+            New to-do
+            <input id="listInput" type="text" value="Finish the exercise" required />
+          </label>
+          <button type="submit">Add to list</button>
+        </form>
+        <ul id="todoList" class="todo-list">
+          <li>Learn selectors</li>
+          <li>Practice textContent</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="toggleTitle">
+        <h2 id="toggleTitle">4. Toggle a class with classList</h2>
+        <p>
+          <code>classList.toggle()</code> adds a class if it is missing and
+          removes it if it is already there. CSS rules then change the style.
+        </p>
+        <pre><code>const card = document.querySelector("#card");
+
+card.addEventListener("click", () =&gt; {
+  card.classList.toggle("dark");
+});</code></pre>
+        <p>Click the card below, or use the button.</p>
+        <div class="answer-buttons">
+          <button type="button" id="toggleCard">Toggle dark mode</button>
+        </div>
+        <div id="card" class="card">Click me to toggle my theme.</div>
+      </section>
+
+      <section aria-labelledby="clicksTitle">
+        <h2 id="clicksTitle">5. Count clicks with addEventListener</h2>
+        <p>
+          <code>addEventListener("click", ...)</code> runs a function every
+          time the element is clicked. Keep a counter in a variable to track
+          how many clicks happened.
+        </p>
+        <pre><code>let clicks = 0;
+
+button.addEventListener("click", () =&gt; {
+  clicks += 1;
+  output.textContent = `Clicked ${clicks} times`;
+});</code></pre>
+        <div class="answer-buttons">
+          <button type="button" id="clickButton">Click me</button>
+          <button type="button" id="resetClicks">Reset counter</button>
+        </div>
+        <pre class="output" id="clickOutput" aria-live="polite">Clicked 0 times</pre>
+      </section>
+
+      <section aria-labelledby="challengeTitle">
+        <h2 id="challengeTitle">6. Challenge: build a mini list app</h2>
+        <p>
+          Combine everything: read a value from the input, create a new
+          <code>li</code> element for it, give each item a delete button, and
+          append it to the list.
+        </p>
+        <pre><code>function addItem(text) {
+  const li = document.createElement("li");
+  li.textContent = text;
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", () =&gt; li.remove());
+
+  li.append(deleteButton);
+  list.append(li);
+}</code></pre>
+        <form id="challengeForm">
+          <label>
+            Item name
+            <input id="challengeInput" type="text" value="Milk" required />
+          </label>
+          <button type="submit">Add item</button>
+        </form>
+        <ul id="challengeList" class="todo-list"></ul>
+        <details>
+          <summary>Show a full solution hint</summary>
+          <pre><code>document.querySelector("#challengeForm").addEventListener("submit", (event) =&gt; {
+  event.preventDefault();
+  addItem(document.querySelector("#challengeInput").value);
+  document.querySelector("#challengeInput").value = "";
+});</code></pre>
+        </details>
+      </section>
+
+      <section aria-labelledby="quizTitle">
+        <h2 id="quizTitle">7. Quick challenge</h2>
+        <p>What does <code>element.innerHTML = "&lt;b&gt;Hi&lt;/b&gt;"</code> do?</p>
+        <div class="answers">
+          <button type="button" data-answer="incorrect">Shows the literal text &lt;b&gt;Hi&lt;/b&gt;</button>
+          <button type="button" data-answer="correct">Renders bold "Hi" because innerHTML parses tags</button>
+          <button type="button" data-answer="incorrect">Throws an error</button>
+        </div>
+        <p id="quizResult" aria-live="polite"></p>
+      </section>
+
+      <section aria-labelledby="bonusTitle">
+        <h2 id="bonusTitle">8. Bonus challenges</h2>
+        <ul>
+          <li>Use <code>querySelectorAll("li")</code> to select every list item, then loop over them with <code>forEach</code>.</li>
+          <li>Use <code>element.children</code> to count how many items are inside a list.</li>
+          <li>Use <code>insertBefore()</code> to add a new item at the top of a list instead of the bottom.</li>
+          <li>Use <code>cloneNode(true)</code> to copy an existing element and add the copy to the page.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
