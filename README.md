@@ -11,6 +11,7 @@ Every push to `main` is published automatically (see [Deployment](#-deployment))
 
 | Project | Path | What it shows |
 | --- | --- | --- |
+| ☕ **Aurora Coffee** | [`/CSS/FinalLandingPage/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/FinalLandingPage/) | Capstone landing page: theme toggle, coffee filters, box-builder price calculator, testimonial carousel, validated subscribe form |
 | 🚗 **Car Showroom** | [`/CSS/CarWebsite/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/CarWebsite/) | Inline-SVG cars with live recoloring, filters, finance calculator, test-drive booking |
 | 🍽️ **Restaurant (Ember & Oak)** | [`/CSS/RestaurantWebsite/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/RestaurantWebsite/) | Filterable menu, order cart with drawer, reservations with live time slots, open-now status |
 | 👨‍💻 **Animated Portfolio** | [`/CSS/Portfolio/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/Portfolio/) | MERN developer portfolio, light/dark themes, scroll reveals, project filter |
@@ -48,7 +49,8 @@ WebDevelopmentCourse/
 │   ├── animations/                    # 12 CSS animation examples
 │   ├── Portfolio/                     # Animated MERN developer portfolio
 │   ├── CarWebsite/                    # Velocity Motors car showroom
-│   └── RestaurantWebsite/             # Ember & Oak restaurant (menu, cart, reservations)
+│   ├── RestaurantWebsite/             # Ember & Oak restaurant (menu, cart, reservations)
+│   └── FinalLandingPage/              # Aurora Coffee capstone landing page (HTML/CSS/JS)
 ├── javaScript/                        # JavaScript fundamentals module
 │   ├── index.html                     # Interactive JavaScript lessons
 │   ├── script.js                      # Lesson and quiz examples
@@ -118,6 +120,7 @@ No build step or dependencies are required: every project is plain HTML, CSS and
 - **Animated Portfolio**: dark and light themes, word-by-word hero reveal, sliding nav indicator, filterable project cards with 3D tilt, validated contact form
 - **Car Showroom (Velocity Motors)**: see below
 - **Restaurant (Ember & Oak)**: see below
+- **Aurora Coffee (capstone)**: `CSS/FinalLandingPage/` — a landing page combining everything learned so far: semantic HTML, CSS custom properties with light/dark themes, Flexbox/Grid, keyframe animations, filterable coffee catalog, a live box-builder price calculator, testimonial carousel, `localStorage` persistence, `IntersectionObserver` reveals and validated forms
 
 ### Featured project: Car Showroom (`CSS/CarWebsite`)
 A fictional dealership site built to practice layout, animation and JavaScript state together.

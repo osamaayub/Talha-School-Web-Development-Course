@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aurora — specialty coffee, roasted weekly and shipped to your door. Build your perfect box.">
+    <title>Aurora Coffee — Roasted fresh, shipped fast</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ===================== NAVBAR ===================== -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="#home" class="logo">Aurora<span>.</span></a>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+            <label for="nav-toggle" class="nav-backdrop" aria-label="Close menu"></label>
+            <label for="nav-toggle" class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#coffee">Coffee</a></li>
+                <li><a href="#builder">Build a Box</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li class="nav-cta-mobile">
+                    <a href="#subscribe" class="btn">Subscribe</a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+                    <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+                    <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+                </button>
+                <a href="#subscribe" class="btn btn-desktop">Subscribe</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ===================== HERO ===================== -->
+        <section id="home" class="hero">
+            <div class="hero-visual" aria-hidden="true">
+                <span class="steam steam-1"></span>
+                <span class="steam steam-2"></span>
+                <span class="steam steam-3"></span>
+                <div class="cup">
+                    <div class="cup-body"></div>
+                    <div class="cup-handle"></div>
+                    <div class="cup-saucer"></div>
+                </div>
+            </div>
+            <div class="hero-content">
+                <p class="brand-mark">Aurora<span>.</span> Coffee Co.</p>
+                <h1>Coffee worth waking up for</h1>
+                <p class="hero-lead">Small-lot beans, roasted every Tuesday and shipped within 48 hours. Build your box once — we handle the rest.</p>
+                <div class="hero-actions">
+                    <a href="#builder" class="btn">Build your box</a>
+                    <a href="#coffee" class="btn btn-ghost">Explore coffees</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== STATS ===================== -->
+        <section class="stats" aria-label="Company stats">
+            <div class="stat">
+                <span class="stat-number" data-target="12000" data-suffix="+">0</span>
+                <span class="stat-label">Happy subscribers</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" data-target="48" data-suffix=" hrs">0</span>
+                <span class="stat-label">Roast to doorstep</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" data-target="14" data-prefix="$" data-suffix="">0</span>
+                <span class="stat-label">Average bag price</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" data-target="98" data-suffix="%">0</span>
+                <span class="stat-label">Would recommend us</span>
+            </div>
+        </section>
+
+        <!-- ===================== FEATURES ===================== -->
+        <section id="features" class="section">
+            <div class="section-intro">
+                <h2>Why Aurora?</h2>
+                <p>Everything between the farm and your mug, handled obsessively.</p>
+            </div>
+            <ul class="feature-grid">
+                <li class="feature-card">
+                    <span class="feature-icon" aria-hidden="true">◉</span>
+                    <h3>Roasted to order</h3>
+                    <p>Nothing sits on a shelf. Your beans leave the roaster the same week they reach you.</p>
+                </li>
+                <li class="feature-card">
+                    <span class="feature-icon" aria-hidden="true">✦</span>
+                    <h3>Direct trade</h3>
+                    <p>We pay farmers 2–3× commodity price and publish every farm's story on each bag.</p>
+                </li>
+                <li class="feature-card">
+                    <span class="feature-icon" aria-hidden="true">⟳</span>
+                    <h3>Flexible plans</h3>
+                    <p>Weekly, every two weeks, or monthly. Pause, skip, or cancel anytime — no calls needed.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ===================== COFFEE SHOWCASE (filterable) ===================== -->
+        <section id="coffee" class="section section-alt">
+            <div class="section-intro">
+                <h2>This season's coffees</h2>
+                <p>Filter by roast level to find your next favourite.</p>
+            </div>
+            <div class="filter-bar" role="group" aria-label="Filter coffees by roast">
+                <button class="filter-btn active" type="button" data-filter="all">All</button>
+                <button class="filter-btn" type="button" data-filter="light">Light</button>
+                <button class="filter-btn" type="button" data-filter="medium">Medium</button>
+                <button class="filter-btn" type="button" data-filter="dark">Dark</button>
+            </div>
+            <p class="filter-count" id="filter-count" aria-live="polite"></p>
+            <ul class="coffee-grid" id="coffee-grid"></ul>
+            <p class="empty-state" id="empty-state" hidden>No coffees match that filter — try another roast.</p>
+        </section>
+
+        <!-- ===================== BOX BUILDER (price calculator) ===================== -->
+        <section id="builder" class="section">
+            <div class="section-intro">
+                <h2>Build your box</h2>
+                <p>Pick your size, grind, and how often we ship. The price updates live.</p>
+            </div>
+            <form class="builder" id="builder-form" novalidate>
+                <div class="builder-options">
+                    <fieldset>
+                        <legend>Bag size</legend>
+                        <label class="option">
+                            <input type="radio" name="size" value="12" checked>
+                            <span>12 oz <small>+ $0</small></span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="size" value="2lb">
+                            <span>2 lb <small>+ $4/bag</small></span>
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Grind</legend>
+                        <label class="option">
+                            <input type="radio" name="grind" value="0" checked>
+                            <span>Whole bean</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="grind" value="0">
+                            <span>Ground</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="grind" value="1">
+                            <span>Cold brew <small>+ $1/bag</small></span>
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Bags per shipment</legend>
+                        <div class="stepper">
+                            <button type="button" id="qty-minus" aria-label="Decrease bags">−</button>
+                            <output id="qty-value" for="qty-minus qty-plus">1</output>
+                            <button type="button" id="qty-plus" aria-label="Increase bags">+</button>
+                        </div>
+                        <small class="hint">3+ bags saves 10% automatically</small>
+                    </fieldset>
+                </div>
+
+                <div class="builder-summary" aria-live="polite">
+                    <dl>
+                        <div><dt>Bags</dt><dd id="sum-bags">1 × $14.00</dd></div>
+                        <div><dt>Grind / size</dt><dd id="sum-extras">$0.00</dd></div>
+                        <div><dt>Volume discount</dt><dd id="sum-discount">$0.00</dd></div>
+                        <div class="total"><dt>Total per shipment</dt><dd id="sum-total">$14.00</dd></div>
+                    </dl>
+                    <button type="submit" class="btn btn-wide">Add to subscription</button>
+                    <p class="form-message" id="builder-message" role="status"></p>
+                </div>
+            </form>
+        </section>
+
+        <!-- ===================== PRICING ===================== -->
+        <section id="pricing" class="section section-alt">
+            <div class="section-intro">
+                <h2>Simple pricing</h2>
+                <p>Every plan includes free shipping over $30 and the same obsession with quality.</p>
+            </div>
+            <div class="pricing-grid">
+                <article class="plan">
+                    <h3>Taster</h3>
+                    <p class="plan-price">$14<span>/bag</span></p>
+                    <ul class="plan-list">
+                        <li>1 bag per shipment</li>
+                        <li>Roast of the week</li>
+                        <li>Pause anytime</li>
+                    </ul>
+                    <a href="#subscribe" class="btn btn-ghost">Start tasting</a>
+                </article>
+                <article class="plan plan-featured">
+                    <h3>Explorer</h3>
+                    <p class="plan-price">$36<span>/shipment</span></p>
+                    <ul class="plan-list">
+                        <li>3 bags, curated variety</li>
+                        <li>Free shipping always</li>
+                        <li>Brew guide in every box</li>
+                    </ul>
+                    <a href="#subscribe" class="btn">Most popular</a>
+                </article>
+                <article class="plan">
+                    <h3>Roaster's Reserve</h3>
+                    <p class="plan-price">$58<span>/shipment</span></p>
+                    <ul class="plan-list">
+                        <li>4 bags incl. rare lots</li>
+                        <li>Early access to new harvests</li>
+                        <li>Roaster Q&amp;A calls</li>
+                    </ul>
+                    <a href="#subscribe" class="btn btn-ghost">Go premium</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===================== TESTIMONIALS ===================== -->
+        <section id="reviews" class="section">
+            <div class="section-intro">
+                <h2>Loved by coffee people</h2>
+                <p>Real words from subscribers who never go back.</p>
+            </div>
+            <div class="carousel" id="carousel">
+                <blockquote class="testimonial" id="testimonial">
+                    <p class="testimonial-quote"></p>
+                    <footer class="testimonial-author">
+                        <span class="testimonial-name"></span>
+                        <span class="testimonial-role"></span>
+                    </footer>
+                </blockquote>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prev-btn" type="button" aria-label="Previous review">←</button>
+                    <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Choose review"></div>
+                    <button class="carousel-btn" id="next-btn" type="button" aria-label="Next review">→</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== SUBSCRIBE / CONTACT ===================== -->
+        <section id="subscribe" class="section section-cta-band">
+            <div class="contact-layout">
+                <div class="contact-copy">
+                    <div class="section-intro">
+                        <h2>Get 15% off your first box</h2>
+                        <p>Join the list for brew tips, new harvest alerts, and your welcome discount.</p>
+                    </div>
+                    <ul class="contact-details">
+                        <li>
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:hello@aurora.coffee">hello@aurora.coffee</a>
+                        </li>
+                        <li>
+                            <span class="contact-label">Roastery</span>
+                            <span>12 Foundry Lane, Portland OR</span>
+                        </li>
+                        <li>
+                            <span class="contact-label">Brew hotline</span>
+                            <span>Mon–Sat, 7am–6pm PT</span>
+                        </li>
+                    </ul>
+                </div>
+                <form class="contact-form" id="subscribe-form" novalidate>
+                    <label>
+                        Name
+                        <input type="text" name="name" placeholder="Your name" autocomplete="name" required minlength="2">
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                    </label>
+                    <label class="full">
+                        What are you brewing?
+                        <select name="brew" required>
+                            <option value="">Choose one…</option>
+                            <option value="espresso">Espresso</option>
+                            <option value="pour-over">Pour over</option>
+                            <option value="french-press">French press</option>
+                            <option value="cold-brew">Cold brew</option>
+                        </select>
+                    </label>
+                    <label class="full">
+                        <input type="checkbox" name="terms" required>
+                        I agree to receive coffee emails (unsubscribe anytime)
+                    </label>
+                    <button type="submit" class="btn btn-wide">Claim my 15% off</button>
+                    <p class="form-message" id="subscribe-message" role="status"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER / CTA ===================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <a href="#home" class="logo">Aurora<span>.</span></a>
+            <p>Roasted fresh every Tuesday. © <span id="year"></span> Aurora Coffee Co. — a demo project.</p>
+            <button class="btn btn-ghost to-top" id="to-top" type="button">Back to top ↑</button>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
