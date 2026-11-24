@@ -21,6 +21,7 @@ Every push to `main` is published automatically (see [Deployment](#-deployment))
 | 👗 **StyleHub** | [`/CSS/LandingPage/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/LandingPage/) | Fashion e-commerce landing page |
 | 📦 **Flexbox MasterClass** | [`/CSS/flexbox/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/flexbox/) | Flexbox layout experiments |
 | 💬 **Quote Generator** | [`/javaScript/exercises/quote-generator/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/exercises/quote-generator/) | Modern responsive quote generator with copy and keyboard controls |
+| 🎂 **Age Calculator** | [`/javaScript/exercises/age-calculator/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/exercises/age-calculator/) | Date math exercise: years, months, days, next-birthday countdown |
 
 ## 🗂️ Project Structure
 
@@ -64,7 +65,10 @@ WebDevelopmentCourse/
 │       ├── functions/                 # Parameters, return values, discountPrice
 │       ├── arrays/                    # Indexing, push/pop, map/filter/reduce
 │       ├── objects/                   # Properties, nesting, methods, describeUser
-│       └── errors/                    # try...catch, throwing errors
+│       ├── errors/                    # try...catch, throwing errors
+│       ├── age-calculator/            # Date math: age in years/months/days
+│       ├── dom-manipulation/          # DOM selection and updates
+│       └── quote-generator/           # Random quote generator with copy
 └── docs/                              # Course documentation
     ├── README.md                      # Documentation overview and guide
     ├── course-notes.md                # Course notes and learning materials
@@ -155,6 +159,9 @@ The dedicated JavaScript basics module contains interactive examples for variabl
 - [Arrays](javaScript/exercises/arrays/) — indexing, `push`/`pop`, `map`/`filter`/`reduce` and `totalPrice`
 - [Objects](javaScript/exercises/objects/) — properties, nesting, methods and `describeUser`
 - [Errors](javaScript/exercises/errors/) — `try...catch`, throwing errors and a `withdraw` challenge
+- [Age Calculator](javaScript/exercises/age-calculator/) — date math: age in years, months and days
+- [DOM Manipulation](javaScript/exercises/dom-manipulation/) — selecting and updating page elements
+- [Quote Generator](javaScript/exercises/quote-generator/) — random quotes with copy to clipboard
 
 ## 🛠️ Technologies Used
 
