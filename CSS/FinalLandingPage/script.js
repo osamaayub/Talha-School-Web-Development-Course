@@ -287,28 +287,25 @@ function renderCoffees() {
         li.className = "coffee-card";
         li.dataset.roast = coffee.roast;
         const isFav = favorites.has(coffee.id);
+        const stars = "★".repeat(Math.round(coffee.rating)) + "☆".repeat(5 - Math.round(coffee.rating));
         li.innerHTML = `
             <div class="coffee-art ${coffee.roast}" aria-hidden="true">
                 ${coffee.badge ? `<span class="coffee-badge${coffee.badge === "Value pick" ? " alt" : ""}">${coffee.badge}</span>` : ""}
-                ${coffee.icon}
+                <span class="coffee-icon">${coffee.icon}</span>
+                <span class="roast-tag ${coffee.roast}">${coffee.roast}</span>
+                <button class="fav-btn${isFav ? " faved" : ""}" type="button"
+                        data-id="${coffee.id}" aria-pressed="${isFav}"
+                        aria-label="${isFav ? "Remove" : "Add"} ${coffee.name} ${isFav ? "from" : "to"} favorites"></button>
             </div>
             <div class="coffee-body">
-                <div class="coffee-top">
-                    <div class="coffee-name-wrap">
-                        <h3>${coffee.name}</h3>
-                        <button class="fav-btn${isFav ? " faved" : ""}" type="button"
-                                data-id="${coffee.id}" aria-pressed="${isFav}"
-                                aria-label="${isFav ? "Remove" : "Add"} ${coffee.name} ${isFav ? "from" : "to"} favorites"></button>
-                    </div>
-                    <span class="roast-tag ${coffee.roast}">${coffee.roast}</span>
-                </div>
+                <h3 class="coffee-name">${coffee.name}</h3>
                 <div class="coffee-meta">
                     <span class="coffee-region">${coffee.region}</span>
-                    <span class="coffee-rating" title="Rated ${coffee.rating} out of 5">★ ${coffee.rating.toFixed(1)}</span>
+                    <span class="coffee-rating" title="Rated ${coffee.rating} out of 5"><span aria-hidden="true">${stars}</span> ${coffee.rating.toFixed(1)}</span>
                 </div>
                 <p>${coffee.notes}</p>
                 <div class="coffee-foot">
-                    <span class="price">$${coffee.price}.00 <small>/ 12oz</small></span>
+                    <span class="price">$${coffee.price}.00<small>/ 12oz bag</small></span>
                     <button class="add-btn" type="button" data-id="${coffee.id}">Add to box</button>
                 </div>
             </div>`;
