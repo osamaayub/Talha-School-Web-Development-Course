@@ -934,23 +934,31 @@ body:has(.nav-toggle:checked) { overflow: hidden; }
 [data-theme="dark"] .roast-tag.light { color: #e0b072; }
 
 .add-btn {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.05rem;
     min-height: 38px;
     flex-shrink: 0;
     white-space: nowrap;
-    background: transparent;
-    color: var(--accent);
+    background: var(--accent);
+    color: var(--accent-ink);
     border: 1px solid var(--accent);
     border-radius: 999px;
     font-family: var(--font);
     font-size: var(--fs-xs);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.15s var(--ease-out);
+    box-shadow: var(--shadow-sm);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s var(--ease-out), box-shadow 0.2s ease;
 }
-.add-btn:hover { background: var(--accent); color: var(--accent-ink); transform: translateY(-1px); }
+.add-btn:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: var(--accent-ink);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
 .add-btn:active { transform: scale(0.96); }
-.add-btn.added { background: var(--accent); color: var(--accent-ink); }
+.add-btn.added { background: #3d8b4f; border-color: #3d8b4f; color: #fff; }
 
 .empty-state {
     text-align: center;
