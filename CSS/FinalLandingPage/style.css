@@ -96,6 +96,9 @@ body:has(.nav-toggle:checked) { overflow: hidden; }
 
 ::selection { background: var(--accent); color: var(--accent-ink); }
 
+/* Author display rules must not defeat the hidden attribute */
+[hidden] { display: none !important; }
+
 /* ---------- Skip link ---------- */
 .skip-link {
     position: fixed;
@@ -1337,7 +1340,7 @@ body:has(.nav-toggle:checked) { overflow: hidden; }
 .roast-band {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 clamp(1.15rem, 3vw, 1.5rem) var(--space-section);
+    padding: var(--space-block) clamp(1.15rem, 3vw, 1.5rem) var(--space-section);
 }
 
 .roast-card {

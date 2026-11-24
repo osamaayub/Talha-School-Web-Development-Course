@@ -276,7 +276,7 @@ function renderCoffees() {
                         <h3>${coffee.name}</h3>
                         <button class="fav-btn${isFav ? " faved" : ""}" type="button"
                                 data-id="${coffee.id}" aria-pressed="${isFav}"
-                                aria-label="${isFav ? "Remove" : "Add"} ${coffee.name} ${isFav ? "from" : "to"} favorites">♥</button>
+                                aria-label="${isFav ? "Remove" : "Add"} ${coffee.name} ${isFav ? "from" : "to"} favorites"></button>
                     </div>
                     <span class="roast-tag ${coffee.roast}">${coffee.roast}</span>
                 </div>
