@@ -121,7 +121,7 @@ if ("IntersectionObserver" in window && !reduceMotion) {
 const COFFEES = [
     {
         id: "ethiopia-yerga",
-        name: "Ethiopia Yirgacheffe",
+        name: "Yirgacheffe",
         roast: "light",
         region: "Yirgacheffe, Ethiopia",
         notes: "Jasmine, bergamot, stone fruit",
@@ -142,7 +142,7 @@ const COFFEES = [
     },
     {
         id: "kenya-aa",
-        name: "Kenya AA Nyeri",
+        name: "Kenya AA",
         roast: "light",
         region: "Nyeri, Kenya",
         notes: "Blackcurrant, tomato leaf, brown sugar",
@@ -153,7 +153,7 @@ const COFFEES = [
     },
     {
         id: "guatemala-antigua",
-        name: "Guatemala Antigua",
+        name: "Antigua",
         roast: "medium",
         region: "Antigua, Guatemala",
         notes: "Toffee, orange zest, spice",
@@ -163,7 +163,7 @@ const COFFEES = [
     },
     {
         id: "sumatra-mandheling",
-        name: "Sumatra Mandheling",
+        name: "Mandheling",
         roast: "dark",
         region: "Lintong, Sumatra",
         notes: "Dark chocolate, cedar, molasses",
@@ -184,7 +184,7 @@ const COFFEES = [
     },
     {
         id: "costa-rica-tarrazu",
-        name: "Costa Rica Tarrazú",
+        name: "Tarrazú",
         roast: "medium",
         region: "Tarrazú, Costa Rica",
         notes: "Honey, peach, almond",
