@@ -298,7 +298,7 @@ function renderCoffees() {
                         aria-label="${isFav ? "Remove" : "Add"} ${coffee.name} ${isFav ? "from" : "to"} favorites"></button>
             </div>
             <div class="coffee-body">
-                <h3 class="coffee-name">${coffee.name}</h3>
+                <h3 class="coffee-name" title="${coffee.name}">${coffee.name}</h3>
                 <div class="coffee-meta">
                     <span class="coffee-region">${coffee.region}</span>
                     <span class="coffee-rating" title="Rated ${coffee.rating} out of 5"><span aria-hidden="true">${stars}</span> ${coffee.rating.toFixed(1)}</span>
