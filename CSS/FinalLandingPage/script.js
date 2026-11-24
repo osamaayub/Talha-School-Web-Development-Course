@@ -765,15 +765,18 @@ carousel.addEventListener("keydown", (event) => {
 
 goToSlide(0);
 
-/* ---------- 7. Subscribe form: validation + feedback ---------- */
+/* ---------- 7. Subscribe form: validation + email delivery ---------- */
 
 const subscribeForm = $("#subscribe-form");
 const subscribeMsg = $("#subscribe-message");
+const SUBSCRIBE_EMAIL = "osama.ayubwebdev@gmail.com";
+const SUBSCRIBE_ENDPOINT = `https://flowform.to/${SUBSCRIBE_EMAIL}`;
 
-subscribeForm.addEventListener("submit", (event) => {
+subscribeForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const { name, email, brew, terms } = subscribeForm.elements;
+    const { name, email, brew, terms, _gotcha } = subscribeForm.elements;
+    const submitBtn = subscribeForm.querySelector('button[type="submit"]');
 
     /* Clear previous error styling */
     [name, email, brew, terms].forEach((field) => field.classList.remove("user-error"));
@@ -795,22 +798,62 @@ subscribeForm.addEventListener("submit", (event) => {
         return;
     }
 
-    try {
-        const subscribers = JSON.parse(localStorage.getItem("aurora-subscribers") || "[]");
-        subscribers.push({
-            name: name.value.trim(),
-            email: email.value.trim(),
-            brew: brew.value,
-            at: new Date().toISOString(),
-        });
-        localStorage.setItem("aurora-subscribers", JSON.stringify(subscribers));
-    } catch (e) {
-        /* storage full or unavailable — still show success */
+    if (_gotcha.value.trim()) {
+        subscribeMsg.className = "form-message ok";
+        subscribeMsg.textContent = "✓ Thanks! Check your inbox for your 15% code.";
+        subscribeForm.reset();
+        return;
     }
 
-    subscribeMsg.className = "form-message ok";
-    subscribeMsg.textContent = `✓ Welcome aboard, ${name.value.trim().split(" ")[0]}! Check ${email.value.trim()} for your 15% code.`;
-    subscribeForm.reset();
+    subscribeMsg.className = "form-message";
+    subscribeMsg.textContent = "Sending your details…";
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch(SUBSCRIBE_ENDPOINT, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify({
+                name: name.value.trim(),
+                email: email.value.trim(),
+                brew: brew.value,
+                _subject: `New Aurora subscriber — ${name.value.trim()}`,
+                _replyto: email.value.trim(),
+                _gotcha: "",
+            }),
+        });
+        const data = await response.json().catch(() => ({}));
+        const delivered = data.success === true || data.success === "true";
+
+        if (!response.ok || !delivered) {
+            throw new Error(data.error || data.message || "Email service rejected the submission.");
+        }
+
+        try {
+            const subscribers = JSON.parse(localStorage.getItem("aurora-subscribers") || "[]");
+            subscribers.push({
+                name: name.value.trim(),
+                email: email.value.trim(),
+                brew: brew.value,
+                at: new Date().toISOString(),
+            });
+            localStorage.setItem("aurora-subscribers", JSON.stringify(subscribers));
+        } catch (e) {
+            /* storage full or unavailable — email was still sent */
+        }
+
+        subscribeMsg.className = "form-message ok";
+        subscribeMsg.textContent = `✓ Welcome aboard, ${name.value.trim().split(" ")[0]}! Check ${email.value.trim()} for your 15% code.`;
+        subscribeForm.reset();
+    } catch (error) {
+        subscribeMsg.className = "form-message err";
+        subscribeMsg.textContent = `Couldn't send your details right now. Please try again or email ${SUBSCRIBE_EMAIL}.`;
+    } finally {
+        submitBtn.disabled = false;
+    }
 });
 
 /* ---------- 8. Scroll reveal (IntersectionObserver) ---------- */

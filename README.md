@@ -11,7 +11,7 @@ Every push to `main` is published automatically (see [Deployment](#-deployment))
 
 | Project | Path | What it shows |
 | --- | --- | --- |
-| ☕ **Aurora Coffee** | [`/CSS/FinalLandingPage/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/FinalLandingPage/) | Capstone landing page: theme toggle, coffee filters, box-builder price calculator, testimonial carousel, validated subscribe form |
+| ☕ **Aurora Coffee** | [`/CSS/FinalLandingPage/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/FinalLandingPage/) | Capstone landing page: theme toggle, coffee filters, box-builder price calculator, testimonial carousel, validated subscribe form with email delivery |
 | 🚗 **Car Showroom** | [`/CSS/CarWebsite/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/CarWebsite/) | Inline-SVG cars with live recoloring, filters, finance calculator, test-drive booking |
 | 🍽️ **Restaurant (Ember & Oak)** | [`/CSS/RestaurantWebsite/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/RestaurantWebsite/) | Filterable menu, order cart with drawer, reservations with live time slots, open-now status |
 | 👨‍💻 **Animated Portfolio** | [`/CSS/Portfolio/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/Portfolio/) | MERN developer portfolio, light/dark themes, scroll reveals, project filter |
@@ -124,7 +124,7 @@ No build step or dependencies are required: every project is plain HTML, CSS and
 - **Animated Portfolio**: dark and light themes, word-by-word hero reveal, sliding nav indicator, filterable project cards with 3D tilt, validated contact form
 - **Car Showroom (Velocity Motors)**: see below
 - **Restaurant (Ember & Oak)**: see below
-- **Aurora Coffee (capstone)**: `CSS/FinalLandingPage/` — a landing page combining everything learned so far: semantic HTML, CSS custom properties with light/dark themes, Flexbox/Grid, keyframe animations, filterable coffee catalog, a live box-builder price calculator, testimonial carousel, `localStorage` persistence, `IntersectionObserver` reveals and validated forms
+- **Aurora Coffee (capstone)**: `CSS/FinalLandingPage/` — a landing page combining everything learned so far: semantic HTML, CSS custom properties with light/dark themes, Flexbox/Grid, keyframe animations, filterable coffee catalog, a live box-builder price calculator, testimonial carousel, `localStorage` persistence, `IntersectionObserver` reveals and a validated subscribe form that delivers through FlowForm
 
 ### Featured project: Car Showroom (`CSS/CarWebsite`)
 A fictional dealership site built to practice layout, animation and JavaScript state together.
