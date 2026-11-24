@@ -16,6 +16,10 @@
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
   color: var(--ink);
   background:
     radial-gradient(ellipse at 82% 4%, rgba(196, 190, 255, 0.25), transparent 28rem),
@@ -31,7 +35,8 @@ input {
 
 .page-shell {
   width: min(1060px, calc(100% - 40px));
-  margin: 0 auto;
+  min-width: 0;
+  margin: auto;
   padding: 28px 0 22px;
 }
 
@@ -136,6 +141,7 @@ input {
 .calculator {
   display: grid;
   grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.07fr);
+  min-width: 0;
   overflow: hidden;
   border: 1px solid rgba(220, 223, 235, 0.9);
   border-radius: 22px;
