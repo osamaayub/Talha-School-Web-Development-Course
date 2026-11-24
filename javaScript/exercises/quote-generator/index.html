@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="brand-panel">
+        <a class="back-link" href="../../">
+          <span aria-hidden="true">&larr;</span>
+          JavaScript Basics
+        </a>
+
+        <div class="brand-copy">
+          <p class="eyebrow">Daily pause</p>
+          <h1>Words for<br />the moment.</h1>
+          <p class="brand-description">
+            A small collection of ideas to inspire, reset, and move forward.
+          </p>
+        </div>
+
+        <div class="brand-footer">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="quoteCount">Quote 01 of 08</span>
+        </div>
+      </aside>
+
+      <section class="quote-stage" aria-label="Quote generator">
+        <div class="stage-top">
+          <span class="category" id="quoteCategory">Getting started</span>
+          <span class="keyboard-tip">Press <kbd>N</kbd></span>
+        </div>
+
+        <article class="quote-card" aria-live="polite">
+          <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+          <blockquote id="quoteText">
+            The secret of getting ahead is getting started.
+          </blockquote>
+          <div class="author-row">
+            <span class="author-line" aria-hidden="true"></span>
+            <cite id="quoteAuthor">Mark Twain</cite>
+          </div>
+        </article>
+
+        <div class="controls">
+          <button type="button" id="copyButton" class="icon-button" aria-label="Copy quote">
+            <span class="copy-icon" aria-hidden="true"></span>
+            <span>Copy</span>
+          </button>
+          <button type="button" id="newQuoteButton" class="next-button">
+            <span>Another quote</span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+        <p id="statusMessage" class="status" role="status"></p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

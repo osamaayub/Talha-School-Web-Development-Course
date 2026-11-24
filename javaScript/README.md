@@ -80,3 +80,9 @@ Practice `querySelector`, `textContent`, `createElement` and `append`,
 and changing text, styling a banner and card, building a to-do list with
 delete buttons, a click counter, a mini list app challenge, a quiz question,
 and bonus challenges.
+
+### [Quote Generator](exercises/quote-generator/)
+
+Generate random inspirational quotes and copy the selected quote to the
+clipboard. This project combines arrays, random selection, DOM updates,
+events, CSS transitions, and the Clipboard API.
