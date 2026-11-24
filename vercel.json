@@ -4,6 +4,11 @@
     { "source": "/", "destination": "/CSS/ShopCards/index.html" },
     { "source": "/style.css", "destination": "/CSS/ShopCards/style.css" },
     { "source": "/script.js", "destination": "/CSS/ShopCards/script.js" },
+    { "source": "/javaScript/", "destination": "/javaScript/index.html" },
+    {
+      "source": "/javaScript/exercises/quote-generator",
+      "destination": "/javaScript/exercises/quote-generator/index.html"
+    },
     { "source": "/(.*)", "destination": "/CSS/ShopCards/$1" }
   ]
 }

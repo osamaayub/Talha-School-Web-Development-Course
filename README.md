@@ -19,6 +19,7 @@ Every push to `main` is published automatically (see [Deployment](#-deployment))
 | 🧭 **Orbit Navbar** | [`/CSS/Navbar/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/Navbar/) | Responsive navigation with smooth menu close |
 | 👗 **StyleHub** | [`/CSS/LandingPage/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/LandingPage/) | Fashion e-commerce landing page |
 | 📦 **Flexbox MasterClass** | [`/CSS/flexbox/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/flexbox/) | Flexbox layout experiments |
+| 💬 **Quote Generator** | [`/javaScript/exercises/quote-generator/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/exercises/quote-generator/) | Modern responsive quote generator with copy and keyboard controls |
 
 ## 🗂️ Project Structure
 

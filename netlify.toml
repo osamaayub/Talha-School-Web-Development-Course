@@ -1,5 +1,6 @@
 [build]
-  publish = "CSS/ShopCards"
+  command = "mkdir -p .netlify-build && cp -R CSS/ShopCards/. .netlify-build/ && cp -R javaScript .netlify-build/javaScript"
+  publish = ".netlify-build"
 
 [[redirects]]
   from = "/*"
