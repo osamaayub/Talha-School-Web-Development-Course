@@ -1333,6 +1333,236 @@ body:has(.nav-toggle:checked) { overflow: hidden; }
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ---------- Roast of the week ---------- */
+.roast-band {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 clamp(1.15rem, 3vw, 1.5rem) var(--space-section);
+}
+
+.roast-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background:
+        radial-gradient(ellipse 60% 120% at 85% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+        linear-gradient(135deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    min-height: 220px;
+}
+
+.roast-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    padding: clamp(1.75rem, 4vw, 3rem);
+    animation: rise 0.55s var(--ease-out) both;
+}
+
+.roast-bean {
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    line-height: 1;
+    filter: drop-shadow(0 10px 18px rgba(80, 50, 25, 0.3));
+    animation: float 4.5s ease-in-out infinite;
+}
+
+.roast-copy .eyebrow { margin-bottom: 0.4rem; }
+.roast-copy h2 {
+    font-family: var(--display);
+    font-size: var(--fs-h2);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+}
+.roast-copy p { color: var(--muted); max-width: 30rem; }
+.roast-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-top: 0.9rem;
+    font-size: var(--fs-sm);
+    color: var(--muted);
+}
+.roast-meta strong { color: var(--text); }
+
+.roast-cta { display: grid; gap: 0.6rem; justify-items: end; }
+.roast-price {
+    font-family: var(--display);
+    font-size: var(--fs-price);
+    font-weight: 700;
+}
+.roast-price span { font-family: var(--font); font-size: var(--fs-sm); font-weight: 500; color: var(--muted); }
+
+/* Skeleton loader */
+.roast-skeleton {
+    display: grid;
+    gap: 0.9rem;
+    padding: clamp(1.75rem, 4vw, 3rem);
+}
+.sk {
+    display: block;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--surface-2) 25%, color-mix(in srgb, var(--surface-2) 55%, var(--accent) 8%) 50%, var(--surface-2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+}
+.sk-tag { width: 7rem; height: 1rem; }
+.sk-title { width: min(24rem, 80%); height: 2.2rem; }
+.sk-line { width: 100%; max-width: 30rem; height: 0.9rem; }
+.sk-line-short { width: 55%; }
+.sk-btn { width: 9rem; height: 2.75rem; border-radius: 999px; margin-top: 0.5rem; }
+
+@keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+/* ---------- Coffee controls (search + sort) ---------- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.coffee-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.search-box {
+    position: relative;
+    flex: 1 1 240px;
+}
+.search-box::before {
+    content: "⌕";
+    position: absolute;
+    left: 0.95rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+.search-box input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: var(--fs-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.search-box input:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.search-box input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.search-box input::placeholder { color: var(--muted); }
+.search-box input::-webkit-search-cancel-button { cursor: pointer; }
+
+.sort-box select {
+    min-height: 46px;
+    padding: 0.7rem 2.2rem 0.7rem 1.1rem;
+    background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236f6255' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 0.9rem center;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    cursor: pointer;
+    appearance: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.sort-box select:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.sort-box select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* ---------- Favorite hearts ---------- */
+.coffee-top { align-items: flex-start; }
+.coffee-name-wrap { display: flex; align-items: flex-start; gap: 0.5rem; min-width: 0; }
+.coffee-name-wrap h3 { flex: 1; }
+
+.fav-btn {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s var(--ease-out), background 0.2s ease;
+}
+.fav-btn:hover { color: #d64545; border-color: #d64545; transform: scale(1.1); }
+.fav-btn.faved { color: #d64545; border-color: #d64545; background: color-mix(in srgb, #d64545 10%, transparent); }
+.fav-btn.faved::before { content: "♥"; }
+.fav-btn:not(.faved)::before { content: "♡"; }
+
+/* ---------- Toasts ---------- */
+.toast-region {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 300;
+    display: grid;
+    gap: 0.5rem;
+    justify-items: center;
+    width: min(92vw, 26rem);
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 12px;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    animation: toast-in 0.35s var(--ease-out) both;
+}
+.toast.leaving { animation: toast-out 0.3s ease both; }
+.toast .toast-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+}
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateY(16px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes toast-out {
+    to { opacity: 0; transform: translateY(10px) scale(0.97); }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
     .builder,
@@ -1401,9 +1631,21 @@ body:has(.nav-toggle:checked) { overflow: hidden; }
     .fab-top { right: 1rem; bottom: 1rem; }
 }
 
+@media (max-width: 640px) {
+    .roast-content {
+        grid-template-columns: 1fr;
+        justify-items: start;
+        text-align: left;
+    }
+    .roast-cta { justify-items: start; }
+    .roast-bean { font-size: 3rem; }
+}
+
 @media (max-width: 420px) {
     .hero-actions .btn { width: 100%; }
     .stats { grid-template-columns: repeat(2, 1fr); }
+    .coffee-controls { flex-direction: column; }
+    .sort-box select { width: 100%; }
 }
 
 /* ---------- Reduced motion ---------- */
@@ -1411,10 +1653,12 @@ body:has(.nav-toggle:checked) { overflow: hidden; }
     html { scroll-behavior: auto; }
 
     .cup, .steam, .hero-content, .brand-mark, .hero h1, .hero-lead, .hero-actions, .hero-points,
-    .reveal {
+    .reveal, .roast-content, .roast-bean, .sk, .toast {
         animation: none;
         transition: none;
     }
+    .roast-bean { transform: none; }
+    .sk { background: var(--surface-2); }
     .reveal { opacity: 1; transform: none; }
 
     .btn:hover, .btn:active,

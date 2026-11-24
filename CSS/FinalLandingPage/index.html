@@ -127,6 +127,20 @@
             </ul>
         </section>
 
+        <!-- ===================== ROAST OF THE WEEK (async) ===================== -->
+        <section id="roast" class="roast-band" aria-label="Roast of the week">
+            <div class="roast-card" id="roast-card">
+                <div class="roast-skeleton" id="roast-skeleton" aria-hidden="true">
+                    <span class="sk sk-tag"></span>
+                    <span class="sk sk-title"></span>
+                    <span class="sk sk-line"></span>
+                    <span class="sk sk-line sk-line-short"></span>
+                    <span class="sk sk-btn"></span>
+                </div>
+                <div class="roast-content" id="roast-content" hidden></div>
+            </div>
+        </section>
+
         <!-- ===================== COFFEE SHOWCASE (filterable) ===================== -->
         <section id="coffee" class="section section-alt">
             <div class="section-head">
@@ -141,6 +155,21 @@
                     <button class="filter-btn" type="button" data-filter="medium">Medium</button>
                     <button class="filter-btn" type="button" data-filter="dark">Dark</button>
                 </div>
+            </div>
+            <div class="coffee-controls">
+                <label class="search-box">
+                    <span class="sr-only">Search coffees</span>
+                    <input type="search" id="coffee-search" placeholder="Search coffees or tasting notes…  ( / )" autocomplete="off">
+                </label>
+                <label class="sort-box">
+                    <span class="sr-only">Sort coffees</span>
+                    <select id="coffee-sort">
+                        <option value="featured">Sort: Featured</option>
+                        <option value="price-asc">Price: low to high</option>
+                        <option value="price-desc">Price: high to low</option>
+                        <option value="name">Name A–Z</option>
+                    </select>
+                </label>
             </div>
             <p class="filter-count" id="filter-count" aria-live="polite"></p>
             <ul class="coffee-grid" id="coffee-grid"></ul>
@@ -336,6 +365,7 @@
     </footer>
 
     <button class="fab-top" id="fab-top" type="button" aria-label="Back to top">↑</button>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
 
     <script src="script.js"></script>
 </body>
