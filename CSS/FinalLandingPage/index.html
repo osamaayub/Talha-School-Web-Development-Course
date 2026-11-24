@@ -11,6 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <div class="announce" role="note">
+        <p>Free shipping on orders over $30 &middot; Roasted every Tuesday</p>
+    </div>
+
     <!-- ===================== NAVBAR ===================== -->
     <header class="header">
         <nav class="navbar" aria-label="Main navigation">
@@ -45,7 +52,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <!-- ===================== HERO ===================== -->
         <section id="home" class="hero">
             <div class="hero-visual" aria-hidden="true">
@@ -66,6 +73,11 @@
                     <a href="#builder" class="btn">Build your box</a>
                     <a href="#coffee" class="btn btn-ghost">Explore coffees</a>
                 </div>
+                <ul class="hero-points" aria-label="Key benefits">
+                    <li>Roasted to order</li>
+                    <li>Pause anytime</li>
+                    <li>Ships in 48 hrs</li>
+                </ul>
             </div>
         </section>
 
@@ -92,6 +104,7 @@
         <!-- ===================== FEATURES ===================== -->
         <section id="features" class="section">
             <div class="section-intro">
+                <p class="eyebrow">Why us</p>
                 <h2>Why Aurora?</h2>
                 <p>Everything between the farm and your mug, handled obsessively.</p>
             </div>
@@ -116,15 +129,18 @@
 
         <!-- ===================== COFFEE SHOWCASE (filterable) ===================== -->
         <section id="coffee" class="section section-alt">
-            <div class="section-intro">
-                <h2>This season's coffees</h2>
-                <p>Filter by roast level to find your next favourite.</p>
-            </div>
-            <div class="filter-bar" role="group" aria-label="Filter coffees by roast">
-                <button class="filter-btn active" type="button" data-filter="all">All</button>
-                <button class="filter-btn" type="button" data-filter="light">Light</button>
-                <button class="filter-btn" type="button" data-filter="medium">Medium</button>
-                <button class="filter-btn" type="button" data-filter="dark">Dark</button>
+            <div class="section-head">
+                <div class="section-intro">
+                    <p class="eyebrow">This season</p>
+                    <h2>This season's coffees</h2>
+                    <p>Filter by roast level to find your next favourite.</p>
+                </div>
+                <div class="filter-bar" role="group" aria-label="Filter coffees by roast">
+                    <button class="filter-btn active" type="button" data-filter="all">All</button>
+                    <button class="filter-btn" type="button" data-filter="light">Light</button>
+                    <button class="filter-btn" type="button" data-filter="medium">Medium</button>
+                    <button class="filter-btn" type="button" data-filter="dark">Dark</button>
+                </div>
             </div>
             <p class="filter-count" id="filter-count" aria-live="polite"></p>
             <ul class="coffee-grid" id="coffee-grid"></ul>
@@ -134,6 +150,7 @@
         <!-- ===================== BOX BUILDER (price calculator) ===================== -->
         <section id="builder" class="section">
             <div class="section-intro">
+                <p class="eyebrow">Customize</p>
                 <h2>Build your box</h2>
                 <p>Pick your size, grind, and how often we ship. The price updates live.</p>
             </div>
@@ -194,6 +211,7 @@
         <!-- ===================== PRICING ===================== -->
         <section id="pricing" class="section section-alt">
             <div class="section-intro">
+                <p class="eyebrow">Plans</p>
                 <h2>Simple pricing</h2>
                 <p>Every plan includes free shipping over $30 and the same obsession with quality.</p>
             </div>
@@ -234,6 +252,7 @@
         <!-- ===================== TESTIMONIALS ===================== -->
         <section id="reviews" class="section">
             <div class="section-intro">
+                <p class="eyebrow">Reviews</p>
                 <h2>Loved by coffee people</h2>
                 <p>Real words from subscribers who never go back.</p>
             </div>
@@ -258,6 +277,7 @@
             <div class="contact-layout">
                 <div class="contact-copy">
                     <div class="section-intro">
+                        <p class="eyebrow">Stay in touch</p>
                         <h2>Get 15% off your first box</h2>
                         <p>Join the list for brew tips, new harvest alerts, and your welcome discount.</p>
                     </div>
@@ -314,6 +334,8 @@
             <button class="btn btn-ghost to-top" id="to-top" type="button">Back to top ↑</button>
         </div>
     </footer>
+
+    <button class="fab-top" id="fab-top" type="button" aria-label="Back to top">↑</button>
 
     <script src="script.js"></script>
 </body>

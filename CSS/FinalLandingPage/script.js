@@ -42,7 +42,81 @@ $("#theme-toggle").addEventListener("click", () => {
 
 $("#year").textContent = new Date().getFullYear();
 
-/* ---------- 3. Coffee showcase: data array + filter ---------- */
+/* ---------- 3. Scroll chrome: header state, progress bar, FAB ---------- */
+
+const header = $(".header");
+const progressBar = $("#scroll-progress");
+const fabTop = $("#fab-top");
+const toTopBtn = $("#to-top");
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function onScroll() {
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+
+    header.classList.toggle("scrolled", y > 24);
+    fabTop.classList.toggle("show", y > 600);
+    progressBar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+}
+
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+}
+toTopBtn.addEventListener("click", scrollToTop);
+fabTop.addEventListener("click", scrollToTop);
+
+/* Close the mobile drawer after tapping a link */
+$$(".nav-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+        $("#nav-toggle").checked = false;
+    });
+});
+
+/* ---------- 3b. Animated stat counters ---------- */
+
+function animateCounter(el) {
+    const target = Number(el.dataset.target);
+    const prefix = el.dataset.prefix || "";
+    const suffix = el.dataset.suffix || "";
+    const duration = reduceMotion ? 0 : 1600;
+    const start = performance.now();
+
+    function tick(now) {
+        const p = duration === 0 ? 1 : Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+        el.textContent = prefix + Math.round(target * eased).toLocaleString("en-US") + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+const statNumbers = $$(".stat-number");
+if ("IntersectionObserver" in window && !reduceMotion) {
+    const statObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.4 }
+    );
+    statNumbers.forEach((el) => statObserver.observe(el));
+} else {
+    statNumbers.forEach((el) => {
+        el.textContent =
+            (el.dataset.prefix || "") +
+            Number(el.dataset.target).toLocaleString("en-US") +
+            (el.dataset.suffix || "");
+    });
+}
+
+/* ---------- 4. Coffee showcase: data array + filter ---------- */
 
 const COFFEES = [
     {
@@ -167,7 +241,7 @@ coffeeGrid.addEventListener("click", (event) => {
     }
 });
 
-/* ---------- 4. Box builder: price calculator ---------- */
+/* ---------- 5. Box builder: price calculator ---------- */
 
 const BASE_PRICE = 14; // $ per 12oz bag
 const TWO_LB_EXTRA = 4;
@@ -226,7 +300,7 @@ function calculateTotal() {
 
 calculateBox();
 
-/* ---------- 5. Testimonials carousel ---------- */
+/* ---------- 6. Testimonials carousel ---------- */
 
 const TESTIMONIALS = [
     {
@@ -302,9 +376,15 @@ carousel.addEventListener("mouseleave", restartAuto);
 carousel.addEventListener("focusin", () => clearInterval(autoTimer));
 carousel.addEventListener("focusout", restartAuto);
 
+/* Arrow-key navigation when the carousel has focus */
+carousel.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") nextSlide();
+    if (event.key === "ArrowLeft") prevSlide();
+});
+
 goToSlide(0);
 
-/* ---------- 6. Subscribe form: validation + feedback ---------- */
+/* ---------- 7. Subscribe form: validation + feedback ---------- */
 
 const subscribeForm = $("#subscribe-form");
 const subscribeMsg = $("#subscribe-message");
@@ -314,11 +394,19 @@ subscribeForm.addEventListener("submit", (event) => {
 
     const { name, email, brew, terms } = subscribeForm.elements;
 
+    /* Clear previous error styling */
+    [name, email, brew, terms].forEach((field) => field.classList.remove("user-error"));
+
     const errors = [];
-    if (name.value.trim().length < 2) errors.push("Please enter your name (2+ characters).");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) errors.push("Please enter a valid email address.");
-    if (!brew.value) errors.push("Tell us what you're brewing.");
-    if (!terms.checked) errors.push("Please accept the emails checkbox.");
+    const badName = name.value.trim().length < 2;
+    const badEmail = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    const badBrew = !brew.value;
+    const badTerms = !terms.checked;
+
+    if (badName) { errors.push("Please enter your name (2+ characters)."); name.classList.add("user-error"); }
+    if (badEmail) { errors.push("Please enter a valid email address."); email.classList.add("user-error"); }
+    if (badBrew) { errors.push("Tell us what you're brewing."); brew.classList.add("user-error"); }
+    if (badTerms) { errors.push("Please accept the emails checkbox."); terms.classList.add("user-error"); }
 
     if (errors.length > 0) {
         subscribeMsg.className = "form-message err";
@@ -344,10 +432,18 @@ subscribeForm.addEventListener("submit", (event) => {
     subscribeForm.reset();
 });
 
-/* ---------- 7. Scroll reveal (IntersectionObserver) ---------- */
+/* ---------- 8. Scroll reveal (IntersectionObserver) ---------- */
 
-const revealTargets = $$(".section, .stats, .section-cta-band");
+const revealTargets = $$(".section, .stats");
 revealTargets.forEach((el) => el.classList.add("reveal"));
+
+/* Stagger siblings inside each revealed block */
+revealTargets.forEach((section) => {
+    $$(".feature-card, .plan, .stat, .coffee-card", section).forEach((card, i) => {
+        card.style.setProperty("--reveal-delay", `${Math.min(i * 70, 420)}ms`);
+        card.classList.add("reveal");
+    });
+});
 
 if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
@@ -361,12 +457,12 @@ if ("IntersectionObserver" in window) {
         },
         { threshold: 0.12 }
     );
-    revealTargets.forEach((el) => observer.observe(el));
+    $$(".reveal").forEach((el) => observer.observe(el));
 } else {
-    revealTargets.forEach((el) => el.classList.add("visible"));
+    $$(".reveal").forEach((el) => el.classList.add("visible"));
 }
 
-/* ---------- 8. Active nav link + back-to-top ---------- */
+/* ---------- 9. Active nav link ---------- */
 
 const navAnchors = $$(".nav-links a[href^='#']");
 const sections = navAnchors
@@ -374,7 +470,8 @@ const sections = navAnchors
     .filter(Boolean);
 
 function updateActiveLink() {
-    const pos = window.scrollY + 120;
+    const chrome = header.offsetHeight + 40;
+    const pos = window.scrollY + chrome;
     let current = sections[0];
     sections.forEach((sec) => {
         if (sec.offsetTop <= pos) current = sec;
@@ -386,7 +483,3 @@ function updateActiveLink() {
 
 window.addEventListener("scroll", updateActiveLink, { passive: true });
 updateActiveLink();
-
-$("#to-top").addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
