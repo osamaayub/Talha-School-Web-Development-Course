@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calculate your age in years, months, and days with this simple age calculator."
+    />
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <nav class="topbar" aria-label="Page navigation">
+        <a class="brand" href="../../" aria-label="JavaScript Basics home">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          <span>Daymark</span>
+        </a>
+        <a class="back-link" href="../../">
+          <span aria-hidden="true">&larr;</span>
+          <span>JavaScript Basics</span>
+        </a>
+      </nav>
+
+      <header class="intro">
+        <p class="eyebrow"><span aria-hidden="true"></span>Your life in numbers</p>
+        <h1>Every year has a story.</h1>
+        <p class="intro-copy">
+          Find your exact age in years, months, and days. Just add your date of birth.
+        </p>
+      </header>
+
+      <section class="calculator" aria-label="Age calculator">
+        <div class="form-panel">
+          <div class="panel-heading">
+            <span class="step-number">01</span>
+            <div>
+              <h2>When were you born?</h2>
+              <p>Choose your date of birth to get started.</p>
+            </div>
+          </div>
+
+          <form id="ageForm" novalidate>
+            <label for="dateOfBirth">Date of birth</label>
+            <input
+              id="dateOfBirth"
+              name="dateOfBirth"
+              type="date"
+              autocomplete="bday"
+              required
+              aria-describedby="dateHint dateError"
+            />
+            <p class="field-hint" id="dateHint">
+              Your date stays private on this device.
+            </p>
+            <p class="field-error" id="dateError" role="alert" hidden></p>
+
+            <button class="calculate-button" type="submit">
+              <span>Calculate my age</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+            <button class="reset-button" type="reset">Clear date</button>
+          </form>
+
+          <p class="leap-note">
+            <span aria-hidden="true">i</span>
+            Leap-day birthdays count on February 28 in non-leap years.
+          </p>
+        </div>
+
+        <section class="result-panel" aria-label="Your age result">
+          <div class="empty-state" id="emptyState">
+            <span class="calendar-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect x="7" y="11" width="34" height="30" rx="7" />
+                <path d="M15 7v9M33 7v9M7 20h34" />
+                <path d="M17 28h5M26 28h5M17 34h5" />
+              </svg>
+            </span>
+            <p class="result-kicker">Your result</p>
+            <h2>Your timeline,<br />made simple.</h2>
+            <p>Your age breakdown will appear here once you enter your birthday.</p>
+          </div>
+
+          <div class="results" id="results" aria-live="polite" aria-atomic="true" hidden>
+            <p class="result-kicker">Your result</p>
+            <h2 id="resultHeading">Here’s to your journey.</h2>
+            <p class="result-summary" id="resultSummary"></p>
+
+            <div class="age-breakdown" aria-label="Your age breakdown">
+              <div class="age-stat">
+                <span class="stat-value" id="yearsValue">0</span>
+                <span class="stat-label">Years</span>
+              </div>
+              <div class="age-stat">
+                <span class="stat-value" id="monthsValue">0</span>
+                <span class="stat-label">Months</span>
+              </div>
+              <div class="age-stat">
+                <span class="stat-value" id="daysValue">0</span>
+                <span class="stat-label">Days</span>
+              </div>
+            </div>
+
+            <div class="birthday-card">
+              <span class="birthday-icon" aria-hidden="true">✦</span>
+              <div>
+                <p class="birthday-label">Next birthday</p>
+                <p class="birthday-value" id="birthdayValue"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <footer class="page-footer">
+        <span>Made for curious minds</span>
+        <span aria-hidden="true">·</span>
+        <span>Simple, private, just for you</span>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

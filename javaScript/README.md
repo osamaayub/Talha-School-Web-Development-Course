@@ -86,3 +86,8 @@ and bonus challenges.
 Generate random inspirational quotes and copy the selected quote to the
 clipboard. This project combines arrays, random selection, DOM updates,
 events, CSS transitions, and the Clipboard API.
+
+### [Age Calculator](exercises/age-calculator/)
+
+Calculate age in years, months, and days, plus the time until the next birthday.
+Practice date inputs, calendar arithmetic, validation, and accessible DOM updates.
