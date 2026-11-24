@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Urban Plants — low-maintenance houseplants, care guides, and pots delivered to your door.">
+  <title>Urban Plants — Houseplants for modern homes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#plants">Skip to plants</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top">Urban<span>Plants</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#plants">Plants</a>
+      <a href="#care">Care</a>
+      <a href="#join">Join</a>
+    </nav>
+    <button class="cart-button" id="cartButton" type="button" aria-label="Open cart">
+      Cart <span class="cart-count" id="cartCount" hidden>0</span>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Small plants, big calm</p>
+        <h1>Bring the outdoors in without the guesswork.</h1>
+        <p>Hardy houseplants, simple care cards, and pots that match modern rooms. Start with one plant and build your jungle over time.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#plants">Shop plants</a>
+          <a class="btn ghost" href="#care">Read care guide</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="plant-blob one">🪴</div>
+        <div class="plant-blob two">🌿</div>
+        <div class="plant-blob three">🌵</div>
+        <div class="plant-card-preview">
+          <span>Today’s pick</span>
+          <strong>Monstera Deliciosa</strong>
+          <small>Bright indirect light · Water weekly</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Store stats">
+      <article class="stat"><strong data-count="1200" data-suffix="+">0</strong><span>Happy plant parents</span></article>
+      <article class="stat"><strong data-count="48" data-suffix="h">0</strong><span>Dispatch time</span></article>
+      <article class="stat"><strong data-count="4.9" data-decimals="1" data-suffix="★">0</strong><span>Average rating</span></article>
+      <article class="stat"><strong data-count="30" data-prefix="$" data-suffix="">0</strong><span>Free shipping over</span></article>
+    </section>
+
+    <section id="plants" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">The collection</p>
+          <h2>Plants for every light level</h2>
+          <p>Filter by care needs, search by name, and build a cart without leaving the page.</p>
+        </div>
+        <div class="plant-controls">
+          <input id="plantSearch" type="search" placeholder="Search plants…" aria-label="Search plants">
+          <select id="plantSort" aria-label="Sort plants">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-row" id="filterRow" role="group" aria-label="Filter plants">
+        <button class="filter active" data-filter="all" type="button">All</button>
+        <button class="filter" data-filter="low-light" type="button">Low light</button>
+        <button class="filter" data-filter="pet-safe" type="button">Pet safe</button>
+        <button class="filter" data-filter="flowering" type="button">Flowering</button>
+        <button class="filter" data-filter="easy" type="button">Easy care</button>
+      </div>
+
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+      <div class="plant-grid" id="plantGrid"></div>
+      <p class="empty" id="emptyState" hidden>No plants match that filter — try another search.</p>
+    </section>
+
+    <section id="care" class="section care-section">
+      <div class="care-card">
+        <div>
+          <p class="eyebrow">Care card</p>
+          <h2>Water less. Panic less.</h2>
+          <p>Every plant ships with a QR care card: light needs, watering rhythm, common mistakes, and a rescue plan for droopy leaves.</p>
+        </div>
+        <ul class="care-list">
+          <li>Check soil before watering</li>
+          <li>Rotate weekly for even growth</li>
+          <li>Keep away from cold drafts</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="join" class="section join-section">
+      <div>
+        <p class="eyebrow">Plant club</p>
+        <h2>Get 10% off your first plant</h2>
+        <p>Monthly care tips, rare drops, and early access to seasonal collections.</p>
+      </div>
+      <form id="joinForm" class="join-form" novalidate>
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </label>
+        <button class="btn" type="submit">Join the club</button>
+        <p class="form-message" id="joinMessage" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Urban Plants — a JavaScript course project.</p>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <div class="cart-overlay" id="cartOverlay" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your plant cart" hidden>
+    <header class="cart-head">
+      <h2>Your cart</h2>
+      <button id="cartClose" type="button" aria-label="Close cart">×</button>
+    </header>
+    <div class="cart-items" id="cartItems"></div>
+    <p class="cart-empty" id="cartEmpty">Your cart is empty — add a plant you love.</p>
+    <footer class="cart-foot">
+      <div class="cart-total"><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div>
+      <p>Free shipping over $30 · carbon-neutral delivery</p>
+      <button class="btn wide" id="checkoutButton" type="button">Checkout</button>
+    </footer>
+  </aside>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

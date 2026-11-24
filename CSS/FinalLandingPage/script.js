@@ -805,6 +805,17 @@ subscribeForm.addEventListener("submit", async (event) => {
         return;
     }
 
+    const optionLabel = (input) =>
+        input?.closest(".option")?.querySelector("span")?.childNodes[0]?.textContent.trim() || "";
+    const orderFields = {
+        box_size: optionLabel(builderForm.querySelector('input[name="size"]:checked')),
+        box_grind: optionLabel(builderForm.querySelector('input[name="grind"]:checked')),
+        bags_per_shipment: String(quantity),
+        order_total: money(calculateTotal()),
+        cart_items: cartEntries().map(({ coffee, qty }) => `${qty} × ${coffee.name}`).join(", ") || "None",
+        cart_subtotal: money(cartTotals().subtotal),
+    };
+
     subscribeMsg.className = "form-message";
     subscribeMsg.textContent = "Sending your details…";
     submitBtn.disabled = true;
@@ -820,6 +831,7 @@ subscribeForm.addEventListener("submit", async (event) => {
                 name: name.value.trim(),
                 email: email.value.trim(),
                 brew: brew.value,
+                ...orderFields,
                 _subject: `New Aurora subscriber — ${name.value.trim()}`,
                 _replyto: email.value.trim(),
                 _gotcha: "",
@@ -838,6 +850,7 @@ subscribeForm.addEventListener("submit", async (event) => {
                 name: name.value.trim(),
                 email: email.value.trim(),
                 brew: brew.value,
+                order: orderFields,
                 at: new Date().toISOString(),
             });
             localStorage.setItem("aurora-subscribers", JSON.stringify(subscribers));

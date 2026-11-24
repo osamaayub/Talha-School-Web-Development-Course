@@ -162,6 +162,7 @@ The dedicated JavaScript basics module contains interactive examples for variabl
 - [Age Calculator](javaScript/exercises/age-calculator/) — date math: age in years, months and days
 - [DOM Manipulation](javaScript/exercises/dom-manipulation/) — selecting and updating page elements
 - [Quote Generator](javaScript/exercises/quote-generator/) — random quotes with copy to clipboard
+- [Urban Plants](javaScript/projects/urban-plants/) — responsive plant-shop landing page with filters, search, sorting and a cart
 
 ## 🛠️ Technologies Used
 

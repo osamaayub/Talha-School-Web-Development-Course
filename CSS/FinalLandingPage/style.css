@@ -735,7 +735,7 @@ body:has(.nav-toggle:checked) { overflow: hidden; }
 .coffee-grid {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
     gap: clamp(1rem, 2vw, 1.75rem);
 }
 

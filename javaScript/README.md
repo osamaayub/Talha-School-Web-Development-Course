@@ -91,3 +91,12 @@ events, CSS transitions, and the Clipboard API.
 
 Calculate age in years, months, and days, plus the time until the next birthday.
 Practice date inputs, calendar arithmetic, validation, and accessible DOM updates.
+
+## Projects
+
+### [Urban Plants](projects/urban-plants/)
+
+A responsive houseplant shop landing page built with vanilla JavaScript. Practice
+rendering product cards from an array, filtering and searching, sorting, cart
+state with `localStorage`, a slide-in cart drawer, animated stats, and form
+validation.
