@@ -22,6 +22,7 @@ Every push to `main` is published automatically (see [Deployment](#-deployment))
 | 📦 **Flexbox MasterClass** | [`/CSS/flexbox/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/CSS/flexbox/) | Flexbox layout experiments |
 | 💬 **Quote Generator** | [`/javaScript/exercises/quote-generator/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/exercises/quote-generator/) | Modern responsive quote generator with copy and keyboard controls |
 | 🎂 **Age Calculator** | [`/javaScript/exercises/age-calculator/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/exercises/age-calculator/) | Date math exercise: years, months, days, next-birthday countdown |
+| 🌿 **Urban Plants** | [`/javaScript/projects/urban-plants/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/projects/urban-plants/) | JavaScript plant-shop landing page: filters, search, sorting, cart drawer |
 
 ## 🗂️ Project Structure
 
@@ -57,18 +58,20 @@ WebDevelopmentCourse/
 │   ├── script.js                      # Lesson and quiz examples
 │   ├── styles.css                    # Module presentation
 │   ├── README.md                      # JavaScript module notes
-│   └── exercises/                     # Interactive coding exercises
-│       ├── basic-calculator/          # Arithmetic operators practice
-│       ├── string-literals/           # Quotes, escaping, template literals
-│       ├── if-else-challenge/         # Movie ticket pricing challenge
-│       ├── loops/                     # for/while/for...of + FizzBuzz
-│       ├── functions/                 # Parameters, return values, discountPrice
-│       ├── arrays/                    # Indexing, push/pop, map/filter/reduce
-│       ├── objects/                   # Properties, nesting, methods, describeUser
-│       ├── errors/                    # try...catch, throwing errors
-│       ├── age-calculator/            # Date math: age in years/months/days
-│       ├── dom-manipulation/          # DOM selection and updates
-│       └── quote-generator/           # Random quote generator with copy
+│   ├── exercises/                     # Interactive coding exercises
+│   │   ├── basic-calculator/          # Arithmetic operators practice
+│   │   ├── string-literals/           # Quotes, escaping, template literals
+│   │   ├── if-else-challenge/         # Movie ticket pricing challenge
+│   │   ├── loops/                     # for/while/for...of + FizzBuzz
+│   │   ├── functions/                 # Parameters, return values, discountPrice
+│   │   ├── arrays/                    # Indexing, push/pop, map/filter/reduce
+│   │   ├── objects/                   # Properties, nesting, methods, describeUser
+│   │   ├── errors/                    # try...catch, throwing errors
+│   │   ├── age-calculator/            # Date math: age in years/months/days
+│   │   ├── dom-manipulation/          # DOM selection and updates
+│   │   └── quote-generator/           # Random quote generator with copy
+│   └── projects/                      # Larger JavaScript projects
+│       └── urban-plants/              # Plant-shop landing page (filters, cart)
 └── docs/                              # Course documentation
     ├── README.md                      # Documentation overview and guide
     ├── course-notes.md                # Course notes and learning materials
