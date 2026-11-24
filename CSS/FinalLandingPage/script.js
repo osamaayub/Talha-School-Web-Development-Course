@@ -123,64 +123,83 @@ const COFFEES = [
         id: "ethiopia-yerga",
         name: "Ethiopia Yirgacheffe",
         roast: "light",
+        region: "Yirgacheffe, Ethiopia",
         notes: "Jasmine, bergamot, stone fruit",
         price: 16,
+        rating: 4.9,
+        badge: "Bestseller",
         icon: "☕",
     },
     {
         id: "colombia-huila",
         name: "Colombia Huila",
         roast: "medium",
+        region: "Huila, Colombia",
         notes: "Caramel, red apple, cocoa nib",
         price: 14,
+        rating: 4.7,
         icon: "🥣",
     },
     {
         id: "kenya-aa",
         name: "Kenya AA Nyeri",
         roast: "light",
+        region: "Nyeri, Kenya",
         notes: "Blackcurrant, tomato leaf, brown sugar",
         price: 17,
+        rating: 4.8,
+        badge: "Limited",
         icon: "🫘",
     },
     {
         id: "guatemala-antigua",
         name: "Guatemala Antigua",
         roast: "medium",
+        region: "Antigua, Guatemala",
         notes: "Toffee, orange zest, spice",
         price: 14,
+        rating: 4.6,
         icon: "🍫",
     },
     {
         id: "sumatra-mandheling",
         name: "Sumatra Mandheling",
         roast: "dark",
+        region: "Lintong, Sumatra",
         notes: "Dark chocolate, cedar, molasses",
         price: 15,
+        rating: 4.7,
         icon: "🖤",
     },
     {
         id: "brazil-cerrado",
         name: "Brazil Cerrado",
         roast: "dark",
+        region: "Cerrado, Brazil",
         notes: "Hazelnut, milk chocolate, dried fig",
         price: 13,
+        rating: 4.5,
+        badge: "Value pick",
         icon: "🌰",
     },
     {
         id: "costa-rica-tarrazu",
         name: "Costa Rica Tarrazú",
         roast: "medium",
+        region: "Tarrazú, Costa Rica",
         notes: "Honey, peach, almond",
         price: 15,
+        rating: 4.8,
         icon: "🍑",
     },
     {
         id: "decaf-mexico",
         name: "Decaf — Chiapas",
         roast: "medium",
+        region: "Chiapas, Mexico",
         notes: "Milk chocolate, vanilla, toasted almond",
         price: 14,
+        rating: 4.6,
         icon: "🥛",
     },
 ];
@@ -269,7 +288,10 @@ function renderCoffees() {
         li.dataset.roast = coffee.roast;
         const isFav = favorites.has(coffee.id);
         li.innerHTML = `
-            <div class="coffee-art ${coffee.roast}" aria-hidden="true">${coffee.icon}</div>
+            <div class="coffee-art ${coffee.roast}" aria-hidden="true">
+                ${coffee.badge ? `<span class="coffee-badge${coffee.badge === "Value pick" ? " alt" : ""}">${coffee.badge}</span>` : ""}
+                ${coffee.icon}
+            </div>
             <div class="coffee-body">
                 <div class="coffee-top">
                     <div class="coffee-name-wrap">
@@ -280,9 +302,13 @@ function renderCoffees() {
                     </div>
                     <span class="roast-tag ${coffee.roast}">${coffee.roast}</span>
                 </div>
+                <div class="coffee-meta">
+                    <span class="coffee-region">${coffee.region}</span>
+                    <span class="coffee-rating" title="Rated ${coffee.rating} out of 5">★ ${coffee.rating.toFixed(1)}</span>
+                </div>
                 <p>${coffee.notes}</p>
                 <div class="coffee-foot">
-                    <span class="price">$${coffee.price}.00 / 12oz</span>
+                    <span class="price">$${coffee.price}.00 <small>/ 12oz</small></span>
                     <button class="add-btn" type="button" data-id="${coffee.id}">Add to box</button>
                 </div>
             </div>`;
@@ -354,14 +380,9 @@ coffeeGrid.addEventListener("click", (event) => {
         return;
     }
 
+    addToCart(id);
     addBtn.classList.add("added");
     addBtn.textContent = "Added ✓";
-    setQuantity(quantity + 1);
-    toast(`Added ${coffee.name} — your box now has ${quantity} bag${quantity === 1 ? "" : "s"}`);
-    document.querySelector("#builder").scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start",
-    });
     setTimeout(() => {
         addBtn.classList.remove("added");
         addBtn.textContent = "Add to box";
@@ -428,16 +449,156 @@ async function loadRoastOfWeek() {
 $("#roast-card").addEventListener("click", (event) => {
     const btn = event.target.closest(".btn");
     if (!btn) return;
-    const coffee = COFFEES.find((c) => c.id === btn.dataset.id);
-    setQuantity(quantity + 1);
-    toast(`Added ${coffee.name} — your box now has ${quantity} bag${quantity === 1 ? "" : "s"}`);
-    document.querySelector("#builder").scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start",
-    });
+    addToCart(btn.dataset.id);
+    openCart();
 });
 
 loadRoastOfWeek();
+
+/* ---------- 4c. Shopping cart: state, drawer, persistence ---------- */
+
+const CART_KEY = "aurora-cart";
+const cart = store.get(CART_KEY, {}); // { coffeeId: quantity }
+
+const cartDrawer = $("#cart-drawer");
+const cartOverlay = $("#cart-overlay");
+const cartItemsEl = $("#cart-items");
+const cartEmptyEl = $("#cart-empty");
+const cartSubtotalEl = $("#cart-subtotal");
+const cartCountEl = $("#cart-count");
+
+const FREE_SHIPPING_THRESHOLD = 30;
+
+function cartEntries() {
+    return Object.entries(cart)
+        .map(([id, qty]) => ({ coffee: COFFEES.find((c) => c.id === id), qty }))
+        .filter((entry) => entry.coffee && entry.qty > 0);
+}
+
+function cartTotals() {
+    const entries = cartEntries();
+    const count = entries.reduce((sum, e) => sum + e.qty, 0);
+    const subtotal = entries.reduce((sum, e) => sum + e.coffee.price * e.qty, 0);
+    return { count, subtotal };
+}
+
+function saveCart() {
+    store.set(CART_KEY, cart);
+}
+
+function renderCart() {
+    const { count, subtotal } = cartTotals();
+    const entries = cartEntries();
+
+    cartItemsEl.innerHTML = "";
+    entries.forEach(({ coffee, qty }) => {
+        const li = document.createElement("li");
+        li.className = "cart-item";
+        li.innerHTML = `
+            <span class="cart-item-art ${coffee.roast}" aria-hidden="true">${coffee.icon}</span>
+            <div class="cart-item-info">
+                <div class="cart-item-name">${coffee.name}</div>
+                <div class="cart-item-price">$${coffee.price}.00 each</div>
+            </div>
+            <div class="cart-item-controls">
+                <span class="cart-qty">
+                    <button type="button" data-act="dec" data-id="${coffee.id}" aria-label="Decrease quantity">−</button>
+                    <output>${qty}</output>
+                    <button type="button" data-act="inc" data-id="${coffee.id}" aria-label="Increase quantity">+</button>
+                </span>
+                <button class="cart-remove" type="button" data-act="remove" data-id="${coffee.id}">Remove</button>
+            </div>`;
+        cartItemsEl.appendChild(li);
+    });
+
+    const isEmpty = entries.length === 0;
+    cartEmptyEl.hidden = !isEmpty;
+    cartItemsEl.hidden = isEmpty;
+    cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+
+    cartCountEl.hidden = count === 0;
+    cartCountEl.textContent = count > 99 ? "99+" : count;
+    cartCountEl.setAttribute("aria-label", `${count} item${count === 1 ? "" : "s"} in cart`);
+}
+
+function addToCart(id, qty = 1) {
+    cart[id] = Math.min(12, (cart[id] || 0) + qty);
+    saveCart();
+    renderCart();
+    const coffee = COFFEES.find((c) => c.id === id);
+    toast(`Added ${coffee.name} to your box`);
+}
+
+function changeCartQty(id, delta) {
+    cart[id] = (cart[id] || 0) + delta;
+    if (cart[id] <= 0) delete cart[id];
+    saveCart();
+    renderCart();
+}
+
+function removeFromCart(id) {
+    delete cart[id];
+    saveCart();
+    renderCart();
+    const coffee = COFFEES.find((c) => c.id === id);
+    toast(`Removed ${coffee.name} from your box`);
+}
+
+/* Delegated controls inside the drawer */
+cartItemsEl.addEventListener("click", (event) => {
+    const btn = event.target.closest("button[data-act]");
+    if (!btn) return;
+    const { act, id } = btn.dataset;
+    if (act === "inc") changeCartQty(id, 1);
+    if (act === "dec") changeCartQty(id, -1);
+    if (act === "remove") removeFromCart(id);
+});
+
+/* Drawer open / close */
+function openCart() {
+    cartDrawer.hidden = false;
+    cartOverlay.hidden = false;
+    requestAnimationFrame(() => {
+        cartDrawer.classList.add("open");
+        cartOverlay.classList.add("open");
+    });
+    $(".cart-close").focus();
+}
+
+function closeCart() {
+    cartDrawer.classList.remove("open");
+    cartOverlay.classList.remove("open");
+    setTimeout(() => {
+        cartDrawer.hidden = true;
+        cartOverlay.hidden = true;
+    }, 400);
+}
+
+$("#cart-toggle").addEventListener("click", openCart);
+$("#cart-close").addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && cartDrawer.classList.contains("open")) closeCart();
+});
+
+/* Checkout: demo confirmation, then clears the cart */
+$("#cart-checkout").addEventListener("click", () => {
+    const { count, subtotal } = cartTotals();
+    if (count === 0) {
+        toast("Your box is empty — add some coffees first.");
+        return;
+    }
+    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 5;
+    const total = subtotal + shipping;
+
+    for (const key of Object.keys(cart)) delete cart[key];
+    saveCart();
+    renderCart();
+    closeCart();
+    toast(`✓ Order placed — ${count} bag${count === 1 ? "" : "s"}, $${total.toFixed(2)} total. Roasting Tuesday!`);
+});
+
+renderCart();
 
 /* ---------- 5. Box builder: price calculator ---------- */
 

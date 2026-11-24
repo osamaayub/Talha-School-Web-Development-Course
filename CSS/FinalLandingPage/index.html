@@ -47,6 +47,10 @@
                     <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
                     <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
                 </button>
+                <button id="cart-toggle" class="cart-toggle" type="button" aria-label="Open cart">
+                    <span aria-hidden="true">🛒</span>
+                    <span class="cart-badge" id="cart-count" hidden>0</span>
+                </button>
                 <a href="#subscribe" class="btn btn-desktop">Subscribe</a>
             </div>
         </nav>
@@ -363,6 +367,25 @@
             <button class="btn btn-ghost to-top" id="to-top" type="button">Back to top ↑</button>
         </div>
     </footer>
+
+    <!-- ===================== CART DRAWER ===================== -->
+    <div class="cart-overlay" id="cart-overlay" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Your coffee box" hidden>
+        <header class="cart-head">
+            <h2>Your box</h2>
+            <button class="cart-close" id="cart-close" type="button" aria-label="Close cart">×</button>
+        </header>
+        <ul class="cart-items" id="cart-items"></ul>
+        <p class="cart-empty" id="cart-empty">Your box is empty — add some coffees below.</p>
+        <footer class="cart-foot">
+            <div class="cart-total-row">
+                <span>Subtotal</span>
+                <strong id="cart-subtotal">$0.00</strong>
+            </div>
+            <p class="cart-note">Free shipping over $30 · roasted Tuesdays</p>
+            <button class="btn btn-wide" id="cart-checkout" type="button">Checkout</button>
+        </footer>
+    </aside>
 
     <button class="fab-top" id="fab-top" type="button" aria-label="Back to top">↑</button>
     <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
