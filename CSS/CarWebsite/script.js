@@ -33,6 +33,28 @@
     `<button type="button" class="sw${i === activeIdx ? ' is-on' : ''}" style="--c:${c.hex}" data-i="${i}" aria-label="${c.name}" aria-pressed="${i === activeIdx}" title="${c.name}"></button>`
   ).join('');
 
+  const FAV_KEY = 'velocity-saved-cars';
+  let favs = new Set();
+  try { favs = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); } catch { favs = new Set(); }
+  const isFav = (id) => favs.has(id);
+  const saveFavs = () => { try { localStorage.setItem(FAV_KEY, JSON.stringify([...favs])); } catch { /* storage unavailable */ } };
+  const paintFav = (btn, on) => {
+    btn.classList.toggle('is-on', on);
+    btn.setAttribute('aria-pressed', String(on));
+    btn.setAttribute('aria-label', `${on ? 'Remove' : 'Save'} ${btn.dataset.name || 'car'}`);
+  };
+  let activeFilter = 'all';
+  const toggleFav = (id, btn) => {
+    const on = !favs.has(id);
+    if (on) favs.add(id); else favs.delete(id);
+    saveFavs();
+    paintFav(btn, on);
+    const savedCount = $('.filter[data-filter="saved"] .count');
+    if (savedCount) savedCount.textContent = favs.size;
+    if (activeFilter === 'saved') applyFilter('saved');
+    toast(on ? 'Saved to your garage' : 'Removed from saved');
+  };
+
   /* ---------- Toast ---------- */
   const toastEl = $('#toast');
   let toastTimer;
@@ -62,6 +84,7 @@
           <span class="badge">${car.cats.includes('suv') ? 'SUV' : car.cats.includes('sedan') ? 'Sedan' : 'Sport'}</span>
           ${car.cats.includes('electric') ? '<span class="badge ev">⚡ Electric</span>' : ''}
         </div>
+        <button type="button" class="fav${isFav(car.id) ? ' is-on' : ''}" data-action="fav" data-id="${car.id}" data-name="${car.name}" aria-pressed="${isFav(car.id)}" aria-label="Save ${car.name}" title="Save ${car.name}">♥</button>
         <img class="car-photo" src="${car.image}" alt="${car.name}" loading="lazy" decoding="async">
       </div>
       <div class="car-body">
@@ -167,6 +190,7 @@
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
     const car = carById(btn.dataset.id);
+    if (btn.dataset.action === 'fav') { toggleFav(car.id, btn); return; }
     if (btn.dataset.action === 'details') { openCarModal(car.id); return; }
     if (btn.dataset.action === 'finance') {
       calcCar.value = car.id;
@@ -184,7 +208,7 @@
   const cards = $$('.car-card', carsEl);
   const applyFilter = (f) => {
     cards.forEach((card) => {
-      const show = f === 'all' || card.dataset.cats.split(' ').includes(f);
+      const show = f === 'all' || (f === 'saved' ? isFav(card.dataset.id) : card.dataset.cats.split(' ').includes(f));
       if (show) {
         card.hidden = false;
         requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('is-out')));
@@ -196,8 +220,9 @@
   };
   filterBtns.forEach((btn) => {
     const f = btn.dataset.filter;
-    if (f !== 'all') btn.insertAdjacentHTML('beforeend', ` <span class="count">${cards.filter((c) => c.dataset.cats.split(' ').includes(f)).length}</span>`);
+    if (f !== 'all') btn.insertAdjacentHTML('beforeend', ` <span class="count">${f === 'saved' ? favs.size : cards.filter((c) => c.dataset.cats.split(' ').includes(f)).length}</span>`);
     btn.addEventListener('click', () => {
+      activeFilter = f;
       filterBtns.forEach((b) => { const on = b === btn; b.classList.toggle('is-active', on); b.setAttribute('aria-pressed', String(on)); });
       applyFilter(f);
     });

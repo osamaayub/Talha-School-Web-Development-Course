@@ -168,6 +168,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .filter { min-height: 42px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); font-weight: 500; font-size: 0.92rem; transition: color 0.25s, background 0.25s, border-color 0.25s; }
 .filter:hover { color: var(--text); border-color: var(--text); }
 .filter.is-active { background: var(--grad); color: #1a0a02; border-color: transparent; font-weight: 700; }
+.filter .count { opacity: 0.55; font-size: 0.8em; font-weight: 600; }
 
 /* ---------- Car cards ---------- */
 .cars { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 22px; }
@@ -189,6 +190,9 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .badges { position: absolute; top: 14px; left: 14px; display: flex; gap: 6px; }
 .badge { padding: 3px 11px; border-radius: 999px; font: 600 0.7rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
 .badge.ev { background: rgba(34, 197, 94, 0.14); color: #4ade80; border-color: rgba(34, 197, 94, 0.3); }
+.fav { position: absolute; top: 14px; right: 14px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: rgba(10, 12, 18, 0.55); color: var(--muted); font-size: 1rem; line-height: 1; cursor: pointer; backdrop-filter: blur(6px); transition: color 0.25s, border-color 0.25s, transform 0.2s; }
+.fav:hover { color: #fb7185; border-color: rgba(251, 113, 133, 0.5); transform: scale(1.08); }
+.fav.is-on { color: #fb7185; border-color: rgba(251, 113, 133, 0.6); }
 
 .car-body { display: flex; flex-direction: column; gap: 14px; padding: 22px 22px 24px; flex: 1; }
 .car-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
