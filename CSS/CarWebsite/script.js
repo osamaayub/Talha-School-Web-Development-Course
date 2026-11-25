@@ -21,12 +21,12 @@
   const HERO_IMAGE = 'https://images.unsplash.com/photo-1652992253402-15729d9b97fc?auto=format&fit=crop&w=1400&q=80';
 
   const CARS = [
-    { id: 'aero-s',   name: 'Aero S',     tagline: 'Coupe',      body: 'sport', cats: ['sport'],             price: 78900, power: '420 hp', zero: '3.9 s', range: '285 km/h', rangeLabel: 'Top speed', color: 0, image: 'https://images.unsplash.com/photo-1657147512939-a6a9db36838b?auto=format&fit=crop&w=900&q=80' },
-    { id: 'nova-ev',  name: 'Nova EV',    tagline: 'Sedan',      body: 'sedan', cats: ['sedan', 'electric'], price: 52500, power: '340 hp', zero: '4.8 s', range: '520 km',   rangeLabel: 'Range',     color: 4, image: 'https://images.unsplash.com/photo-1641071260049-54519661d157?auto=format&fit=crop&w=900&q=80' },
-    { id: 'terra-x',  name: 'Terra X',    tagline: 'Family SUV', body: 'suv',   cats: ['suv'],               price: 46900, power: '265 hp', zero: '7.2 s', range: '6.8 L/100', rangeLabel: 'Economy',  color: 3, image: 'https://images.unsplash.com/photo-1613397029426-82b0f0d9c045?auto=format&fit=crop&w=900&q=80' },
-    { id: 'volt-cross', name: 'Volt Cross', tagline: 'Electric SUV', body: 'suv', cats: ['suv', 'electric'], price: 61200, power: '380 hp', zero: '5.1 s', range: '480 km',   rangeLabel: 'Range',     color: 2, image: 'https://images.unsplash.com/photo-1740170512964-860b0f8c266a?auto=format&fit=crop&w=900&q=80' },
-    { id: 'meridian', name: 'Meridian',   tagline: 'Executive',  body: 'sedan', cats: ['sedan'],             price: 41800, power: '210 hp', zero: '7.9 s', range: '5.9 L/100', rangeLabel: 'Economy',  color: 5, image: 'https://images.unsplash.com/photo-1571775145685-931acf18b912?auto=format&fit=crop&w=900&q=80' },
-    { id: 'bolt-r',   name: 'Bolt R',     tagline: 'Electric GT', body: 'sport', cats: ['sport', 'electric'], price: 89500, power: '560 hp', zero: '3.2 s', range: '410 km',   rangeLabel: 'Range',     color: 1, image: 'https://images.unsplash.com/photo-1619384557832-e67eb7ffa4d0?auto=format&fit=crop&w=900&q=80' },
+    { id: 'aero-s',   name: 'Aero S',     tagline: 'Coupe',      body: 'sport', cats: ['sport'],             price: 78900, power: '420 hp', zero: '3.9 s', range: '285 km/h', rangeLabel: 'Top speed', color: 0, isNew: true, engine: '3.0L V6 twin-turbo', gear: '8-speed auto', seats: '4', fuel: 'Petrol', image: 'https://images.unsplash.com/photo-1657147512939-a6a9db36838b?auto=format&fit=crop&w=900&q=80' },
+    { id: 'nova-ev',  name: 'Nova EV',    tagline: 'Sedan',      body: 'sedan', cats: ['sedan', 'electric'], price: 52500, power: '340 hp', zero: '4.8 s', range: '520 km',   rangeLabel: 'Range',     color: 4, engine: 'Permanent magnet motor', gear: 'Single-speed', seats: '5', fuel: 'Electric', image: 'https://images.unsplash.com/photo-1641071260049-54519661d157?auto=format&fit=crop&w=900&q=80' },
+    { id: 'terra-x',  name: 'Terra X',    tagline: 'Family SUV', body: 'suv',   cats: ['suv'],               price: 46900, power: '265 hp', zero: '7.2 s', range: '6.8 L/100', rangeLabel: 'Economy',  color: 3, engine: '2.5L turbo I4', gear: '8-speed auto', seats: '7', fuel: 'Petrol', image: 'https://images.unsplash.com/photo-1613397029426-82b0f0d9c045?auto=format&fit=crop&w=900&q=80' },
+    { id: 'volt-cross', name: 'Volt Cross', tagline: 'Electric SUV', body: 'suv', cats: ['suv', 'electric'], price: 61200, power: '380 hp', zero: '5.1 s', range: '480 km',   rangeLabel: 'Range',     color: 2, isNew: true, engine: 'Dual motor AWD', gear: 'Single-speed', seats: '5', fuel: 'Electric', image: 'https://images.unsplash.com/photo-1740170512964-860b0f8c266a?auto=format&fit=crop&w=900&q=80' },
+    { id: 'meridian', name: 'Meridian',   tagline: 'Executive',  body: 'sedan', cats: ['sedan'],             price: 41800, power: '210 hp', zero: '7.9 s', range: '5.9 L/100', rangeLabel: 'Economy',  color: 5, engine: '2.0L turbo I4', gear: '8-speed auto', seats: '5', fuel: 'Petrol', image: 'https://images.unsplash.com/photo-1571775145685-931acf18b912?auto=format&fit=crop&w=900&q=80' },
+    { id: 'bolt-r',   name: 'Bolt R',     tagline: 'Electric GT', body: 'sport', cats: ['sport', 'electric'], price: 89500, power: '560 hp', zero: '3.2 s', range: '410 km',   rangeLabel: 'Range',     color: 1, engine: 'Dual motor AWD', gear: 'Single-speed', seats: '4', fuel: 'Electric', image: 'https://images.unsplash.com/photo-1619384557832-e67eb7ffa4d0?auto=format&fit=crop&w=900&q=80' },
   ];
 
   const swatchButtons = (activeIdx) => COLORS.map((c, i) =>
@@ -83,6 +83,7 @@
         <div class="badges">
           <span class="badge">${car.cats.includes('suv') ? 'SUV' : car.cats.includes('sedan') ? 'Sedan' : 'Sport'}</span>
           ${car.cats.includes('electric') ? '<span class="badge ev">⚡ Electric</span>' : ''}
+          ${car.isNew ? '<span class="badge new">New</span>' : ''}
         </div>
         <button type="button" class="fav${isFav(car.id) ? ' is-on' : ''}" data-action="fav" data-id="${car.id}" data-name="${car.name}" aria-pressed="${isFav(car.id)}" aria-label="Save ${car.name}" title="Save ${car.name}">♥</button>
         <img class="car-photo" src="${car.image}" alt="${car.name}" loading="lazy" decoding="async">
@@ -119,7 +120,7 @@
     mKicker.textContent = car.cats.join(' · ').toUpperCase();
     mName.textContent = car.name;
     mTag.textContent = car.tagline;
-    mSpecs.innerHTML = `<div><dt>Power</dt><dd>${car.power}</dd></div><div><dt>0–100</dt><dd>${car.zero}</dd></div><div><dt>${car.rangeLabel}</dt><dd>${car.range}</dd></div>`;
+    mSpecs.innerHTML = `<div><dt>Power</dt><dd>${car.power}</dd></div><div><dt>0–100</dt><dd>${car.zero}</dd></div><div><dt>${car.rangeLabel}</dt><dd>${car.range}</dd></div><div><dt>Engine</dt><dd>${car.engine}</dd></div><div><dt>Gearbox</dt><dd>${car.gear}</dd></div><div><dt>Seats</dt><dd>${car.seats}</dd></div><div><dt>Fuel</dt><dd>${car.fuel}</dd></div>`;
     mColor.textContent = COLORS[car.color].name;
     mDots.innerHTML = COLORS.map((c) => `<span class="dot" style="--c:${c.hex}" title="${c.name}"></span>`).join('');
     mPrice.textContent = money(car.price);
@@ -161,12 +162,14 @@
     toast(`Ask us about the ${car.name}`);
   });
 
-  /* ---------- Filter ---------- */
+  /* ---------- Filter & sort ---------- */
   const filterBtns = $$('.filter');
   const cards = $$('.car-card', carsEl);
+  const visibleCount = $('#visibleCount');
+  const matches = (card, f) => f === 'all' || (f === 'saved' ? isFav(card.dataset.id) : card.dataset.cats.split(' ').includes(f));
   const applyFilter = (f) => {
     cards.forEach((card) => {
-      const show = f === 'all' || (f === 'saved' ? isFav(card.dataset.id) : card.dataset.cats.split(' ').includes(f));
+      const show = matches(card, f);
       if (show) {
         card.hidden = false;
         requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('is-out')));
@@ -175,7 +178,20 @@
         setTimeout(() => { if (card.classList.contains('is-out')) card.hidden = true; }, reducedMotion ? 0 : 400);
       }
     });
+    if (visibleCount) visibleCount.textContent = cards.filter((c) => matches(c, f)).length;
   };
+  const sortSel = $('#sortCars');
+  sortSel.addEventListener('change', () => {
+    const mode = sortSel.value;
+    const sorted = [...cards].sort((a, b) => {
+      const ca = carById(a.dataset.id), cb = carById(b.dataset.id);
+      if (mode === 'price-asc') return ca.price - cb.price;
+      if (mode === 'price-desc') return cb.price - ca.price;
+      if (mode === 'fast') return parseFloat(ca.zero) - parseFloat(cb.zero);
+      return CARS.indexOf(ca) - CARS.indexOf(cb);
+    });
+    sorted.forEach((c) => carsEl.appendChild(c));
+  });
   filterBtns.forEach((btn) => {
     const f = btn.dataset.filter;
     if (f !== 'all') btn.insertAdjacentHTML('beforeend', ` <span class="count">${f === 'saved' ? favs.size : cards.filter((c) => c.dataset.cats.split(' ').includes(f)).length}</span>`);
@@ -400,6 +416,10 @@
   };
   window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
   onScroll();
+
+  const toTop = $('#toTop');
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }));
+  window.addEventListener('scroll', () => toTop.classList.toggle('show', window.scrollY > 600), { passive: true });
 
   $('#year').textContent = new Date().getFullYear();
 })();

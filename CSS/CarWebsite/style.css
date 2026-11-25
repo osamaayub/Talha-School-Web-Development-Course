@@ -169,6 +169,10 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .filter:hover { color: var(--text); border-color: var(--text); }
 .filter.is-active { background: var(--grad); color: #1a0a02; border-color: transparent; font-weight: 700; }
 .filter .count { opacity: 0.55; font-size: 0.8em; font-weight: 600; }
+.showroom-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin: -14px 0 22px; }
+.sort-label { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.88rem; }
+.sort-label select { height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+.sort-label select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.2); }
 
 /* ---------- Car cards ---------- */
 .cars { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 22px; }
@@ -190,6 +194,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .badges { position: absolute; top: 14px; left: 14px; display: flex; gap: 6px; }
 .badge { padding: 3px 11px; border-radius: 999px; font: 600 0.7rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
 .badge.ev { background: rgba(34, 197, 94, 0.14); color: #4ade80; border-color: rgba(34, 197, 94, 0.3); }
+.badge.new { background: linear-gradient(120deg, var(--accent), var(--accent-2)); color: #1a0a02; border-color: transparent; }
 .fav { position: absolute; top: 14px; right: 14px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: rgba(10, 12, 18, 0.55); color: var(--muted); font-size: 1rem; line-height: 1; cursor: pointer; backdrop-filter: blur(6px); transition: color 0.25s, border-color 0.25s, transform 0.2s; }
 .fav:hover { color: #fb7185; border-color: rgba(251, 113, 133, 0.5); transform: scale(1.08); }
 .fav.is-on { color: #fb7185; border-color: rgba(251, 113, 133, 0.6); }
@@ -242,6 +247,16 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .calc-result dd { font-weight: 600; font-variant-numeric: tabular-nums; }
 .calc-result .btn { margin-top: auto; }
 
+/* ---------- Reviews ---------- */
+.quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.quote { margin: 0; padding: 26px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; transition: transform 0.5s var(--ease), border-color 0.3s; }
+.quote:hover { transform: translateY(-4px); border-color: rgba(255, 90, 31, 0.4); }
+.quote blockquote { margin: 0; color: var(--text); font-size: 1rem; line-height: 1.65; flex: 1; }
+.quote .stars { color: #fbbf24; letter-spacing: 0.15em; font-size: 0.95rem; }
+.quote figcaption { display: grid; gap: 2px; }
+.quote figcaption strong { font: 700 0.95rem var(--display); }
+.quote figcaption span { color: var(--muted); font-size: 0.82rem; }
+
 /* ---------- Contact ---------- */
 .book { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 80px); align-items: start; padding-bottom: clamp(80px, 11vw, 130px); }
 .book-points { display: grid; gap: 12px; margin-top: 22px; }
@@ -274,6 +289,8 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .booking-info strong { font: 700 1rem var(--display); }
 .booking-info span { color: var(--muted); font-size: 0.85rem; }
 .booking-info small { color: var(--accent-2); font-weight: 700; letter-spacing: 0.05em; }
+.contact-info { display: grid; gap: 10px; margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--line); list-style: none; }
+.contact-info li { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.92rem; }
 
 /* ---------- Vehicle modal ---------- */
 body.modal-open { overflow: hidden; }
@@ -299,9 +316,18 @@ body.modal-open { overflow: hidden; }
 
 /* ---------- Footer / toast ---------- */
 .footer { border-top: 1px solid var(--line); background: var(--bg-2); }
-.footer-inner { max-width: var(--max); margin: 0 auto; padding: 36px var(--gutter) 44px; display: grid; gap: 6px; }
-.footer a { text-decoration: underline; text-underline-offset: 3px; }
-.footer a:hover { color: var(--accent-2); }
+.footer-inner { max-width: var(--max); margin: 0 auto; padding: 44px var(--gutter) 40px; display: grid; gap: 18px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 28px; padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+.footer-brand .logo { margin-bottom: 12px; }
+.footer-col { display: grid; gap: 8px; align-content: start; }
+.footer-col h4 { font: 700 0.78rem var(--sans); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 4px; }
+.footer-col a { color: var(--muted); font-size: 0.92rem; width: fit-content; }
+.footer-col a:hover { color: var(--accent-2); }
+.footer a { text-decoration: none; }
+.footer .footer-inner > p a { text-decoration: underline; text-underline-offset: 3px; }
+.to-top { position: fixed; right: 24px; bottom: 24px; z-index: 110; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 1.2rem; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity 0.3s, transform 0.4s var(--ease), border-color 0.3s; }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { border-color: var(--accent); color: var(--accent-2); }
 .toast { position: fixed; left: 50%; bottom: 28px; z-index: 150; padding: 12px 22px; border-radius: 999px; background: var(--text); color: var(--bg); font-weight: 500; font-size: 0.92rem; transform: translate(-50%, 30px); opacity: 0; pointer-events: none; transition: transform 0.4s var(--ease), opacity 0.3s; }
 .toast.show { transform: translate(-50%, 0); opacity: 1; }
 
@@ -324,6 +350,7 @@ body.modal-open { overflow: hidden; }
   }
   .nav-links.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s; }
   .nav-links a { padding: 14px 18px; font-size: 1.05rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 520px) {
   .cars { grid-template-columns: 1fr; }
@@ -333,6 +360,8 @@ body.modal-open { overflow: hidden; }
   .specs dd { font-size: 0.9rem; }
   .car-foot { flex-direction: column; align-items: stretch; }
   .car-actions .btn { flex: 1; }
+  .footer-grid { grid-template-columns: 1fr; gap: 22px; }
+  .to-top { right: 16px; bottom: 16px; }
   .sun { width: 220px; height: 220px; right: -40px; }
 }
 

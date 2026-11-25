@@ -82,6 +82,18 @@
         <button class="filter" data-filter="saved" aria-pressed="false">Saved</button>
       </div>
 
+      <div class="showroom-bar reveal">
+        <p class="muted"><span id="visibleCount">6</span> models</p>
+        <label class="sort-label" for="sortCars">Sort by
+          <select id="sortCars">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="fast">0–100 km/h</option>
+          </select>
+        </label>
+      </div>
+
       <div class="cars" id="cars"></div>
       <noscript><p class="muted">The showroom needs JavaScript to list the cars.</p></noscript>
     </section>
@@ -97,6 +109,31 @@
         <article class="feature reveal"><span class="f-ico">⚡</span><h3>Fast charging</h3><p>Electric models fill from 10–80% in about 25 minutes on a rapid charger.</p></article>
         <article class="feature reveal"><span class="f-ico">🔧</span><h3>Free first service</h3><p>Your first scheduled service is on us, at any Velocity service center.</p></article>
         <article class="feature reveal"><span class="f-ico">🚚</span><h3>Nationwide delivery</h3><p>Order from anywhere and we'll deliver your new car to your door, fully insured.</p></article>
+      </div>
+    </section>
+
+    <!-- ============ REVIEWS ============ -->
+    <section class="section" id="reviews">
+      <header class="section-head reveal">
+        <p class="kicker">Reviews</p>
+        <h2>Loved by <em>drivers</em></h2>
+      </header>
+      <div class="quotes">
+        <figure class="quote reveal">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>The Volt Cross is the quietest SUV I've ever owned. The range estimate was spot on — 480 km is real.</blockquote>
+          <figcaption><strong>Amara K.</strong><span>Volt Cross owner · Denver</span></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>Switched from a petrol sedan to the Nova EV and my monthly fuel bill dropped to zero. Charging is effortless.</blockquote>
+          <figcaption><strong>Daniel R.</strong><span>Nova EV owner · Austin</span></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <div class="stars" aria-label="4 out of 5 stars">★★★★☆</div>
+          <blockquote>The Terra X swallowed our entire camping setup without complaint. Service team was brilliant too.</blockquote>
+          <figcaption><strong>Sofia M.</strong><span>Terra X owner · Seattle</span></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -162,7 +199,12 @@
           <ul class="book-points">
             <li>Response within one business day</li>
             <li>Honest advice, no pressure</li>
-            <li>Visit us at 100 Velocity Ave, Motor City</li>
+          </ul>
+          <ul class="contact-info">
+            <li><span aria-hidden="true">📍</span> 100 Velocity Ave, Motor City</li>
+            <li><span aria-hidden="true">📞</span> +1 (555) 013-4471</li>
+            <li><span aria-hidden="true">✉️</span> hello@velocitymotors.demo</li>
+            <li><span aria-hidden="true">🕐</span> Mon–Sat · 9:00 – 19:00</li>
           </ul>
         </div>
 
@@ -231,12 +273,38 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <p><strong>Velocity Motors</strong> — a practice project from the Web Development Course.</p>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="logo" aria-label="Velocity Motors home">
+            <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path d="M3 22 13 6h6L9 22zm10 0 10-16h6L19 22z" fill="currentColor"/></svg>
+            <span>Velocity</span>
+          </a>
+          <p class="muted small">Performance, electric and family cars — all in one showroom.</p>
+        </div>
+        <nav class="footer-col" aria-label="Explore">
+          <h4>Explore</h4>
+          <a href="#showroom">Showroom</a>
+          <a href="#why">Why Velocity</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#finance">Finance</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Visit us</h4>
+          <p class="muted small">100 Velocity Ave<br>Motor City, MC 40210</p>
+          <p class="muted small">+1 (555) 013-4471<br>hello@velocitymotors.demo</p>
+        </div>
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <p class="muted small">Mon – Fri · 9:00 – 19:00<br>Saturday · 10:00 – 17:00<br>Sunday · Closed</p>
+        </div>
+      </div>
       <p class="muted small">Brand, models, prices and specs are fictional demo data. Car photos are from Unsplash.</p>
       <p class="muted small">© <span id="year"></span> · <a href="../">Back to CSS projects</a> · <a href="#home">Back to top ↑</a></p>
     </div>
   </footer>
 
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
