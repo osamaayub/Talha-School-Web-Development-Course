@@ -190,14 +190,20 @@
               </div>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Request test drive <span class="arrow">→</span></button>
-            <p class="form-note">Demo site: nothing is sent or stored.</p>
+            <p class="form-note">Bookings are saved in this browser only.</p>
           </form>
 
           <div class="success" id="bookSuccess" hidden>
             <div class="check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M14 27l8 8 16-17"/></svg></div>
             <h3>You're on the list!</h3>
             <p id="successText"></p>
+            <p class="ref" id="successRef"></p>
             <button type="button" class="btn btn-ghost" id="bookAgain">Book another</button>
+          </div>
+
+          <div class="bookings" id="bookings" hidden>
+            <h3>Your test drives</h3>
+            <ul id="bookingList"></ul>
           </div>
         </div>
       </div>

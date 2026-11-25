@@ -295,6 +295,34 @@
   const success = $('#bookSuccess');
   bookCar.innerHTML = CARS.map((c) => `<option value="${c.id}">${c.name}</option>`).join('');
 
+  const BKEY = 'velocity-bookings';
+  let bookings = [];
+  try { bookings = JSON.parse(localStorage.getItem(BKEY) || '[]'); } catch { bookings = []; }
+  const saveBookings = () => { try { localStorage.setItem(BKEY, JSON.stringify(bookings)); } catch { /* storage unavailable */ } };
+  const bookingsEl = $('#bookings');
+  const bookingListEl = $('#bookingList');
+  const renderBookings = () => {
+    bookingsEl.hidden = bookings.length === 0;
+    bookingListEl.innerHTML = bookings.map((b, i) => `
+      <li class="booking">
+        <div class="booking-info">
+          <strong>${b.car}</strong>
+          <span>${b.date} · ${b.name}</span>
+          <small>${b.ref}</small>
+        </div>
+        <button type="button" class="btn btn-sm btn-ghost" data-cancel="${i}">Cancel</button>
+      </li>`).join('');
+  };
+  bookingsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-cancel]');
+    if (!btn) return;
+    const [removed] = bookings.splice(Number(btn.dataset.cancel), 1);
+    saveBookings();
+    renderBookings();
+    toast(`Cancelled test drive for ${removed.car}`);
+  });
+  renderBookings();
+
   const pad = (n) => String(n).padStart(2, '0');
   const today = new Date();
   const todayStr = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
@@ -329,9 +357,15 @@
     const first = $('#b-name').value.trim().split(/\s+/)[0];
     const [y, m, d] = bookDate.value.split('-').map(Number);
     const pretty = new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-    $('#successText').textContent = `Thanks, ${first}! We've noted a test drive for the ${car.name} on ${pretty}. (This is a demo, so nothing was actually sent.)`;
+    const ref = 'VD-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+    bookings.unshift({ ref, name: $('#b-name').value.trim(), email: $('#b-email').value.trim(), car: car.name, date: pretty });
+    saveBookings();
+    renderBookings();
+    $('#successText').textContent = `Thanks, ${first}! Your test drive for the ${car.name} on ${pretty} is booked. Show the reference below at the showroom.`;
+    $('#successRef').textContent = `Reference: ${ref}`;
     bookForm.hidden = true;
     success.hidden = false;
+    scrollToEl('#book');
   });
   $('#bookAgain').addEventListener('click', () => {
     bookForm.reset();

@@ -262,6 +262,17 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .check circle { stroke-dasharray: 151; stroke-dashoffset: 151; animation: draw 0.7s var(--ease) forwards; }
 .check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 0.5s 0.5s var(--ease) forwards; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
+.success .ref { font: 700 0.95rem var(--display); color: var(--accent-2); letter-spacing: 0.06em; }
+
+.bookings { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+.bookings[hidden] { display: none; }
+.bookings h3 { font-size: 1.15rem; margin-bottom: 12px; }
+.bookings ul { display: grid; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.booking { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 14px; border-radius: 14px; background: var(--bg-2); border: 1px solid var(--line); }
+.booking-info { display: grid; gap: 2px; min-width: 0; }
+.booking-info strong { font: 700 1rem var(--display); }
+.booking-info span { color: var(--muted); font-size: 0.85rem; }
+.booking-info small { color: var(--accent-2); font-weight: 700; letter-spacing: 0.05em; }
 
 /* ---------- Vehicle modal ---------- */
 body.modal-open { overflow: hidden; }
