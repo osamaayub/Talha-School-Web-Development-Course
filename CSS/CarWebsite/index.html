@@ -203,10 +203,58 @@
     </section>
   </main>
 
+  <div class="modal" id="carModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalName">
+      <button class="modal-close" id="modalClose" type="button" data-close aria-label="Close">×</button>
+      <div class="modal-media"><img id="modalImg" alt=""></div>
+      <div class="modal-body">
+        <p class="kicker" id="modalKicker"></p>
+        <h3 id="modalName"></h3>
+        <p class="muted" id="modalTagline"></p>
+        <dl class="specs modal-specs" id="modalSpecs"></dl>
+        <div class="swatch-row"><small>Colors</small><span class="color-name" id="modalColor"></span><span class="modal-dots" id="modalDots"></span></div>
+        <div class="modal-foot">
+          <div class="price"><small>From</small><b id="modalPrice"></b></div>
+          <div class="car-actions">
+            <button class="btn btn-sm btn-ghost" id="modalFinance" type="button">Finance</button>
+            <button class="btn btn-sm btn-primary" id="modalDrive" type="button">Test drive</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="driveModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="drive-card" role="dialog" aria-modal="true" aria-labelledby="driveName">
+      <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+      <div class="drive-media"><img id="driveImg" alt=""><div class="drive-overlay"></div></div>
+      <div class="drive-panel">
+        <p class="kicker" id="driveKicker"></p>
+        <h3 id="driveName"></h3>
+        <div class="drive-dash">
+          <div class="gauge"><span id="driveSpeed">0</span><small>km/h</small></div>
+          <div class="gauge"><span id="driveRpm">0</span><small>RPM</small></div>
+          <div class="gauge"><span id="driveGear">D</span><small>Gear</small></div>
+        </div>
+        <div class="drive-progress"><span id="driveProgress"></span></div>
+        <p class="drive-status" id="driveStatus">Press start to begin your test drive.</p>
+        <div class="drive-controls">
+          <button class="btn btn-sm btn-primary" id="driveStart" type="button">Start</button>
+          <button class="btn btn-sm btn-ghost" id="driveAccel" type="button">Accelerate</button>
+          <button class="btn btn-sm btn-ghost" id="driveBrake" type="button">Brake</button>
+          <button class="btn btn-sm btn-ghost" id="driveStop" type="button">Stop</button>
+        </div>
+        <button class="btn btn-primary btn-block" id="driveBook" type="button">Book this test drive →</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="footer-inner">
       <p><strong>Velocity Motors</strong> — a practice project from the Web Development Course.</p>
-      <p class="muted small">Brand, models, prices and specs are fictional demo data. Car artwork is inline SVG.</p>
+      <p class="muted small">Brand, models, prices and specs are fictional demo data. Car photos are from Unsplash.</p>
       <p class="muted small">© <span id="year"></span> · <a href="../">Back to CSS projects</a> · <a href="#home">Back to top ↑</a></p>
     </div>
   </footer>

@@ -75,6 +75,7 @@
         <div class="car-foot">
           <div class="price"><small>From</small><b>${money(car.price)}</b></div>
           <div class="car-actions">
+            <button type="button" class="btn btn-sm btn-ghost" data-action="details" data-id="${car.id}">Details</button>
             <button type="button" class="btn btn-sm btn-ghost" data-action="finance" data-id="${car.id}">Finance</button>
             <button type="button" class="btn btn-sm btn-primary" data-action="drive" data-id="${car.id}">Test drive</button>
           </div>
@@ -83,6 +84,74 @@
     </article>`).join('');
 
   const carById = (id) => CARS.find((c) => c.id === id);
+
+  const modal = $('#carModal');
+  const mImg = $('#modalImg'), mKicker = $('#modalKicker'), mName = $('#modalName'), mTag = $('#modalTagline'), mSpecs = $('#modalSpecs'), mColor = $('#modalColor'), mDots = $('#modalDots'), mPrice = $('#modalPrice');
+  const closeModal = () => { modal.hidden = true; document.body.classList.remove('modal-open'); };
+  const openCarModal = (id) => {
+    const car = carById(id);
+    if (!car) return;
+    modal.dataset.id = car.id;
+    mImg.src = car.image; mImg.alt = car.name;
+    mKicker.textContent = car.cats.join(' · ').toUpperCase();
+    mName.textContent = car.name;
+    mTag.textContent = car.tagline;
+    mSpecs.innerHTML = `<div><dt>Power</dt><dd>${car.power}</dd></div><div><dt>0–100</dt><dd>${car.zero}</dd></div><div><dt>${car.rangeLabel}</dt><dd>${car.range}</dd></div>`;
+    mColor.textContent = COLORS[car.color].name;
+    mDots.innerHTML = COLORS.map((c) => `<span class="dot" style="--c:${c.hex}" title="${c.name}"></span>`).join('');
+    mPrice.textContent = money(car.price);
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    $('#modalClose').focus();
+  };
+  modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { if (!modal.hidden) closeModal(); if (!driveModal.hidden) closeDriveModal(); } });
+  $('#modalFinance').addEventListener('click', () => { const car = carById(modal.dataset.id); closeModal(); calcCar.value = car.id; syncPriceFromCar(); compute(); scrollToEl('#finance'); toast(`${car.name} added to the finance calculator`); });
+  $('#modalDrive').addEventListener('click', () => { const car = carById(modal.dataset.id); openDriveModal(car.id); });
+
+  const driveModal = $('#driveModal');
+  const dImg = $('#driveImg'), dKicker = $('#driveKicker'), dName = $('#driveName'), dSpeed = $('#driveSpeed'), dRpm = $('#driveRpm'), dGear = $('#driveGear'), dProgress = $('#driveProgress'), dStatus = $('#driveStatus');
+  let dSpeedVal = 0, dRaf = null, dCar = null, dAccel = false, dBrake = false;
+  const closeDriveModal = () => { cancelAnimationFrame(dRaf); dRaf = null; dAccel = dBrake = false; driveModal.hidden = true; document.body.classList.remove('modal-open'); };
+  const driveTick = () => {
+    if (dAccel) dSpeedVal = Math.min(160, dSpeedVal + 2.4 + Math.random() * 1.6);
+    else if (dBrake) dSpeedVal = Math.max(0, dSpeedVal - 5);
+    else dSpeedVal = Math.max(0, dSpeedVal - 0.9);
+    const rpm = Math.round(dSpeedVal * 42 + (dAccel ? Math.random() * 350 : 0));
+    dSpeed.textContent = Math.round(dSpeedVal);
+    dRpm.textContent = rpm;
+    dGear.textContent = dSpeedVal < 1 ? 'P' : dSpeedVal < 40 ? 'D' : 'S';
+    dProgress.style.width = `${(dSpeedVal / 160 * 100).toFixed(1)}%`;
+    dStatus.textContent = dSpeedVal >= 120 ? 'Test drive complete — book your slot below.' : dSpeedVal > 0 ? 'Driving… ease off or brake to stop.' : 'Press start to begin your test drive.';
+    if (dSpeedVal > 0 || dAccel || dBrake) dRaf = requestAnimationFrame(driveTick);
+  };
+  const openDriveModal = (id) => {
+    const car = carById(id);
+    if (!car) return;
+    dCar = car;
+    closeModal();
+    driveModal.dataset.id = car.id;
+    dImg.src = car.image; dImg.alt = car.name;
+    dKicker.textContent = car.cats.join(' · ').toUpperCase();
+    dName.textContent = car.name;
+    dSpeedVal = 0; dAccel = dBrake = false;
+    dSpeed.textContent = '0'; dRpm.textContent = '0'; dGear.textContent = 'P'; dProgress.style.width = '0%';
+    dStatus.textContent = 'Press start to begin your test drive.';
+    driveModal.hidden = false;
+    document.body.classList.add('modal-open');
+  };
+  driveModal.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close]')) { closeDriveModal(); return; }
+    if (e.target.id === 'driveBook' && dCar) { closeDriveModal(); bookCar.value = dCar.id; scrollToEl('#book'); toast(`${dCar.name} selected for a test drive`); }
+  });
+  $('#driveStart').addEventListener('click', () => { cancelAnimationFrame(dRaf); dRaf = requestAnimationFrame(driveTick); });
+  const hold = (el, key) => {
+    el.addEventListener('pointerdown', () => { dAccel = key === 'accel'; dBrake = key === 'brake'; });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => el.addEventListener(ev, () => { dAccel = false; dBrake = false; }));
+  };
+  hold($('#driveAccel'), 'accel');
+  hold($('#driveBrake'), 'brake');
+  $('#driveStop').addEventListener('click', () => { dSpeedVal = 0; dAccel = dBrake = false; cancelAnimationFrame(dRaf); dRaf = null; dSpeed.textContent = '0'; dRpm.textContent = '0'; dGear.textContent = 'P'; dProgress.style.width = '0%'; dStatus.textContent = 'Stopped. Press start to drive again.'; });
 
   carsEl.addEventListener('click', (e) => {
     const sw = e.target.closest('.sw');
@@ -98,6 +167,7 @@
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
     const car = carById(btn.dataset.id);
+    if (btn.dataset.action === 'details') { openCarModal(car.id); return; }
     if (btn.dataset.action === 'finance') {
       calcCar.value = car.id;
       syncPriceFromCar();
@@ -105,9 +175,7 @@
       scrollToEl('#finance');
       toast(`${car.name} added to the finance calculator`);
     } else {
-      bookCar.value = car.id;
-      scrollToEl('#book');
-      toast(`${car.name} selected for a test drive`);
+      openDriveModal(car.id);
     }
   });
 
