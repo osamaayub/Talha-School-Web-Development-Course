@@ -179,7 +179,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .search input::placeholder { color: #565e70; }
 
 /* ---------- Car cards ---------- */
-.cars { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 22px; }
+.cars { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 26px; }
 .car-card {
   display: flex; flex-direction: column; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); overflow: hidden;
   transition: transform 0.8s var(--ease), opacity 0.45s var(--ease), border-color 0.3s, box-shadow 0.3s; transition-delay: var(--d, 0s), 0s, 0s, 0s;
@@ -203,9 +203,9 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .fav:hover { color: #fb7185; border-color: rgba(251, 113, 133, 0.5); transform: scale(1.08); }
 .fav.is-on { color: #fb7185; border-color: rgba(251, 113, 133, 0.6); }
 
-.car-body { display: flex; flex-direction: column; gap: 14px; padding: 22px 22px 24px; flex: 1; }
+.car-body { display: flex; flex-direction: column; gap: 16px; padding: 26px 26px 28px; flex: 1; }
 .car-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.car-title h3 { font-size: 1.45rem; }
+.car-title h3 { font-size: 1.65rem; }
 .car-title span { color: var(--muted); font-size: 0.85rem; }
 .specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .specs div { padding: 10px 9px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); min-width: 0; }
@@ -216,7 +216,9 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .car-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 6px; }
 .price small { display: block; color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
 .price b { font: 800 1.35rem var(--display); }
-.car-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.car-actions { display: flex; gap: 8px; flex-wrap: nowrap; }
+.car-actions .btn { min-height: 40px; padding: 0 14px; font-size: 0.84rem; }
+.car-actions .cmp { padding: 0 12px; font-size: 1rem; }
 
 /* ---------- Features ---------- */
 .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
@@ -383,7 +385,7 @@ body.modal-open { overflow: hidden; }
   .hero-swatches { right: 0; top: -14px; }
   .specs dd { font-size: 0.9rem; }
   .car-foot { flex-direction: column; align-items: stretch; }
-  .car-actions .btn { flex: 1; }
+  .car-actions .btn { flex: 1; min-height: 44px; }
   .car-actions .cmp { flex: 0 0 auto; padding: 0 14px; }
   .footer-grid { grid-template-columns: 1fr; gap: 22px; }
   .to-top { right: 16px; bottom: 16px; }
