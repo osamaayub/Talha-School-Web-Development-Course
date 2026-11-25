@@ -18,13 +18,15 @@
     { name: 'Midnight', hex: '#374151' },
   ];
 
+  const HERO_IMAGE = 'https://images.unsplash.com/photo-1652992253402-15729d9b97fc?auto=format&fit=crop&w=1400&q=80';
+
   const CARS = [
-    { id: 'aero-s',   name: 'Aero S',     tagline: 'Coupe',      body: 'sport', cats: ['sport'],             price: 78900, power: '420 hp', zero: '3.9 s', range: '285 km/h', rangeLabel: 'Top speed', color: 0 },
-    { id: 'nova-ev',  name: 'Nova EV',    tagline: 'Sedan',      body: 'sedan', cats: ['sedan', 'electric'], price: 52500, power: '340 hp', zero: '4.8 s', range: '520 km',   rangeLabel: 'Range',     color: 4 },
-    { id: 'terra-x',  name: 'Terra X',    tagline: 'Family SUV', body: 'suv',   cats: ['suv'],               price: 46900, power: '265 hp', zero: '7.2 s', range: '6.8 L/100', rangeLabel: 'Economy',  color: 3 },
-    { id: 'volt-cross', name: 'Volt Cross', tagline: 'Electric SUV', body: 'suv', cats: ['suv', 'electric'], price: 61200, power: '380 hp', zero: '5.1 s', range: '480 km',   rangeLabel: 'Range',     color: 2 },
-    { id: 'meridian', name: 'Meridian',   tagline: 'Executive',  body: 'sedan', cats: ['sedan'],             price: 41800, power: '210 hp', zero: '7.9 s', range: '5.9 L/100', rangeLabel: 'Economy',  color: 5 },
-    { id: 'bolt-r',   name: 'Bolt R',     tagline: 'Electric GT', body: 'sport', cats: ['sport', 'electric'], price: 89500, power: '560 hp', zero: '3.2 s', range: '410 km',   rangeLabel: 'Range',     color: 1 },
+    { id: 'aero-s',   name: 'Aero S',     tagline: 'Coupe',      body: 'sport', cats: ['sport'],             price: 78900, power: '420 hp', zero: '3.9 s', range: '285 km/h', rangeLabel: 'Top speed', color: 0, image: 'https://images.unsplash.com/photo-1657147512939-a6a9db36838b?auto=format&fit=crop&w=900&q=80' },
+    { id: 'nova-ev',  name: 'Nova EV',    tagline: 'Sedan',      body: 'sedan', cats: ['sedan', 'electric'], price: 52500, power: '340 hp', zero: '4.8 s', range: '520 km',   rangeLabel: 'Range',     color: 4, image: 'https://images.unsplash.com/photo-1641071260049-54519661d157?auto=format&fit=crop&w=900&q=80' },
+    { id: 'terra-x',  name: 'Terra X',    tagline: 'Family SUV', body: 'suv',   cats: ['suv'],               price: 46900, power: '265 hp', zero: '7.2 s', range: '6.8 L/100', rangeLabel: 'Economy',  color: 3, image: 'https://images.unsplash.com/photo-1613397029426-82b0f0d9c045?auto=format&fit=crop&w=900&q=80' },
+    { id: 'volt-cross', name: 'Volt Cross', tagline: 'Electric SUV', body: 'suv', cats: ['suv', 'electric'], price: 61200, power: '380 hp', zero: '5.1 s', range: '480 km',   rangeLabel: 'Range',     color: 2, image: 'https://images.unsplash.com/photo-1740170512964-860b0f8c266a?auto=format&fit=crop&w=900&q=80' },
+    { id: 'meridian', name: 'Meridian',   tagline: 'Executive',  body: 'sedan', cats: ['sedan'],             price: 41800, power: '210 hp', zero: '7.9 s', range: '5.9 L/100', rangeLabel: 'Economy',  color: 5, image: 'https://images.unsplash.com/photo-1571775145685-931acf18b912?auto=format&fit=crop&w=900&q=80' },
+    { id: 'bolt-r',   name: 'Bolt R',     tagline: 'Electric GT', body: 'sport', cats: ['sport', 'electric'], price: 89500, power: '560 hp', zero: '3.2 s', range: '410 km',   rangeLabel: 'Range',     color: 1, image: 'https://images.unsplash.com/photo-1619384557832-e67eb7ffa4d0?auto=format&fit=crop&w=900&q=80' },
   ];
 
   /* ==========================================================
@@ -93,24 +95,7 @@
      HERO CAR
      ========================================================== */
   const heroCar = $('#heroCar');
-  const heroSwatches = $('#heroSwatches');
-  let heroIdx = 0;
-  let heroAuto = true;
-  heroCar.innerHTML = carSVG('sport', 'Illustration of a red sports car');
-  heroSwatches.innerHTML = swatchButtons(heroIdx);
-  const setHeroColor = (i) => {
-    heroIdx = i;
-    heroCar.style.setProperty('--car', COLORS[i].hex);
-    $$('.sw', heroSwatches).forEach((s, n) => { s.classList.toggle('is-on', n === i); s.setAttribute('aria-pressed', String(n === i)); });
-  };
-  setHeroColor(0);
-  heroSwatches.addEventListener('click', (e) => {
-    const sw = e.target.closest('.sw');
-    if (!sw) return;
-    heroAuto = false;
-    setHeroColor(Number(sw.dataset.i));
-  });
-  if (!reducedMotion) setInterval(() => { if (heroAuto && !document.hidden) setHeroColor((heroIdx + 1) % COLORS.length); }, 3800);
+  heroCar.innerHTML = `<img class="hero-photo" src="${HERO_IMAGE}" alt="Red sports car" loading="eager" decoding="async">`;
 
   /* ==========================================================
      SHOWROOM
@@ -123,7 +108,7 @@
           <span class="badge">${car.cats.includes('suv') ? 'SUV' : car.cats.includes('sedan') ? 'Sedan' : 'Sport'}</span>
           ${car.cats.includes('electric') ? '<span class="badge ev">⚡ Electric</span>' : ''}
         </div>
-        ${carSVG(car.body, car.name + ' illustration')}
+        <img class="car-photo" src="${car.image}" alt="${car.name}" loading="lazy" decoding="async">
       </div>
       <div class="car-body">
         <div class="car-title"><h3>${car.name}</h3><span>${car.tagline}</span></div>
@@ -132,7 +117,7 @@
           <div><dt>0–100</dt><dd>${car.zero}</dd></div>
           <div><dt>${car.rangeLabel}</dt><dd>${car.range}</dd></div>
         </dl>
-        <div class="swatch-row" role="group" aria-label="${car.name} colors"><small>Color</small>${swatchButtons(car.color)}</div>
+        <div class="swatch-row" role="group" aria-label="${car.name} available colors"><small>Color</small><span class="color-name">${COLORS[car.color].name}</span>${swatchButtons(car.color)}</div>
         <div class="car-foot">
           <div class="price"><small>From</small><b>${money(car.price)}</b></div>
           <div class="car-actions">
@@ -151,6 +136,8 @@
       const card = sw.closest('.car-card');
       const i = Number(sw.dataset.i);
       card.style.setProperty('--car', COLORS[i].hex);
+      const nameEl = card.querySelector('.color-name');
+      if (nameEl) nameEl.textContent = COLORS[i].name;
       $$('.sw', card).forEach((s) => { const on = s === sw; s.classList.toggle('is-on', on); s.setAttribute('aria-pressed', String(on)); });
       return;
     }

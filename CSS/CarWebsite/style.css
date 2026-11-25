@@ -100,14 +100,15 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 @keyframes sunPulse { 50% { transform: scale(1.12); opacity: 0.8; } }
 
 .hero-copy { max-width: 600px; }
-.hero-copy h1 { font-size: clamp(2.6rem, 5.2vw, 4.6rem); margin-bottom: 22px; letter-spacing: -0.035em; }
-.lead { color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.15rem); margin-bottom: 32px; max-width: 48ch; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-copy h1 { font-size: clamp(2.8rem, 6vw, 5rem); margin-bottom: 26px; letter-spacing: -0.04em; max-width: 12ch; }
+.lead { color: rgba(238, 240, 244, 0.78); font-size: clamp(1.05rem, 1.6vw, 1.2rem); margin-bottom: 34px; max-width: 52ch; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-actions .btn { min-height: 52px; padding: 0 30px; }
 
-.hero-stage { position: relative; align-self: end; margin-bottom: 0; }
-.hero-car { position: relative; z-index: 2; width: min(620px, 100%); margin: 0 auto -20px; animation: driveIn 1.8s var(--ease) both; }
+.hero-stage { position: relative; align-self: center; margin-bottom: clamp(24px, 5vw, 70px); }
+.hero-car { position: relative; z-index: 2; width: min(680px, 100%); margin: 0 auto; animation: driveIn 1.8s var(--ease) both; }
 @keyframes driveIn { from { transform: translateX(-90vw); } to { transform: none; } }
-.hero-car .car-svg { animation: bob 2.2s ease-in-out infinite 1.8s; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45)); }
+.hero-car .hero-photo { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 32px; animation: bob 2.2s ease-in-out infinite 1.8s; filter: drop-shadow(0 22px 30px rgba(0, 0, 0, 0.5)); }
 @keyframes bob { 50% { transform: translateY(-3px); } }
 .hero-car .wheel { animation: spin 0.45s linear infinite; }
 
@@ -133,7 +134,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 
 .hero-stats {
   grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 calc(var(--edge) * -1); padding: 26px var(--edge);
-  background: rgba(10, 12, 16, 0.85); border-top: 1px solid var(--line);
+  background: rgba(10, 12, 16, 0.72); border-top: 1px solid var(--line); backdrop-filter: blur(12px);
 }
 .hero-stats li { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .hero-stats strong { font: 800 clamp(1.5rem, 3vw, 2.3rem) var(--display); background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
@@ -145,6 +146,8 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .sw.is-on { border-color: var(--text); }
 
 /* ---------- Car illustration ---------- */
+.car-photo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; background: var(--bg-2); }
+.swatch-row .color-name { color: var(--muted); font-size: 0.8rem; font-weight: 700; min-width: 96px; }
 .car-svg { display: block; width: 100%; height: auto; overflow: visible; }
 .car-svg .shadow { fill: rgba(0, 0, 0, 0.5); filter: blur(3px); }
 .car-svg .body { fill: var(--car, #ef4444); transition: fill 0.6s ease; }
@@ -164,7 +167,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
 .filter { min-height: 42px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); font-weight: 500; font-size: 0.92rem; transition: color 0.25s, background 0.25s, border-color 0.25s; }
 .filter:hover { color: var(--text); border-color: var(--text); }
-.filter.is-active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.filter.is-active { background: var(--grad); color: #1a0a02; border-color: transparent; font-weight: 700; }
 
 /* ---------- Car cards ---------- */
 .cars { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 22px; }
@@ -178,11 +181,11 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .car-card:hover .wheel { animation: spin 0.7s linear infinite; }
 
 .car-stage {
-  position: relative; padding: 38px 24px 12px; background: radial-gradient(70% 90% at 50% 100%, rgba(255, 90, 31, 0.14), transparent 70%), var(--bg-2);
+  position: relative; padding: 0; background: radial-gradient(70% 90% at 50% 100%, rgba(255, 90, 31, 0.14), transparent 70%), var(--bg-2);
   border-bottom: 1px solid var(--line); overflow: hidden;
 }
-.car-stage .car-svg { transition: transform 0.7s var(--ease); }
-.car-card:hover .car-stage .car-svg { transform: translateX(8px) scale(1.04); }
+.car-stage .car-photo { transition: transform 0.7s var(--ease); }
+.car-card:hover .car-stage .car-photo { transform: translateX(8px) scale(1.04); }
 .badges { position: absolute; top: 14px; left: 14px; display: flex; gap: 6px; }
 .badge { padding: 3px 11px; border-radius: 999px; font: 600 0.7rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
 .badge.ev { background: rgba(34, 197, 94, 0.14); color: #4ade80; border-color: rgba(34, 197, 94, 0.3); }
@@ -195,7 +198,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .specs div { padding: 10px 9px; border-radius: 12px; background: var(--bg-2); border: 1px solid var(--line); min-width: 0; }
 .specs dt { color: var(--muted); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
 .specs dd { font: 700 0.9rem var(--display); white-space: nowrap; }
-.swatch-row { display: flex; align-items: center; gap: 8px; }
+.swatch-row { display: flex; align-items: center; flex-wrap: wrap; row-gap: 8px; gap: 8px 10px; }
 .swatch-row small { color: var(--muted); font-size: 0.8rem; margin-right: 4px; }
 .car-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 6px; }
 .price small { display: block; color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -286,6 +289,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 }
 @media (max-width: 520px) {
   .cars { grid-template-columns: 1fr; }
+  .car-photo { aspect-ratio: 4 / 3; }
   .row { grid-template-columns: 1fr; }
   .hero-swatches { right: 0; top: -14px; }
   .specs dd { font-size: 0.9rem; }
