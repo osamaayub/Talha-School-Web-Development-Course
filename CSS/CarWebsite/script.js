@@ -29,52 +29,6 @@
     { id: 'bolt-r',   name: 'Bolt R',     tagline: 'Electric GT', body: 'sport', cats: ['sport', 'electric'], price: 89500, power: '560 hp', zero: '3.2 s', range: '410 km',   rangeLabel: 'Range',     color: 1, image: 'https://images.unsplash.com/photo-1619384557832-e67eb7ffa4d0?auto=format&fit=crop&w=900&q=80' },
   ];
 
-  /* ==========================================================
-     CAR ILLUSTRATION — inline SVG, faces right (viewBox 400×150)
-     ========================================================== */
-  const BODIES = {
-    sedan: {
-      body: 'M28,118 C28,106 38,100 58,96 L108,90 C130,68 160,56 200,56 L252,56 C284,58 304,76 320,92 L360,99 C372,103 376,110 376,118 L376,124 L28,124 Z',
-      glass: 'M122,90 C140,72 164,63 194,63 L202,63 L202,90 Z M212,63 L250,63 C272,65 288,78 300,90 L212,90 Z',
-      wheels: [96, 306], head: [364, 104], tail: [28, 104], seam: 'M206,92 L206,119',
-    },
-    suv: {
-      body: 'M26,118 L26,102 C26,94 34,90 52,86 L96,82 L124,52 L296,52 C314,52 322,66 332,82 L364,90 C374,94 378,102 378,110 L378,124 L26,124 Z',
-      glass: 'M132,58 L196,58 L196,82 L110,82 Z M206,58 L286,58 C298,60 306,70 314,82 L206,82 Z',
-      wheels: [98, 308], head: [366, 98], tail: [26, 98], seam: 'M201,84 L201,119',
-    },
-    sport: {
-      body: 'M22,118 C22,108 36,102 66,98 L136,90 C162,70 194,64 226,64 C258,66 282,78 298,92 L352,98 C372,102 380,110 380,118 L380,124 L22,124 Z',
-      glass: 'M150,90 C170,74 196,69 222,69 C248,71 268,80 282,90 Z',
-      wheels: [92, 312], head: [368, 104], tail: [22, 104], seam: 'M214,93 L214,119',
-    },
-  };
-
-  const wheelSVG = (cx) => {
-    const spokes = [0, 1, 2, 3, 4].map((i) => {
-      const a = (i * 72 * Math.PI) / 180;
-      return `<line class="spoke" x1="${cx}" y1="120" x2="${(cx + Math.cos(a) * 12).toFixed(1)}" y2="${(120 + Math.sin(a) * 12).toFixed(1)}"/>`;
-    }).join('');
-    return `<g class="wheel"><circle class="tire" cx="${cx}" cy="120" r="22"/><circle class="rim" cx="${cx}" cy="120" r="14"/>${spokes}<circle class="hub" cx="${cx}" cy="120" r="4"/></g>`;
-  };
-
-  const carSVG = (bodyKey, label) => {
-    const b = BODIES[bodyKey];
-    const arch = (cx) => `<path class="arch" d="M${cx - 28},124 L${cx - 28},120 A28,28 0 0 1 ${cx + 28},120 L${cx + 28},124 Z"/>`;
-    return `
-      <svg class="car-svg" viewBox="0 0 400 150" role="img" aria-label="${label}">
-        <ellipse class="shadow" cx="200" cy="143" rx="168" ry="6"/>
-        <path class="body" d="${b.body}"/>
-        <path d="${b.body}" fill="url(#carShade)"/>
-        <path class="glass" d="${b.glass}"/>
-        <path class="line" d="${b.seam}"/>
-        <rect class="head" x="${b.head[0]}" y="${b.head[1]}" width="12" height="5" rx="2"/>
-        <rect class="tail" x="${b.tail[0]}" y="${b.tail[1]}" width="9" height="5" rx="2"/>
-        ${b.wheels.map(arch).join('')}
-        ${b.wheels.map(wheelSVG).join('')}
-      </svg>`;
-  };
-
   const swatchButtons = (activeIdx) => COLORS.map((c, i) =>
     `<button type="button" class="sw${i === activeIdx ? ' is-on' : ''}" style="--c:${c.hex}" data-i="${i}" aria-label="${c.name}" aria-pressed="${i === activeIdx}" title="${c.name}"></button>`
   ).join('');
