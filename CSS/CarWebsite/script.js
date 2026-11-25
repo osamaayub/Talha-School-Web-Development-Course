@@ -100,7 +100,7 @@
           <div class="car-actions">
             <button type="button" class="btn btn-sm btn-ghost" data-action="details" data-id="${car.id}">Details</button>
             <button type="button" class="btn btn-sm btn-ghost" data-action="finance" data-id="${car.id}">Finance</button>
-            <button type="button" class="btn btn-sm btn-primary" data-action="drive" data-id="${car.id}">Test drive</button>
+            <button type="button" class="btn btn-sm btn-primary" data-action="enquire" data-id="${car.id}">Enquire</button>
           </div>
         </div>
       </div>
@@ -128,56 +128,9 @@
     $('#modalClose').focus();
   };
   modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { if (!modal.hidden) closeModal(); if (!driveModal.hidden) closeDriveModal(); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
   $('#modalFinance').addEventListener('click', () => { const car = carById(modal.dataset.id); closeModal(); calcCar.value = car.id; syncPriceFromCar(); compute(); scrollToEl('#finance'); toast(`${car.name} added to the finance calculator`); });
-  $('#modalDrive').addEventListener('click', () => { const car = carById(modal.dataset.id); openDriveModal(car.id); });
-
-  const driveModal = $('#driveModal');
-  const dImg = $('#driveImg'), dKicker = $('#driveKicker'), dName = $('#driveName'), dSpeed = $('#driveSpeed'), dRpm = $('#driveRpm'), dGear = $('#driveGear'), dProgress = $('#driveProgress'), dStatus = $('#driveStatus');
-  let dSpeedVal = 0, dRaf = null, dCar = null, dAccel = false, dBrake = false;
-  const closeDriveModal = () => { cancelAnimationFrame(dRaf); dRaf = null; dAccel = dBrake = false; driveModal.hidden = true; document.body.classList.remove('modal-open'); };
-  const driveTick = () => {
-    if (dAccel) dSpeedVal = Math.min(160, dSpeedVal + 2.4 + Math.random() * 1.6);
-    else if (dBrake) dSpeedVal = Math.max(0, dSpeedVal - 5);
-    else dSpeedVal = Math.max(0, dSpeedVal - 0.9);
-    const rpm = Math.round(dSpeedVal * 42 + (dAccel ? Math.random() * 350 : 0));
-    dSpeed.textContent = Math.round(dSpeedVal);
-    dRpm.textContent = rpm;
-    dGear.textContent = dSpeedVal < 1 ? 'P' : dSpeedVal < 40 ? 'D' : 'S';
-    dProgress.style.width = `${(dSpeedVal / 160 * 100).toFixed(1)}%`;
-    dStatus.textContent = dSpeedVal >= 120 ? 'Test drive complete — book your slot below.' : dSpeedVal > 0 ? 'Driving… ease off or brake to stop.' : 'Press start to begin your test drive.';
-    if (dSpeedVal > 0 || dAccel || dBrake) dRaf = requestAnimationFrame(driveTick);
-  };
-  const openDriveModal = (id) => {
-    const car = carById(id);
-    if (!car) return;
-    dCar = car;
-    closeModal();
-    driveModal.dataset.id = car.id;
-    dImg.src = car.image; dImg.alt = car.name;
-    dKicker.textContent = car.cats.join(' · ').toUpperCase();
-    dName.textContent = car.name;
-    dSpeedVal = 0; dAccel = dBrake = false;
-    dSpeed.textContent = '0'; dRpm.textContent = '0'; dGear.textContent = 'P'; dProgress.style.width = '0%';
-    dStatus.textContent = 'Press start to begin your test drive.';
-    driveModal.hidden = false;
-    document.body.classList.add('modal-open');
-  };
-  driveModal.addEventListener('click', (e) => {
-    if (e.target.closest('[data-close]')) { closeDriveModal(); return; }
-    if (e.target.id === 'driveBook' && dCar) { closeDriveModal(); bookCar.value = dCar.id; scrollToEl('#book'); toast(`${dCar.name} selected for a test drive`); }
-  });
-  $('#driveStart').addEventListener('click', () => { cancelAnimationFrame(dRaf); dRaf = requestAnimationFrame(driveTick); });
-  const hold = (el, key) => {
-    el.addEventListener('pointerdown', () => {
-      dAccel = key === 'accel'; dBrake = key === 'brake';
-      if (!dRaf) dRaf = requestAnimationFrame(driveTick);
-    });
-    ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => el.addEventListener(ev, () => { dAccel = false; dBrake = false; }));
-  };
-  hold($('#driveAccel'), 'accel');
-  hold($('#driveBrake'), 'brake');
-  $('#driveStop').addEventListener('click', () => { dSpeedVal = 0; dAccel = dBrake = false; cancelAnimationFrame(dRaf); dRaf = null; dSpeed.textContent = '0'; dRpm.textContent = '0'; dGear.textContent = 'P'; dProgress.style.width = '0%'; dStatus.textContent = 'Stopped. Press start to drive again.'; });
+  $('#modalEnquire').addEventListener('click', () => { const car = carById(modal.dataset.id); closeModal(); if (car) { enqCar.value = car.id; scrollToEl('#contact'); toast(`Ask us about the ${car.name}`); } });
 
   carsEl.addEventListener('click', (e) => {
     const sw = e.target.closest('.sw');
@@ -201,9 +154,11 @@
       compute();
       scrollToEl('#finance');
       toast(`${car.name} added to the finance calculator`);
-    } else {
-      openDriveModal(car.id);
+      return;
     }
+    enqCar.value = car.id;
+    scrollToEl('#contact');
+    toast(`Ask us about the ${car.name}`);
   });
 
   /* ---------- Filter ---------- */
@@ -287,51 +242,45 @@
   compute();
 
   /* ==========================================================
-     BOOKING FORM
+     CONTACT / ENQUIRY FORM
      ========================================================== */
-  const bookForm = $('#bookForm');
-  const bookCar = $('#b-car');
-  const bookDate = $('#b-date');
-  const success = $('#bookSuccess');
-  bookCar.innerHTML = CARS.map((c) => `<option value="${c.id}">${c.name}</option>`).join('');
+  const enquiryForm = $('#enquiryForm');
+  const enqCar = $('#e-car');
+  const enquirySuccess = $('#enquirySuccess');
+  enqCar.innerHTML = CARS.map((c) => `<option value="${c.id}">${c.name}</option>`).join('') + '<option value="general">General enquiry</option>';
 
-  const BKEY = 'velocity-bookings';
-  let bookings = [];
-  try { bookings = JSON.parse(localStorage.getItem(BKEY) || '[]'); } catch { bookings = []; }
-  const saveBookings = () => { try { localStorage.setItem(BKEY, JSON.stringify(bookings)); } catch { /* storage unavailable */ } };
-  const bookingsEl = $('#bookings');
-  const bookingListEl = $('#bookingList');
-  const renderBookings = () => {
-    bookingsEl.hidden = bookings.length === 0;
-    bookingListEl.innerHTML = bookings.map((b, i) => `
+  const EKEY = 'velocity-enquiries';
+  let enquiries = [];
+  try { enquiries = JSON.parse(localStorage.getItem(EKEY) || '[]'); } catch { enquiries = []; }
+  const saveEnquiries = () => { try { localStorage.setItem(EKEY, JSON.stringify(enquiries)); } catch { /* storage unavailable */ } };
+  const enquiriesEl = $('#enquiries');
+  const enquiryListEl = $('#enquiryList');
+  const enqCarLabel = (v) => v === 'general' ? 'General enquiry' : (carById(v) || {}).name || v;
+  const renderEnquiries = () => {
+    enquiriesEl.hidden = enquiries.length === 0;
+    enquiryListEl.innerHTML = enquiries.map((q, i) => `
       <li class="booking">
         <div class="booking-info">
-          <strong>${b.car}</strong>
-          <span>${b.date} · ${b.name}</span>
-          <small>${b.ref}</small>
+          <strong>${q.car}</strong>
+          <span>${q.name} · ${q.date}</span>
+          <small>${q.ref}</small>
         </div>
-        <button type="button" class="btn btn-sm btn-ghost" data-cancel="${i}">Cancel</button>
+        <button type="button" class="btn btn-sm btn-ghost" data-del="${i}">Delete</button>
       </li>`).join('');
   };
-  bookingsEl.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-cancel]');
+  enquiriesEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-del]');
     if (!btn) return;
-    const [removed] = bookings.splice(Number(btn.dataset.cancel), 1);
-    saveBookings();
-    renderBookings();
-    toast(`Cancelled test drive for ${removed.car}`);
+    enquiries.splice(Number(btn.dataset.del), 1);
+    saveEnquiries();
+    renderEnquiries();
+    toast('Enquiry deleted');
   });
-  renderBookings();
-
-  const pad = (n) => String(n).padStart(2, '0');
-  const today = new Date();
-  const todayStr = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
-  bookDate.min = todayStr;
+  renderEnquiries();
 
   const rules = {
     name: (v) => v.trim().length >= 2 ? '' : 'Please enter your name.',
     email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'Enter a valid email, like you@example.com.',
-    date: (v) => !v ? 'Pick a date for your test drive.' : v < todayStr ? 'Please choose today or a future date.' : '',
   };
   const check = (input) => {
     const msg = rules[input.name](input.value);
@@ -343,37 +292,37 @@
     }
     return !msg;
   };
-  const validated = $$('input[name="name"], input[name="email"], input[name="date"]', bookForm);
+  const validated = $$('input[name="name"], input[name="email"]', enquiryForm);
   validated.forEach((input) => {
     input.addEventListener('blur', () => { if (input.value) check(input); });
     input.addEventListener('input', () => { if (input.closest('.field').classList.contains('invalid')) check(input); });
   });
-  bookForm.addEventListener('submit', (e) => {
+  enquiryForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const results = validated.map(check);
     const bad = validated.find((_, i) => !results[i]);
     if (bad) { bad.focus(); return; }
-    const car = carById(bookCar.value);
-    const first = $('#b-name').value.trim().split(/\s+/)[0];
-    const [y, m, d] = bookDate.value.split('-').map(Number);
-    const pretty = new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-    const ref = 'VD-' + Math.random().toString(36).slice(2, 6).toUpperCase();
-    bookings.unshift({ ref, name: $('#b-name').value.trim(), email: $('#b-email').value.trim(), car: car.name, date: pretty });
-    saveBookings();
-    renderBookings();
-    $('#successText').textContent = `Thanks, ${first}! Your test drive for the ${car.name} on ${pretty} is booked. Show the reference below at the showroom.`;
-    $('#successRef').textContent = `Reference: ${ref}`;
-    bookForm.hidden = true;
-    success.hidden = false;
-    scrollToEl('#book');
+    const first = $('#e-name').value.trim().split(/\s+/)[0];
+    const carLabel = enqCarLabel(enqCar.value);
+    const ref = 'EN-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+    const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    enquiries.unshift({ ref, name: $('#e-name').value.trim(), email: $('#e-email').value.trim(), car: carLabel, message: $('#e-msg').value.trim(), date });
+    saveEnquiries();
+    renderEnquiries();
+    $('#enquirySuccessText').textContent = `Thanks, ${first}! Your enquiry about the ${carLabel} has been noted. We'll reply to ${$('#e-email').value.trim()} within one business day.`;
+    $('#enquiryRef').textContent = `Reference: ${ref}`;
+    enquiryForm.hidden = true;
+    enquirySuccess.hidden = false;
+    scrollToEl('#contact');
   });
-  $('#bookAgain').addEventListener('click', () => {
-    bookForm.reset();
-    $$('.field', bookForm).forEach((f) => f.classList.remove('invalid'));
-    success.hidden = true;
-    bookForm.hidden = false;
-    $('#b-name').focus();
+  $('#enquiryAgain').addEventListener('click', () => {
+    enquiryForm.reset();
+    $$('.field', enquiryForm).forEach((f) => f.classList.remove('invalid'));
+    enquirySuccess.hidden = true;
+    enquiryForm.hidden = false;
+    $('#e-name').focus();
   });
+  $('#financeEnquire').addEventListener('click', () => { if (calcCar.value !== 'custom') enqCar.value = calcCar.value; });
 
   /* ==========================================================
      REVEAL, COUNTERS, NAV

@@ -225,13 +225,14 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .field { display: grid; gap: 8px; }
 .field label { font-size: 0.86rem; font-weight: 500; }
 .field label b { color: var(--accent-2); }
-.field input[type="number"], .field input[type="text"], .field input[type="email"], .field input[type="date"], .field select {
-  width: 100%; height: 50px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-2); color-scheme: dark;
-  transition: border-color 0.25s, box-shadow 0.25s;
+.field input[type="number"], .field input[type="text"], .field input[type="email"], .field input[type="date"], .field select, .field textarea {
+  width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-2); color-scheme: dark;
+  transition: border-color 0.25s, box-shadow 0.25s; font: inherit; color: var(--text); resize: vertical;
 }
-.field input:focus, .field select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.2); }
+.field input[type="number"], .field input[type="text"], .field input[type="email"], .field input[type="date"], .field select { height: 50px; padding: 0 16px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.2); }
 .field input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; cursor: pointer; }
-.field input::placeholder { color: #565e70; }
+.field input::placeholder, .field textarea::placeholder { color: #565e70; }
 .calc-result { display: flex; flex-direction: column; gap: 6px; background: linear-gradient(160deg, #1b1520, var(--surface)); }
 .monthly { font: 800 clamp(2.8rem, 6vw, 4rem) var(--display); line-height: 1.05; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .monthly small { font-size: 1rem; color: var(--muted); -webkit-text-fill-color: var(--muted); margin-left: 4px; font-weight: 500; }
@@ -241,7 +242,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .calc-result dd { font-weight: 600; font-variant-numeric: tabular-nums; }
 .calc-result .btn { margin-top: auto; }
 
-/* ---------- Booking ---------- */
+/* ---------- Contact ---------- */
 .book { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 80px); align-items: start; padding-bottom: clamp(80px, 11vw, 130px); }
 .book-points { display: grid; gap: 12px; margin-top: 22px; }
 .book-points li { position: relative; padding-left: 30px; color: var(--muted); }
@@ -294,27 +295,6 @@ body.modal-open { overflow: hidden; }
   .modal-media { min-height: 220px; }
   .modal-specs { grid-template-columns: 1fr; }
   .modal-foot { flex-direction: column; align-items: stretch; }
-}
-
-/* ---------- Virtual drive ---------- */
-.drive-card { position: relative; width: min(820px, 100%); max-height: 92vh; overflow: auto; border-radius: 28px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6); }
-.drive-media { position: relative; height: 320px; background: #000; }
-.drive-media img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; display: block; }
-.drive-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.68)); }
-.drive-panel { padding: 24px; display: grid; gap: 14px; }
-.drive-panel h3 { font-size: 1.8rem; }
-.drive-dash { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.gauge { padding: 14px; border-radius: 16px; background: var(--bg-2); border: 1px solid var(--line); text-align: center; }
-.gauge span { display: block; font: 800 1.8rem var(--display); font-variant-numeric: tabular-nums; }
-.gauge small { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
-.drive-progress { height: 10px; border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line); overflow: hidden; }
-.drive-progress span { display: block; height: 100%; width: 0; background: var(--grad); transition: width 0.1s linear; }
-.drive-status { color: var(--muted); min-height: 44px; }
-.drive-controls { display: flex; flex-wrap: wrap; gap: 8px; }
-@media (max-width: 560px) {
-  .drive-dash { grid-template-columns: 1fr; }
-  .drive-controls .btn { flex: 1; }
-  .drive-media { height: 220px; }
 }
 
 /* ---------- Footer / toast ---------- */
