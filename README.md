@@ -23,6 +23,7 @@ Every push to `main` is published automatically (see [Deployment](#-deployment))
 | 💬 **Quote Generator** | [`/javaScript/exercises/quote-generator/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/exercises/quote-generator/) | Modern responsive quote generator with copy and keyboard controls |
 | 🎂 **Age Calculator** | [`/javaScript/exercises/age-calculator/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/exercises/age-calculator/) | Date math exercise: years, months, days, next-birthday countdown |
 | 🌿 **Urban Plants** | [`/javaScript/projects/urban-plants/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/projects/urban-plants/) | JavaScript plant-shop landing page: filters, search, sorting, cart drawer |
+| 🎨 **Color Generator** | [`/javaScript/projects/color-generator/`](https://osamaayub.github.io/Talha-School-Web-Development-Course/javaScript/projects/color-generator/) | Palette generator: harmony modes, locks, copy, saved favorites |
 
 ## 🗂️ Project Structure
 
@@ -71,7 +72,8 @@ WebDevelopmentCourse/
 │   │   ├── dom-manipulation/          # DOM selection and updates
 │   │   └── quote-generator/           # Random quote generator with copy
 │   └── projects/                      # Larger JavaScript projects
-│       └── urban-plants/              # Plant-shop landing page (filters, cart)
+│       ├── urban-plants/              # Plant-shop landing page (filters, cart)
+│       └── color-generator/           # Color palette generator (harmony, locks)
 └── docs/                              # Course documentation
     ├── README.md                      # Documentation overview and guide
     ├── course-notes.md                # Course notes and learning materials
@@ -166,6 +168,7 @@ The dedicated JavaScript basics module contains interactive examples for variabl
 - [DOM Manipulation](javaScript/exercises/dom-manipulation/) — selecting and updating page elements
 - [Quote Generator](javaScript/exercises/quote-generator/) — random quotes with copy to clipboard
 - [Urban Plants](javaScript/projects/urban-plants/) — responsive plant-shop landing page with filters, search, sorting and a cart
+- [Color Generator](javaScript/projects/color-generator/) — palette generator with harmony modes, locks, copy and saved favorites
 
 ## 🛠️ Technologies Used
 

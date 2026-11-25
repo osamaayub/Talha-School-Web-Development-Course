@@ -100,3 +100,9 @@ A responsive houseplant shop landing page built with vanilla JavaScript. Practic
 rendering product cards from an array, filtering and searching, sorting, cart
 state with `localStorage`, a slide-in cart drawer, animated stats, and form
 validation.
+
+### [Color Generator](projects/color-generator/)
+
+A modern color palette generator with harmony modes, per-color locks,
+copy-to-clipboard, contrast-aware swatches, and saved palettes in
+`localStorage`. Practice color math, DOM rendering, and small interactive tools.

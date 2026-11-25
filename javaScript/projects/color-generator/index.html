@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chroma Lab — generate modern color palettes with harmony modes, locks, copy and saved favorites.">
+  <title>Chroma Lab — Color Palette Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../../">◐ Chroma Lab</a>
+    <a class="back" href="../../">← JavaScript projects</a>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Color palette generator</p>
+      <h1>Palettes that feel designed, not random.</h1>
+      <p>Pick a harmony, lock the colors you love, copy hex values, and save palettes for later.</p>
+
+      <div class="controls">
+        <label class="field">
+          <span>Harmony</span>
+          <select id="harmony">
+            <option value="random">Random</option>
+            <option value="analogous">Analogous</option>
+            <option value="complementary">Complementary</option>
+            <option value="triadic">Triadic</option>
+            <option value="split">Split complementary</option>
+            <option value="tetradic">Tetradic</option>
+          </select>
+        </label>
+        <button class="btn primary" id="generateBtn" type="button">Generate palette</button>
+        <button class="btn ghost" id="saveBtn" type="button">Save palette</button>
+      </div>
+    </section>
+
+    <section class="palette" id="palette" aria-label="Generated color palette"></section>
+
+    <section class="favorites" id="favoritesSection" hidden>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Saved</p>
+          <h2>Favorite palettes</h2>
+        </div>
+        <button class="btn ghost small" id="clearFavorites" type="button">Clear all</button>
+      </div>
+      <div class="fav-list" id="favoritesList"></div>
+    </section>
+  </main>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
