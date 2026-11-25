@@ -5,11 +5,11 @@ const PLANTS = [
   { id: "monstera", name: "Monstera Deliciosa", botanical: "Monstera deliciosa", price: 42, rating: 4.9, tag: "Bestseller", art: "green", image: "https://images.unsplash.com/photo-1757262087277-ca96934bdedc?auto=format&fit=crop&w=800&q=80", care: ["Bright indirect", "Weekly", "Pet toxic"], features: ["low-light", "easy"] },
   { id: "snake", name: "Snake Plant", botanical: "Sansevieria trifasciata", price: 28, rating: 4.8, tag: "Unkillable", art: "green", image: "https://images.unsplash.com/photo-1563419837758-e48ef1b731dd?auto=format&fit=crop&w=800&q=80", care: ["Low light", "Every 2 weeks", "Pet toxic"], features: ["low-light", "pet-safe", "easy"] },
   { id: "pothos", name: "Golden Pothos", botanical: "Epipremnum aureum", price: 24, rating: 4.7, tag: "Fast grower", art: "cream", image: "https://images.unsplash.com/photo-1612791397238-4fe881a5eab0?auto=format&fit=crop&w=800&q=80", care: ["Medium light", "Weekly", "Pet toxic"], features: ["easy"] },
-  { id: "zz", name: "ZZ Plant", botanical: "Zamioculcas zamiifolia", price: 34, rating: 4.8, tag: "Low light", art: "purple", image: "https://images.pexels.com/photos/36560089/pexels-photo-36560089.jpeg?auto=compress&cs=tinysrgb&w=800", care: ["Low light", "Every 2 weeks", "Pet safe"], features: ["low-light", "pet-safe", "easy"] },
+  { id: "zz", name: "ZZ Plant", botanical: "Zamioculcas zamiifolia", price: 34, rating: 4.8, tag: "Low light", art: "purple", image: "https://images.unsplash.com/photo-1681109125740-253c281ef32b?auto=format&fit=crop&w=800&q=80", care: ["Low light", "Every 2 weeks", "Pet safe"], features: ["low-light", "pet-safe", "easy"] },
   { id: "peace", name: "Peace Lily", botanical: "Spathiphyllum wallisii", price: 38, rating: 4.6, tag: "Flowering", art: "white", image: "https://images.unsplash.com/photo-1770771759998-193f7023faee?auto=format&fit=crop&w=800&q=80", care: ["Medium light", "Weekly", "Pet toxic"], features: ["flowering"] },
   { id: "succulent", name: "Echeveria Mix", botanical: "Echeveria spp.", price: 22, rating: 4.5, tag: "Drought friendly", art: "rose", image: "https://images.unsplash.com/photo-1778562825462-641362a52c2e?auto=format&fit=crop&w=800&q=80", care: ["Bright light", "Monthly", "Pet safe"], features: ["pet-safe", "easy"] },
   { id: "calathea", name: "Calathea Orbifolia", botanical: "Goeppertia orbifolia", price: 46, rating: 4.9, tag: "Statement", art: "blue", image: "https://images.unsplash.com/photo-1687166608531-d21738623f0b?auto=format&fit=crop&w=800&q=80", care: ["Medium light", "Weekly", "Pet safe"], features: ["pet-safe"] },
-  { id: "fern", name: "Boston Fern", botanical: "Nephrolepis exaltata", price: 32, rating: 4.7, tag: "Humidity lover", art: "green", image: "https://images.pexels.com/photos/322342/pexels-photo-322342.jpeg?auto=compress&cs=tinysrgb&w=800", care: ["Medium light", "Twice weekly", "Pet safe"], features: ["pet-safe"] },
+  { id: "fern", name: "Boston Fern", botanical: "Nephrolepis exaltata", price: 32, rating: 4.7, tag: "Humidity lover", art: "green", image: "https://images.unsplash.com/photo-1711948176573-74d5858240de?auto=format&fit=crop&w=800&q=80", care: ["Medium light", "Twice weekly", "Pet safe"], features: ["pet-safe"] },
 ];
 
 const state = { filter: "all", query: "", sort: "featured" };
@@ -78,6 +78,7 @@ function renderPlants() {
       <div class="plant-art ${plant.art}">
         <img class="plant-photo" src="${plant.image}" alt="${plant.name}" loading="lazy" decoding="async">
         <span class="plant-tag">${plant.tag}</span>
+        <button class="add-btn quick-add" type="button" data-id="${plant.id}" data-label="Quick add">Quick add</button>
       </div>
       <div class="plant-body">
         <h3 class="plant-name">${plant.name}</h3>
@@ -89,7 +90,7 @@ function renderPlants() {
         <div class="plant-tags">${plant.features.map((f) => `<span>${f.replace("-", " ")}</span>`).join("")}</div>
         <div class="plant-foot">
           <span class="price">$${plant.price}.00 <small>potted</small></span>
-          <button class="add-btn" type="button" data-id="${plant.id}">Add</button>
+          <button class="add-btn" type="button" data-id="${plant.id}" data-label="Add">Add</button>
         </div>
       </div>`;
     grid.appendChild(card);
@@ -180,7 +181,7 @@ grid.addEventListener("click", (event) => {
   toast(`${PLANTS.find((p) => p.id === id).name} added to cart`);
   setTimeout(() => {
     btn.classList.remove("added");
-    btn.textContent = "Add";
+    btn.textContent = btn.dataset.label || "Add";
   }, 1400);
 });
 
