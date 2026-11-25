@@ -173,6 +173,10 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .sort-label { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.88rem; }
 .sort-label select { height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
 .sort-label select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.2); }
+.search { display: inline-flex; align-items: center; gap: 8px; flex: 1; max-width: 300px; height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); }
+.search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.2); }
+.search input { flex: 1; min-width: 0; border: none; background: transparent; color: var(--text); font: inherit; outline: none; }
+.search input::placeholder { color: #565e70; }
 
 /* ---------- Car cards ---------- */
 .cars { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 22px; }
@@ -246,6 +250,26 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .calc-result dt { color: var(--muted); }
 .calc-result dd { font-weight: 600; font-variant-numeric: tabular-nums; }
 .calc-result .btn { margin-top: auto; }
+.balance-chart { display: block; width: 100%; height: 140px; margin: 4px 0 14px; }
+
+/* ---------- Compare ---------- */
+.compare-bar { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 115; display: flex; align-items: center; gap: 16px; padding: 10px 12px 10px 20px; border-radius: 999px; background: var(--surface); border: 1px solid rgba(255, 90, 31, 0.45); box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); }
+.compare-bar[hidden] { display: none; }
+.compare-count { font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+.compare-actions { display: flex; gap: 8px; }
+.btn.cmp.is-on { background: var(--grad); color: #1a0a02; border-color: transparent; font-weight: 700; }
+.compare-card { position: relative; width: min(1080px, 100%); max-height: 90vh; overflow: auto; border-radius: 28px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6); padding: 28px; }
+.compare-card h3 { font-size: 1.6rem; margin-bottom: 6px; }
+.compare-scroll { overflow-x: auto; margin-top: 16px; }
+.compare-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.compare-table th, .compare-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: center; font-size: 0.92rem; }
+.compare-table thead th { vertical-align: top; }
+.compare-table tbody th { text-align: left; color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+.compare-table td { font-variant-numeric: tabular-nums; }
+.compare-table td.best { color: #4ade80; font-weight: 700; }
+.cmp-img { display: block; width: 100%; max-width: 180px; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; margin: 0 auto 8px; background: var(--bg-2); }
+.compare-table thead strong { display: block; font: 700 1rem var(--display); }
+.compare-table thead span { color: var(--muted); font-size: 0.78rem; }
 
 /* ---------- Reviews ---------- */
 .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
@@ -362,6 +386,7 @@ body.modal-open { overflow: hidden; }
   .car-actions .btn { flex: 1; }
   .footer-grid { grid-template-columns: 1fr; gap: 22px; }
   .to-top { right: 16px; bottom: 16px; }
+  .compare-bar { left: 12px; right: 12px; transform: none; border-radius: 20px; justify-content: space-between; }
   .sun { width: 220px; height: 220px; right: -40px; }
 }
 

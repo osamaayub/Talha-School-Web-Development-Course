@@ -102,6 +102,7 @@
             <button type="button" class="btn btn-sm btn-ghost" data-action="details" data-id="${car.id}">Details</button>
             <button type="button" class="btn btn-sm btn-ghost" data-action="finance" data-id="${car.id}">Finance</button>
             <button type="button" class="btn btn-sm btn-primary" data-action="enquire" data-id="${car.id}">Enquire</button>
+            <button type="button" class="btn btn-sm btn-ghost cmp" data-action="compare" data-id="${car.id}" aria-pressed="false" title="Add ${car.name} to compare" aria-label="Add ${car.name} to compare">⇄</button>
           </div>
         </div>
       </div>
@@ -129,7 +130,7 @@
     $('#modalClose').focus();
   };
   modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { if (!modal.hidden) closeModal(); if (!compareModal.hidden) closeCompareModal(); } });
   $('#modalFinance').addEventListener('click', () => { const car = carById(modal.dataset.id); closeModal(); calcCar.value = car.id; syncPriceFromCar(); compute(); scrollToEl('#finance'); toast(`${car.name} added to the finance calculator`); });
   $('#modalEnquire').addEventListener('click', () => { const car = carById(modal.dataset.id); closeModal(); if (car) { enqCar.value = car.id; scrollToEl('#contact'); toast(`Ask us about the ${car.name}`); } });
 
@@ -157,6 +158,7 @@
       toast(`${car.name} added to the finance calculator`);
       return;
     }
+    if (btn.dataset.action === 'compare') { toggleCompare(car.id); return; }
     enqCar.value = car.id;
     scrollToEl('#contact');
     toast(`Ask us about the ${car.name}`);
@@ -166,7 +168,16 @@
   const filterBtns = $$('.filter');
   const cards = $$('.car-card', carsEl);
   const visibleCount = $('#visibleCount');
-  const matches = (card, f) => f === 'all' || (f === 'saved' ? isFav(card.dataset.id) : card.dataset.cats.split(' ').includes(f));
+  const carSearch = $('#carSearch');
+  let query = '';
+  carSearch.addEventListener('input', () => { query = carSearch.value.trim().toLowerCase(); applyFilter(activeFilter); });
+  const matches = (card, f) => {
+    if (query) {
+      const c = carById(card.dataset.id);
+      if (!(c.name + ' ' + c.tagline + ' ' + c.body + ' ' + c.fuel + ' ' + c.engine).toLowerCase().includes(query)) return false;
+    }
+    return f === 'all' || (f === 'saved' ? isFav(card.dataset.id) : card.dataset.cats.split(' ').includes(f));
+  };
   const applyFilter = (f) => {
     cards.forEach((card) => {
       const show = matches(card, f);
@@ -202,6 +213,90 @@
     });
   });
 
+  /* ---------- Compare ---------- */
+  const CMPR_KEY = 'velocity-compare';
+  let compareSet = [];
+  try { compareSet = JSON.parse(localStorage.getItem(CMPR_KEY) || '[]'); } catch { compareSet = []; }
+  const saveCompare = () => { try { localStorage.setItem(CMPR_KEY, JSON.stringify(compareSet)); } catch { /* storage unavailable */ } };
+  const compareBar = $('#compareBar');
+  const compareCountEl = $('#compareCount');
+  const compareModal = $('#compareModal');
+  const compareTable = $('#compareTable');
+  const compareHint = $('#compareHint');
+  const closeCompareModal = () => { compareModal.hidden = true; document.body.classList.remove('modal-open'); };
+
+  const syncCompareButtons = () => {
+    $$('.car-card').forEach((card) => {
+      const b = card.querySelector('[data-action="compare"]');
+      if (!b) return;
+      const car = carById(card.dataset.id);
+      const on = compareSet.includes(car.id);
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', String(on));
+      b.title = `${on ? 'Remove' : 'Add'} ${car.name} ${on ? 'from' : 'to'} compare`;
+    });
+  };
+  const syncCompareBar = () => {
+    compareBar.hidden = compareSet.length === 0;
+    compareCountEl.textContent = `${compareSet.length} selected`;
+  };
+  const toggleCompare = (id) => {
+    const car = carById(id);
+    const i = compareSet.indexOf(id);
+    if (i > -1) { compareSet.splice(i, 1); toast(`${car.name} removed from compare`); }
+    else if (compareSet.length >= 3) { toast('You can compare up to 3 cars'); return; }
+    else { compareSet.push(id); toast(`${car.name} added to compare`); }
+    saveCompare();
+    syncCompareButtons();
+    syncCompareBar();
+  };
+
+  const BODY_LABEL = { suv: 'SUV', sedan: 'Sedan', sport: 'Sport' };
+  const CMP_ROWS = [
+    { label: 'Price', val: (c) => money(c.price), num: (c) => c.price, best: 'min' },
+    { label: 'Type', val: (c) => BODY_LABEL[c.body] || c.tagline },
+    { label: 'Power', val: (c) => c.power, num: (c) => parseInt(c.power, 10), best: 'max' },
+    { label: '0–100 km/h', val: (c) => c.zero, num: (c) => parseFloat(c.zero), best: 'min' },
+    { label: 'Range', val: (c) => c.range },
+    { label: 'Engine', val: (c) => c.engine },
+    { label: 'Gearbox', val: (c) => c.gear },
+    { label: 'Seats', val: (c) => c.seats },
+    { label: 'Fuel', val: (c) => c.fuel },
+  ];
+  const openCompareModal = () => {
+    const cars = compareSet.map(carById).filter(Boolean);
+    if (!cars.length) { toast('Select cars to compare first'); return; }
+    compareHint.hidden = true;
+    let html = '<thead><tr><th></th>' + cars.map((c) => `<th><img class="cmp-img" src="${c.image}" alt="${c.name}"><strong>${c.name}</strong><span>${c.tagline}</span></th>`).join('') + '</tr></thead><tbody>';
+    CMP_ROWS.forEach((row) => {
+      let bestIdx = -1;
+      if (row.num && row.best) {
+        const nums = cars.map(row.num);
+        bestIdx = nums.indexOf(Math[row.best](...nums));
+      }
+      html += `<tr><th scope="row">${row.label}</th>` + cars.map((c, i) => `<td${i === bestIdx ? ' class="best"' : ''}>${row.val(c)}</td>`).join('') + '</tr>';
+    });
+    html += '<tr><th scope="row"></th>' + cars.map((c) => `<td><button type="button" class="btn btn-sm btn-primary" data-cmp-enquire="${c.id}">Enquire</button></td>`).join('') + '</tr></tbody>';
+    compareTable.innerHTML = html;
+    compareModal.hidden = false;
+    document.body.classList.add('modal-open');
+  };
+  compareModal.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close]')) { closeCompareModal(); return; }
+    const btn = e.target.closest('[data-cmp-enquire]');
+    if (btn) { enqCar.value = btn.dataset.cmpEnquire; closeCompareModal(); scrollToEl('#contact'); toast(`Ask us about the ${enqCarLabel(btn.dataset.cmpEnquire)}`); }
+  });
+  $('#compareOpen').addEventListener('click', openCompareModal);
+  $('#compareClear').addEventListener('click', () => {
+    compareSet = [];
+    saveCompare();
+    syncCompareButtons();
+    syncCompareBar();
+    toast('Compare list cleared');
+  });
+  syncCompareButtons();
+  syncCompareBar();
+
   /* ==========================================================
      FINANCE CALCULATOR
      ========================================================== */
@@ -210,11 +305,13 @@
   const calcDown = $('#calcDown');
   const calcApr = $('#calcApr');
   const calcTerm = $('#calcTerm');
+  const calcTrade = $('#calcTrade');
   calcCar.innerHTML = CARS.map((c) => `<option value="${c.id}">${c.name} — ${money(c.price)}</option>`).join('') + '<option value="custom">Custom price…</option>';
   const syncPriceFromCar = () => { const c = carById(calcCar.value); if (c) calcPrice.value = c.price; };
   syncPriceFromCar();
 
   let shownMonthly = 0;
+  let lastLoan = 0, lastPay = 0, lastN = 0, lastR = 0;
   let tween;
   const animateMonthly = (to) => {
     const el = $('#monthly');
@@ -236,17 +333,67 @@
     const pct = Number(calcDown.value);
     const apr = Number(calcApr.value);
     const n = Number(calcTerm.value);
+    const trade = Math.min(Number(calcTrade.value) || 0, price);
     const down = price * pct / 100;
-    const loan = price - down;
+    const loan = Math.max(0, price - down - trade);
     const r = apr / 100 / 12;
     const pay = loan <= 0 ? 0 : r === 0 ? loan / n : (loan * r) / (1 - Math.pow(1 + r, -n));
     $('#downOut').textContent = pct + '%';
     $('#aprOut').textContent = apr.toFixed(1) + '%';
+    $('#tradeOut').textContent = money(trade);
     $('#outDown').textContent = money(down);
+    $('#outTrade').textContent = money(trade);
     $('#outLoan').textContent = money(loan);
     $('#outInterest').textContent = money(pay * n - loan);
     $('#outTotal').textContent = money(pay * n + down);
+    lastLoan = loan; lastPay = pay; lastN = n; lastR = r;
     animateMonthly(pay);
+    drawBalance();
+  }
+
+  const balanceChart = $('#balanceChart');
+  function drawBalance() {
+    if (!balanceChart || !lastN) return;
+    const dpr = window.devicePixelRatio || 1;
+    const w = balanceChart.clientWidth, hgt = balanceChart.clientHeight || 140;
+    if (!w) return;
+    balanceChart.width = w * dpr;
+    balanceChart.height = hgt * dpr;
+    const ctx = balanceChart.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, hgt);
+    const padL = 8, padR = 8, padT = 12, padB = 24;
+    const iw = w - padL - padR, ih = hgt - padT - padB;
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.fillStyle = 'rgba(238,240,244,0.55)';
+    ctx.font = '10px Inter, sans-serif';
+    ctx.lineWidth = 1;
+    for (let g = 0; g <= 4; g++) {
+      const y = padT + (ih * g) / 4;
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.fillText(money(lastLoan * (1 - g / 4)), padL + 2, y - 3);
+    }
+    const bal = (k) => lastR === 0
+      ? lastLoan * (1 - k / lastN)
+      : lastLoan * Math.pow(1 + lastR, k) - (lastPay * (Math.pow(1 + lastR, k) - 1)) / lastR;
+    const pts = Array.from({ length: lastN + 1 }, (_, k) => Math.max(0, bal(k)));
+    const max = Math.max(...pts, 1);
+    const X = (k) => padL + (iw * k) / lastN;
+    const Y = (v) => padT + ih * (1 - v / max);
+    const grad = ctx.createLinearGradient(0, padT, 0, hgt - padB);
+    grad.addColorStop(0, 'rgba(255,90,31,0.35)');
+    grad.addColorStop(1, 'rgba(255,90,31,0.02)');
+    ctx.beginPath();
+    ctx.moveTo(X(0), Y(pts[0]));
+    pts.forEach((v, k) => ctx.lineTo(X(k), Y(v)));
+    ctx.lineTo(X(lastN), padT + ih); ctx.lineTo(X(0), padT + ih);
+    ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+    ctx.beginPath();
+    pts.forEach((v, k) => (k ? ctx.lineTo(X(k), Y(v)) : ctx.moveTo(X(k), Y(v))));
+    ctx.strokeStyle = '#ff5a1f'; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.stroke();
+    ctx.fillStyle = 'rgba(238,240,244,0.55)';
+    [0, Math.round(lastN / 2), lastN].forEach((m) => ctx.fillText(m + 'mo', X(m) - 12, hgt - 8));
   }
   calcCar.addEventListener('change', () => { if (calcCar.value !== 'custom') syncPriceFromCar(); compute(); });
   calcPrice.addEventListener('input', () => {
@@ -254,7 +401,8 @@
     calcCar.value = match ? match.id : 'custom';
     compute();
   });
-  [calcDown, calcApr, calcTerm].forEach((el) => el.addEventListener('input', compute));
+  [calcDown, calcApr, calcTerm, calcTrade].forEach((el) => el.addEventListener('input', compute));
+  window.addEventListener('resize', drawBalance);
   compute();
 
   /* ==========================================================

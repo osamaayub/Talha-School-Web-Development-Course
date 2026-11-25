@@ -84,6 +84,7 @@
 
       <div class="showroom-bar reveal">
         <p class="muted"><span id="visibleCount">6</span> models</p>
+        <label class="search"><span aria-hidden="true">⌕</span><input id="carSearch" type="search" placeholder="Search models…" aria-label="Search cars"></label>
         <label class="sort-label" for="sortCars">Sort by
           <select id="sortCars">
             <option value="featured">Featured</option>
@@ -173,6 +174,10 @@
               <option value="72">72 months</option>
             </select>
           </div>
+          <div class="field">
+            <label for="calcTrade">Trade-in value: <b id="tradeOut">$0</b></label>
+            <input id="calcTrade" type="range" min="0" max="30000" step="500" value="0">
+          </div>
         </form>
 
         <div class="calc-result" aria-live="polite">
@@ -180,10 +185,12 @@
           <p class="monthly"><span id="monthly">$0</span><small>/mo</small></p>
           <dl>
             <div><dt>Down payment</dt><dd id="outDown">$0</dd></div>
+            <div><dt>Trade-in credit</dt><dd id="outTrade">$0</dd></div>
             <div><dt>Amount financed</dt><dd id="outLoan">$0</dd></div>
             <div><dt>Total interest</dt><dd id="outInterest">$0</dd></div>
             <div><dt>Total cost</dt><dd id="outTotal">$0</dd></div>
           </dl>
+          <canvas id="balanceChart" class="balance-chart" aria-label="Loan balance over time" role="img"></canvas>
           <a href="#contact" class="btn btn-primary btn-block" id="financeEnquire">Enquire about this car <span class="arrow">→</span></a>
         </div>
       </div>
@@ -303,6 +310,24 @@
       <p class="muted small">© <span id="year"></span> · <a href="../">Back to CSS projects</a> · <a href="#home">Back to top ↑</a></p>
     </div>
   </footer>
+
+  <div class="compare-bar" id="compareBar" hidden>
+    <span class="compare-count" id="compareCount">0 selected</span>
+    <div class="compare-actions">
+      <button class="btn btn-sm btn-ghost" id="compareClear" type="button">Clear</button>
+      <button class="btn btn-sm btn-primary" id="compareOpen" type="button">Compare now →</button>
+    </div>
+  </div>
+
+  <div class="modal" id="compareModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="compare-card" role="dialog" aria-modal="true" aria-labelledby="compareTitle">
+      <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+      <h3 id="compareTitle">Compare models</h3>
+      <p class="muted" id="compareHint">Select up to 3 cars using the ⇄ button on each card.</p>
+      <div class="compare-scroll"><table class="compare-table" id="compareTable"></table></div>
+    </div>
+  </div>
 
   <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
