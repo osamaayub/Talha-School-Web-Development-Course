@@ -79,12 +79,21 @@
         <button class="filter" data-filter="sedan" aria-pressed="false">Sedan</button>
         <button class="filter" data-filter="sport" aria-pressed="false">Sport</button>
         <button class="filter" data-filter="electric" aria-pressed="false">Electric</button>
+        <button class="filter" data-filter="petrol" aria-pressed="false">Petrol</button>
         <button class="filter" data-filter="saved" aria-pressed="false">Saved</button>
       </div>
 
       <div class="showroom-bar reveal">
         <p class="muted"><span id="visibleCount">6</span> models</p>
         <label class="search"><span aria-hidden="true">⌕</span><input id="carSearch" type="search" placeholder="Search models…" aria-label="Search cars"></label>
+        <label class="sort-label" for="budgetFilter">Budget
+          <select id="budgetFilter">
+            <option value="any">Any price</option>
+            <option value="under45">Under $45,000</option>
+            <option value="mid">$45,000 – $65,000</option>
+            <option value="over65">Over $65,000</option>
+          </select>
+        </label>
         <label class="sort-label" for="sortCars">Sort by
           <select id="sortCars">
             <option value="featured">Featured</option>

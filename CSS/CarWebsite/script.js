@@ -169,14 +169,27 @@
   const cards = $$('.car-card', carsEl);
   const visibleCount = $('#visibleCount');
   const carSearch = $('#carSearch');
+  const budgetSel = $('#budgetFilter');
   let query = '';
   carSearch.addEventListener('input', () => { query = carSearch.value.trim().toLowerCase(); applyFilter(activeFilter); });
+  const inBudget = (c) => {
+    const b = budgetSel.value;
+    return b === 'any' || (b === 'under45' ? c.price < 45000 : b === 'mid' ? c.price >= 45000 && c.price <= 65000 : c.price > 65000);
+  };
+  budgetSel.addEventListener('change', () => applyFilter(activeFilter));
+  const catMatch = (card, f) => {
+    if (f === 'all') return true;
+    if (f === 'saved') return isFav(card.dataset.id);
+    const c = carById(card.dataset.id);
+    if (f === 'petrol') return c.fuel === 'Petrol';
+    return card.dataset.cats.split(' ').includes(f);
+  };
   const matches = (card, f) => {
     if (query) {
       const c = carById(card.dataset.id);
       if (!(c.name + ' ' + c.tagline + ' ' + c.body + ' ' + c.fuel + ' ' + c.engine).toLowerCase().includes(query)) return false;
     }
-    return f === 'all' || (f === 'saved' ? isFav(card.dataset.id) : card.dataset.cats.split(' ').includes(f));
+    return catMatch(card, f) && inBudget(carById(card.dataset.id));
   };
   const applyFilter = (f) => {
     cards.forEach((card) => {
@@ -205,7 +218,7 @@
   });
   filterBtns.forEach((btn) => {
     const f = btn.dataset.filter;
-    if (f !== 'all') btn.insertAdjacentHTML('beforeend', ` <span class="count">${f === 'saved' ? favs.size : cards.filter((c) => c.dataset.cats.split(' ').includes(f)).length}</span>`);
+    if (f !== 'all') btn.insertAdjacentHTML('beforeend', ` <span class="count">${f === 'saved' ? favs.size : cards.filter((c) => catMatch(c, f)).length}</span>`);
     btn.addEventListener('click', () => {
       activeFilter = f;
       filterBtns.forEach((b) => { const on = b === btn; b.classList.toggle('is-active', on); b.setAttribute('aria-pressed', String(on)); });

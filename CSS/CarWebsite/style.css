@@ -216,7 +216,7 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .car-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 6px; }
 .price small { display: block; color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
 .price b { font: 800 1.35rem var(--display); }
-.car-actions { display: flex; gap: 8px; }
+.car-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
 /* ---------- Features ---------- */
 .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
@@ -384,6 +384,7 @@ body.modal-open { overflow: hidden; }
   .specs dd { font-size: 0.9rem; }
   .car-foot { flex-direction: column; align-items: stretch; }
   .car-actions .btn { flex: 1; }
+  .car-actions .cmp { flex: 0 0 auto; padding: 0 14px; }
   .footer-grid { grid-template-columns: 1fr; gap: 22px; }
   .to-top { right: 16px; bottom: 16px; }
   .compare-bar { left: 12px; right: 12px; transform: none; border-radius: 20px; justify-content: space-between; }
