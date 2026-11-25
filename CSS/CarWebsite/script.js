@@ -169,7 +169,10 @@
   });
   $('#driveStart').addEventListener('click', () => { cancelAnimationFrame(dRaf); dRaf = requestAnimationFrame(driveTick); });
   const hold = (el, key) => {
-    el.addEventListener('pointerdown', () => { dAccel = key === 'accel'; dBrake = key === 'brake'; });
+    el.addEventListener('pointerdown', () => {
+      dAccel = key === 'accel'; dBrake = key === 'brake';
+      if (!dRaf) dRaf = requestAnimationFrame(driveTick);
+    });
     ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => el.addEventListener(ev, () => { dAccel = false; dBrake = false; }));
   };
   hold($('#driveAccel'), 'accel');
